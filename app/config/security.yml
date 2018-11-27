@@ -1,0 +1,35 @@
+security:
+    encoders:
+        AppBundle\Entity\User: bcrypt
+    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_SUPER_ADMIN
+    providers:
+        in_memory:
+            memory: ~
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    firewalls:
+        main:
+            pattern: ^/
+            form_login:
+                success_handler: authentication.handler.login_success_handler
+                provider: fos_userbundle
+                #csrf_token_generator: security.csrf.token_manager
+                            # if you are using Symfony < 2.8, use the following config instead:
+                            # csrf_provider: form.csrf_provider
+
+            logout:       true
+            anonymous:    true
+    access_control:
+    # require ROLE_ADMIN for /admin*
+
+    - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/fournisseurs/, roles: ROLE_USER }
+    - { path: ^/produits, roles: ROLE_USER }
+    - { path: ^/vende, roles: ROLE_USER }
+
+
+

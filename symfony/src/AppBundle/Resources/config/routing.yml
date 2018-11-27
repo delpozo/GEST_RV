@@ -1,0 +1,27 @@
+app_devise:
+    resource: "@AppBundle/Resources/config/routing/devise.yml"
+    prefix:   /devise
+
+app_fournisseurs:
+    resource: "@AppBundle/Resources/config/routing/fournisseurs.yml"
+    prefix:   /fournisseurs
+
+app_produits:
+    resource: "@AppBundle/Resources/config/routing/produits.yml"
+    prefix:   /produits
+
+app_produits_revendeurs:
+    resource: "@AppBundle/Resources/config/routing/produits_revendeurs.yml"
+    prefix:   /
+
+app_proposition_fournisseurs:
+    resource: "@AppBundle/Resources/config/routing/proposition_fournisseurs.yml"
+    prefix:   /proposition_fournisseurs
+
+app_type_produit:
+    resource: "@AppBundle/Resources/config/routing/type_produit.yml"
+    prefix:   /type_produit
+
+app_vende:
+    resource: "@AppBundle/Resources/config/routing/vende.yml"
+    prefix:   /vende

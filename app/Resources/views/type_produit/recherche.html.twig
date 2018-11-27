@@ -1,0 +1,57 @@
+                     
+
+    <div class="container-fluid">
+                   <div class="row">
+                       <div class="col-md-12">
+                           <div class="card">
+                            <div class="card-header card-header-icon" data-background-color="blue">
+                        <i class="material-icons"> <a href="{{ path('type_produit_index') }}" > category</a></i>
+                    </div>
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                <th th class="text-center">Type</th>
+                <th th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for type_produit in type_produits %}
+            <tr>
+                <td th class="text-center">{{ type_produit.type }}</td>
+                <td th class="text-center">
+                    <span>  <a href="{{ path('type_produit_edit', { 'id': type_produit.id }) }}"  rel="tooltip" class="btn btn-success btn-simple">
+                                                       <i class="material-icons">edit</i>
+                                                   </a>
+                                                   <div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <p style=" font-size: 15px; font-weight: bold;" > Confirm Submit </p>
+                                                            </div>
+                                                            <div class="modal-body">  
+                                                                <p style="color:red; font-size: 15px; font-weight: bold;"> Tu est sur de supprimer Le Produit {{ type_produit.type }} !? </p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-success success" data-dismiss="modal">Annuler</button>
+                                                                <a href="{{ path('type_produit_delete', { 'id': type_produit.id }) }}" id="submit" class="btn btn-danger danger">Supprimier</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                   <a name="btn" value="Submit" id="submitBtn" data-toggle="modal" data-target="#confirm-submit"  rel="tooltip" class="btn btn-danger btn-simple">
+                                                       <i class="material-icons">close</i>
+                                                   </a>
+                                               </span>                        
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+     </div>
+                    </div>
+
+
+                </div>
+   

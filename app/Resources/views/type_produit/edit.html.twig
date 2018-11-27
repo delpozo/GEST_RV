@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+        Modifier Le Produit
+      {% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    {{ form_start(edit_form) }}
+                    <div class="card-header card-header-text" data-background-color="blue">
+                        <h4 class="card-title"> Modifier Produits </h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="row">
+                            <label class="col-sm-2 label-on-left"> Fournisseur :</label>
+                            <div class="col-sm-10">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div >
+                                            <label class="control-label"></label>
+                                                {{ form_widget(edit_form) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                                </div>
+
+                        <div class="row">
+                            <div class="col-sm-4">
+
+                            </div>
+                            <div class="col-sm-2">
+                                <button type="submit" class="btn btn-info">Modifier </button>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <a  class="btn btn-fill-info" href="{{ path('type_produit_index') }}">Retour à la liste</a>
+                                {{ form_end(edit_form) }}
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <p style=" font-size: 15px; font-weight: bold;" > Confirm Submit </p>
+                                                            </div>
+                                                            <div class="modal-body">  
+                                                                <p style="color:red; font-size: 15px; font-weight: bold;"> Tu est sur de supprimer Le Produit {{ type_produit.type }} !? </p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-success success" data-dismiss="modal">Annuler</button>
+                                                                <a href="{{ path('type_produit_delete', { 'id': type_produit.id }) }}" id="submit" class="btn btn-danger danger">Supprimier</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                   <a class="btn btn-rose " name="btn" value="Submit" id="submitBtn" data-toggle="modal" data-target="#confirm-submit"  rel="tooltip" class="btn btn-danger btn-simple"> Supprimier
+                                                   </a>
+                                               
+                            </div>
+                        </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

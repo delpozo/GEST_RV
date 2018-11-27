@@ -1,0 +1,20 @@
+AppBundle\Entity\devise:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\deviseRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: '50'
+            unique: true
+        symbole:
+            type: string
+            length: '25'
+            unique: true
+    lifecycleCallbacks: {  }

@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+        Ajouter Produits 
+      {% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    {{ form_start(form) }}
+                    <div class="card-header card-header-text" data-background-color="blue">
+                        <h4 class="card-title"> Ajouter Produits </h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="row">
+                            <label class="col-sm-2 label-on-left"> Fournisseur :</label>
+                            <div class="col-sm-10">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div >
+                                            <label class="control-label"></label>
+                                            {{ form_widget(form.fournisseurs, { 'attr': { 'class' : 'selectpicker','data-style' : 'btn btn-primary btn-round', 'title': 'Choisir un Fournisseur' } }) }}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 label-on-left">Type Produit :</label>
+                            <div class="col-sm-10">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating is-empty">
+                                            <label class="control-label"></label>
+                                            {{ form_widget(form.type_produit, { 'attr': {'class' : 'selectpicker','data-style' : 'btn btn-primary btn-round', 'title': 'Choisir Un Type' } }) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 label-on-left"> Nom :</label>
+                            <div class="col-sm-10">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating ">
+                                            <label class="control-label">Nom Ex: IPTV</label>
+                                            {{ form_widget(form.nom) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 label-on-left"> Prix :</label>
+                            <div class="col-sm-10">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Prix Dachat : 35DT</label>
+                                            {{ form_widget(form.prixAchat) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Prix Dvende : 45DT</label>
+                                            {{ form_widget(form.prixVend ) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 label-on-left"> Produit Vendue/Non Vendue :</label>
+                            <div class="col-md-3">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Vendue / Non</label>
+                                    {{ form_widget(form.vendu, { 'attr': {'type' : 'checkbox','name' : 'optionsCheckboxes' } }) }}
+                                    {{ form_end(form) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+
+                            </div>
+                            <div class="col-sm-2">
+                                <button type="submit" class="btn btn-info" > Ajouter </button>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <a  class="btn btn-fill-info" href="{{ path('produits_index') }}">Retour à la liste</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

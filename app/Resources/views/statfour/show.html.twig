@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Statfour</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ statfour.id }}</td>
+            </tr>
+            <tr>
+                <th>Idelem</th>
+                <td>{{ statfour.idElem }}</td>
+            </tr>
+            <tr>
+                <th>Nomtab</th>
+                <td>{{ statfour.nomTab }}</td>
+            </tr>
+            <tr>
+                <th>Info</th>
+                <td>{{ statfour.info }}</td>
+            </tr>
+            <tr>
+                <th>Infoarray</th>
+                <td>{% if statfour.infoArray %}{{ statfour.infoArray|join(', ') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Credit</th>
+                <td>{{ statfour.credit }}</td>
+            </tr>
+            <tr>
+                <th>Deponse</th>
+                <td>{{ statfour.deponse }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('statfour_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('statfour_edit', { 'id': statfour.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Devises list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Symbole</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for devise in devises %}
+            <tr>
+                <td><a href="{{ path('devise_show', { 'id': devise.id }) }}">{{ devise.id }}</a></td>
+                <td>{{ devise.nom }}</td>
+                <td>{{ devise.symbole }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('devise_show', { 'id': devise.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('devise_edit', { 'id': devise.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('devise_new') }}">Create a new devise</a>
+        </li>
+    </ul>
+{% endblock %}

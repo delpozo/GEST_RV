@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Proposition_fournisseur</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ proposition_fournisseur.id }}</td>
+            </tr>
+            <tr>
+                <th>Dateac</th>
+                <td>{{ proposition_fournisseur.dateAc }}</td>
+            </tr>
+            <tr>
+                <th>Dateex</th>
+                <td>{{ proposition_fournisseur.dateEx }}</td>
+            </tr>
+            <tr>
+                <th>Text</th>
+                <td>{{ proposition_fournisseur.text }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('proposition_fournisseurs_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('proposition_fournisseurs_edit', { 'id': proposition_fournisseur.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

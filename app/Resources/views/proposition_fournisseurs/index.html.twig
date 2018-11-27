@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Proposition_fournisseurs list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Dateac</th>
+                <th>Dateex</th>
+                <th>Text</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for proposition_fournisseur in proposition_fournisseurs %}
+            <tr>
+                <td><a href="{{ path('proposition_fournisseurs_show', { 'id': proposition_fournisseur.id }) }}">{{ proposition_fournisseur.id }}</a></td>
+                <td>{{ proposition_fournisseur.dateAc }}</td>
+                <td>{{ proposition_fournisseur.dateEx }}</td>
+                <td>{{ proposition_fournisseur.text }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('proposition_fournisseurs_show', { 'id': proposition_fournisseur.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('proposition_fournisseurs_edit', { 'id': proposition_fournisseur.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('proposition_fournisseurs_new') }}">Create a new proposition_fournisseur</a>
+        </li>
+    </ul>
+{% endblock %}

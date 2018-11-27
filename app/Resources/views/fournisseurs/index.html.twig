@@ -1,0 +1,123 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+        Liste Des Fournisseurs
+      {% endblock %}
+
+      {% block recherche %}
+
+<form class="navbar-form navbar-right" role="search">
+                    <div class="form-group form-search is-empty">
+                      <input type="text" id="recherche" class="form-control" placeholder="Recherche" >
+                      <span class="material-input"></span>
+                    </div>
+                    <a id ="rech"  onclick = "recherche()" style="margin:0;" class="btn btn-white btn-round btn-just-icon" >
+                      <i class="material-icons">search</i>
+                      <div class="ripple-container"></div>
+                    </a>
+                  </form>
+{% endblock %}
+{% block body %}
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <nav class="menu-navigation-basic">
+                                <a href="{{path('admin_homepage')}}" style=" font-size: 15px; font-weight: bold;" href="#" class="selected">Accueil</a>
+                                <a style=" font-size: 15px; font-weight: bold;" id="rechvend" onclick="rechvend()">Fournisseurs Créditeur</a>
+                                <a style=" font-size: 15px; font-weight: bold;" id="rechnonvend" onclick="rechnonvend()">Fournisseurs Dépenser</a>
+                            </nav>
+                    </div>                    
+
+<div id="loading"></div>
+    <div class="container-fluid" id="tab_vende">
+                   <div class="row">
+                       <div class="col-md-12">
+                           <div class="card">
+                            <div class="card-header card-header-icon" data-background-color="blue">
+                        <i class="material-icons"> <a href="{{ path('fournisseurs_index') }}" > local_shipping</a></i>
+                    </div>
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+
+                                    <th class="text-center"> Nom </th>
+                                    <th class="text-center"> Prénom</th>
+                                    <th class="text-center"> Num Téléphone</th>
+                                    <th class="text-center"> Num Fix </th>
+                                    <th class="text-center"> adresse</th>
+                                    <th class="text-center"> Email </th>
+                                    <th class="text-center">Actions</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {% for fournisseur in fournisseurs %}
+                                        <tr>
+                                            <td class="text-center">{{ fournisseur.nom }}</td>
+                                            <td class="text-center">{{ fournisseur.prenom }}</td>
+                                            <td class="text-center">{{ fournisseur.numTel }}</td>
+                                            <td class="text-center">{{ fournisseur.numFix }}</td>
+                                            <td class="text-center">{{ fournisseur.email }}</td>
+                                            <td class="text-center">{{ fournisseur.adress }}</td>
+                                            <td class="text-center">
+                                               <span>  <a href="{{ path('fournisseurs_edit', { 'id': fournisseur.id }) }}"  rel="tooltip" class="btn btn-success btn-simple">
+                                                       <i class="material-icons">edit</i>
+                                                   </a>
+                                                    <a href="{{ path('fournisseurs_show', { 'id': fournisseur.id }) }}"  rel="tooltip" class="btn btn-danger btn-simple">
+                                                       <i class="material-icons">remove_red_eye</i>
+                                                   </a>
+                                                   <div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <p style=" font-size: 15px; font-weight: bold;" > Confirm Submit </p>
+                                                            </div>
+                                                            <div class="modal-body">  
+                                                                <p style="color:red; font-size: 15px; font-weight: bold;"> Tu est sur de supprimer Le Fournisseur {{ fournisseur.nom }} {{ fournisseur.prenom }} !? </p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-success success" data-dismiss="modal">Annuler</button>
+                                                                <a href="{{ path('fournisseurs_delete', { 'id': fournisseur.id }) }}" id="submit" class="btn btn-danger danger">Supprimier</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                   <a name="btn" value="Submit" id="submitBtn" data-toggle="modal" data-target="#confirm-submit"  rel="tooltip" class="btn btn-danger btn-simple">
+                                                       <i class="material-icons">close</i>
+                                                   </a>
+                                               </span></td>
+
+                                               </tr>
+                                           {% endfor %}
+                                </tbody>
+                            </table>
+                        <ul class="navigation">
+                            {{ knp_pagination_render(fournisseurs) }}
+                        </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+               <div class="col-md-3 col-md-offset-9">
+               <a href="{{ path('fournisseurs_new') }}"  class="btn btn-info" >Ajouter Fournisseur</a><div class="ripple-container"></div>
+               </a>
+                    <!--<a href="{{ path('fournisseurs_index') }}"  class="btn btn-info" > Liste Fournisseurs</a>-->
+               </div>
+           </div>
+
+
+
+{% endblock %}
+
+{% block css %}
+	<link rel="stylesheet" href="{{ asset('assets/css/navigation-basic.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/slicknav/slicknav.min.css') }}">
+{% endblock %}
+
+{% block script %}
+    <script src="{{ asset('assets/slicknav/jquery.slicknav.min.js') }}"></script>
+{% endblock %}

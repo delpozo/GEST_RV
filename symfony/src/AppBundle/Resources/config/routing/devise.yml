@@ -1,0 +1,24 @@
+devise_index:
+    path:     /
+    defaults: { _controller: "AppBundle:devise:index" }
+    methods:  GET
+
+devise_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:devise:show" }
+    methods:  GET
+
+devise_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:devise:new" }
+    methods:  [GET, POST]
+
+devise_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:devise:edit" }
+    methods:  [GET, POST]
+
+devise_delete:
+    path:     /{id}/supp
+    defaults: { _controller: "AppBundle:devise:delete" }
+    methods:  DELETE

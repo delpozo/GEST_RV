@@ -1,0 +1,18 @@
+AppBundle\Entity\produits_revendeurs:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\produits_revendeursRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        idUser:
+            type: integer
+            column: id_user
+        idPro:
+            type: integer
+            column: id_pro
+    lifecycleCallbacks: {  }

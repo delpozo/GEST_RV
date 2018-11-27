@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+        Modifier Le Produit
+      {% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    {{ form_start(form) }}
+                    <div class="card-header card-header-text" data-background-color="blue">
+                        <h4 class="card-title"> Modifier Produits </h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="row">
+                            <label class="col-sm-2 label-on-left"> Type Produit :</label>
+                            <div class="col-sm-10">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div >
+                                            <label class="control-label"></label>
+                                                {{ form_widget(form) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                                </div>
+
+                        <div class="row">
+                            <div class="col-sm-4">
+
+                            </div>
+                            <div class="col-sm-2">
+                                <button type="submit" class="btn btn-info" > Ajouter </button>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <a  class="btn btn-fill-info" href="{{ path('type_produit_index') }}">Retour à la liste</a>
+                                {{ form_end(form) }}
+                            </div>
+                            
+                        </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

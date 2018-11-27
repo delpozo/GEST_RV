@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Statfours list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Idelem</th>
+                <th>Nomtab</th>
+                <th>Info</th>
+                <th>Infoarray</th>
+                <th>Credit</th>
+                <th>Deponse</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for statfour in statfours %}
+            <tr>
+                <td><a href="{{ path('statfour_show', { 'id': statfour.id }) }}">{{ statfour.id }}</a></td>
+                <td>{{ statfour.idElem }}</td>
+                <td>{{ statfour.nomTab }}</td>
+                <td>{{ statfour.info }}</td>
+                <td>{% if statfour.infoArray %}{{ statfour.infoArray|join(', ') }}{% endif %}</td>
+                <td>{{ statfour.credit }}</td>
+                <td>{{ statfour.deponse }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('statfour_show', { 'id': statfour.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('statfour_edit', { 'id': statfour.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('statfour_new') }}">Create a new statfour</a>
+        </li>
+    </ul>
+{% endblock %}

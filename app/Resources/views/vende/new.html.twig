@@ -1,0 +1,132 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card">
+                        {{ form_start(form) }}
+                        <div class="card-header card-header-text" data-background-color="blue">
+                        <h4 class="card-title"> Ajouter Produits </h4>
+                    </div>
+                        <div class="card-content">
+
+                            <div class="row">
+                                <label class="col-sm-2 label-on-left"> Nom Produit :</label>
+                                <div class="col-sm-3">
+                                    <div class="form-group label-floating">
+                                        <p style=" color : black; font-weight: bold;"> {{ (produit.nom) }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 label-on-left"> Prix d'Vende :</label>
+                                <div class="col-sm-3">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Prix d'vende Ex :35 DT</label>
+                                        {{ form_widget(form.prixVend) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 label-on-left">Durée Abonnement :</label>
+                                <div class="col-sm-3">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Abonnement Ex :12 /mois DT</label>
+                                        {{ form_widget(form.abonner) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 label-on-left">Nom Client :</label>
+                                <div class="col-sm-10">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Ex: M.Bahri Mahdi</label>
+                                                {{ form_widget(form.nompreCli) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 label-on-left">Numéro Client:</label>
+                                <div class="col-sm-10">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Numéro portable: 99063811</label>
+                                                {{ form_widget(form.numTel) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Numéro Fixe:73430017</label>
+                                                {{ form_widget(form.numFix) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 label-on-left"> Adress :</label>
+                                <div class="col-sm-10">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Adress Ex:Avenue Habib Bourguiba</label>
+                                                {{ form_widget(form.adress) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">EXP: ttshopsayada@gmail.com</label>
+                                                {{ form_widget(form.email) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 label-on-left"> Credit :</label>
+                                <div class="col-sm-10">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Produit Credible</label>
+                                                {{ form_widget(form.credit, { 'attr': { 'name' : 'optionsCheckboxes','type' : 'checkbox' } }) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Deponse sur Le Produit</label>
+                                                {{ form_widget(form.deponse) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-5"></div>
+                                <div class="col-sm-2">
+                                    <button type="submit" class="btn btn-fill btn-info">Vende Produit </button>
+                                </div>
+                                <div class="col-sm-2">
+                                    <a class="btn btn-fill-info" href="{{ path('vende_index') }}">Retour à la liste</a>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

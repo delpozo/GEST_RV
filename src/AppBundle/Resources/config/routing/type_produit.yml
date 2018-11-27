@@ -1,0 +1,29 @@
+type_produit_index:
+    path:     /
+    defaults: { _controller: "AppBundle:type_produit:index" }
+    methods:  GET
+
+type_produit_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:type_produit:show" }
+    methods:  GET
+
+type_produit_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:type_produit:new" }
+    methods:  [GET, POST]
+
+type_produit_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:type_produit:edit" }
+    methods:  [GET, POST]
+
+type_produit_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:type_produit:delete" }
+    methods:  [GET, POST]
+
+produits_recherche:
+    path:     /recherche
+    defaults: { _controller: "AppBundle:type_produit:recherche" }
+    methods:  [GET, POST]

@@ -1,0 +1,183 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="card">
+                    {{ form_start(edit_form) }}
+                    <div class="card-header card-header-text" data-background-color="blue">
+                        <h4 class="card-title"> Vende Produits </h4>
+                    </div>
+                    <div class="card-content">
+
+                        <div class="row">
+                            <label class="col-sm-2 label-on-left">Produit :</label>
+
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Nom Produit Ex: IPTV</label>
+                                        {{ form_widget(edit_form.produits) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 label-on-left"> Prix d'Vende :</label>
+                            <div class="col-sm-3">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Prix d'vende Ex :35 DT</label>
+                                    {{ form_widget(edit_form.prixVend) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 label-on-left">Date du Produit:</label>
+                            <div class="col-sm-10">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <div class="card-header card-header-icon" data-background-color="green">
+                                                <i class="material-icons">today</i>
+                                            </div>
+                                            <div class="card-content">
+                                                <h4 class="card-title">Date Activation </h4>
+                                                <div class="form-group">
+                                                    {{ form_widget(edit_form.dateAc) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <div class="card-header card-header-icon" data-background-color="red">
+                                                <i class="material-icons">today</i>
+                                            </div>
+                                            <div class="card-content">
+                                                <h4 class="card-title">Date Expiration </h4>
+                                                <div class="form-group">
+                                                    {{ form_widget(edit_form.dateEx,{'attr':{'class' : 'form-control datetimepicker'}} ) }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 label-on-left">Nom Client :</label>
+                            <div class="col-sm-10">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">M.Mahdi</label>
+                                            {{ form_widget(edit_form.nompreCli) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating is-empty">
+                                            <label class="control-label"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 label-on-left">Numéro Client:</label>
+                            <div class="col-sm-10">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Numéro portable: 99063811</label>
+                                            {{ form_widget(edit_form.numTel) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Numéro Fix:73430017</label>
+                                            {{ form_widget(edit_form.numFix) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 label-on-left"> Adress :</label>
+                            <div class="col-sm-10">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Adress Ex:Avenue Habib Bourguiba</label>
+                                            {{ form_widget(edit_form.adress) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">EXP: ttshopsayada@gmail.com</label>
+                                            {{ form_widget(edit_form.email) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                                <label class="col-sm-2 label-on-left"> Credit :</label>
+                                <div class="col-sm-10">
+                                    <div class="row">
+                                    
+                                        <div class="col-sm-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Deponse sur Le Produit</label>
+                                                {{ form_widget(edit_form.deponse) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="row">
+                            <div class="col-sm-5">
+
+                            </div>
+                            <div class="col-sm-2">
+                                <button type="submit" class="btn btn-info">Modifier </button>
+                            </div>
+                            <div class="col-sm-2">
+                                <a  class="btn btn-fill-info" href="{{ path('vende_index') }}">Retour à la liste</a>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <p style=" font-size: 15px; font-weight: bold;" > Confirm Submit </p>
+                                                            </div>
+                                                            <div class="modal-body">  
+                                                                <p style="color:red; font-size: 15px; font-weight: bold;"> Tu est sur de supprimer Cette vende !? </p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-success success" data-dismiss="modal">Annuler</button>
+                                                                <a href="{{ path('vende_delete', { 'id': vende.id }) }}" id="submit" class="btn btn-danger danger">Supprimier</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                   <a class="btn btn-rose " name="btn" value="Submit" id="submitBtn" data-toggle="modal" data-target="#confirm-submit"  rel="tooltip" class="btn btn-danger btn-simple"> Supprimier
+                                                   </a>
+                                                   </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        {% endblock %}
+
+

@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-icon" data-background-color="blue">
+                        <i class="material-icons">local_shipping</i>
+                    </div>
+                    <h4 class="card-title">Nos Utilisateur </h4>
+                    <div class="card-content">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+
+                                    <th class="text-center"> Nom </th>
+                                    <th class="text-center"> Prénom</th>
+                                    <th class="text-center"> Num Téléphone</th>
+                                    <th class="text-center"> Num Fix </th>
+                                    <th class="text-center"> adresse</th>
+                                    <th class="text-right">Actions</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <tr>
+
+                                    <td class="text-center">{{ user.nom }}</td>
+                                    <td class="text-center">{{ user.prenom }}</td>
+                                    <td class="text-center">{{ user.numTel }}</td>
+                                    <td class="text-center">{{ user.numFix }}</td>
+                                    <td class="text-center">{{ user.adress }}</td>
+                                    <td class="text-center">
+                                               <span>  <a href="{{ path('user_show', { 'id': user.id }) }}"  rel="tooltip" class="btn btn-success btn-simple">
+                                                       <i class="material-icons">edit</i>
+                                                   </a>
+                                                 <a href="{{ path('user_edit', { 'id': user.id }) }}" rel="tooltip" class="btn btn-danger btn-simple">
+                                                       <i class="material-icons">close</i>
+                                                   </a></span></td>
+
+                                </tr>
+
+
+
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-3 col-md-offset-9">
+        <a href="{{ path('user_edit', { 'id': user.id }) }}"  class="btn btn-info" > Modifier Utilisateur</a><div class="ripple-container"></div>
+    </div></a>
+    </div>
+{% endblock %}

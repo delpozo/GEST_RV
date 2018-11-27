@@ -1,0 +1,50 @@
+AppBundle\Entity\vende:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\vendeRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        typeVend:
+            type: string
+            length: '25'
+            column: type_vend
+        idProRev:
+            type: integer
+            column: id_pro_rev
+        prixVend:
+            type: float
+            column: prix_vend
+        dateAc:
+            type: datetimetz
+            column: date_ac
+        dateEx:
+            type: datetimetz
+            column: date_ex
+        nomCli:
+            type: string
+            length: '25'
+            column: nom_cli
+        prenomCli:
+            type: string
+            length: '25'
+            column: prenom_cli
+        email:
+            type: string
+            length: '50'
+            nullable: true
+        numTel:
+            type: string
+            length: '13'
+            nullable: true
+            column: num_tel
+        numFix:
+            type: string
+            length: '13'
+            nullable: true
+            column: num_fix
+    lifecycleCallbacks: {  }

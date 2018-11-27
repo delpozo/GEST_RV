@@ -1,0 +1,69 @@
+
+<div class="container-fluid" id="tab_vende">
+        <div class="row">    
+
+            <div class="col-md-12">
+                <div class="card">
+                    
+                    <div class="card-content">
+                        <div class="table-responsive">
+                        
+                            <table class="table" >
+                                <thead>
+                                <tr>
+                                    <th class="text-center">Nom Produit</th>
+                                    <th class="text-center">Prix Vende</th>
+                                    <th class="text-center">Date Activation</th>
+                                    <th class="text-center">Date Expiration</th>
+                                    <th class="text-center">Nom Client</th>
+                                    <th class="text-center">Numtel</th>
+                                    <th class="text-center">Numfix</th>
+                                    <th class="text-center">Adress</th>
+                                    <th class="text-center">Email</th>
+                                    <th class="text-center">Utillisateur</th>
+                                    <th class="text-center">Credit</th>
+                                    <th class="text-center">Deponse</th>
+                                    <th class="text-center">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for vende in vendes %}
+                                    <tr {% if  vende.restPay > 0 %} style="color:red;" {% endif %}>
+                                        <td class="text-center"><b>{{ vende.produits }}</b></td>
+                                        <td class="text-center">{{ vende.prixVend }}</td>
+                                        <td class="text-center">{{ vende.dateAc|date("Y-m-d H:i:s") }}</td>
+                                        <td class="text-center">{{ vende.dateEx |date("Y-m-d H:i:s")}}</td>
+                                        <td class="text-center">{{ vende.nompreCli }}</td>
+                                        <td class="text-center">{{ vende.numTel }}</td>
+                                        <td class="text-center">{{ vende.numFix }}</td>
+                                        <td class="text-center">{{ vende.adress }}</td>
+                                        <td class="text-center">{{ vende.email }}</td>
+                                        <td class="text-center">{{ vende.user }}</td>
+                                        <td class="text-center">{{ vende.restPay }}</td>
+                                        <td class="text-center">{{ vende.deponse }}</td>
+                                        <td class="text-center">
+                                               <span>  <a href="{{ path('vende_edit', { 'id': vende.id }) }}"  rel="tooltip" class="btn btn-success btn-simple">
+                                                       <i class="material-icons">edit</i>
+                                                   </a>
+                                                 <a href="{{ path('vende_delete', { 'id': vende.id }) }}" rel="tooltip" class="btn btn-danger btn-simple">
+                                                       <i class="material-icons">close</i>
+                                                   </a></span></td>
+                                    </tr>
+                                {% endfor %}
+
+
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    <div class="col-md-3 col-md-offset-9">
+        <a href="{{ path('vende_new') }}"  class="btn btn-info" >Ajouter Vende</a><div class="ripple-container"></div>
+    </div></a>
+    </div>

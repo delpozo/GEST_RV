@@ -1,0 +1,21 @@
+AppBundle\Entity\proposition_fournisseurs:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\proposition_fournisseursRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        dateAc:
+            type: datetimetz
+            column: date_ac
+        dateEx:
+            type: datetimetz
+            column: date_ex
+        text:
+            type: string
+            length: '100'
+    lifecycleCallbacks: {  }

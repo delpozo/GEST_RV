@@ -1,0 +1,24 @@
+proposition_fournisseurs_index:
+    path:     /
+    defaults: { _controller: "AppBundle:proposition_fournisseurs:index" }
+    methods:  GET
+
+proposition_fournisseurs_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:proposition_fournisseurs:show" }
+    methods:  GET
+
+proposition_fournisseurs_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:proposition_fournisseurs:new" }
+    methods:  [GET, POST]
+
+proposition_fournisseurs_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:proposition_fournisseurs:edit" }
+    methods:  [GET, POST]
+
+proposition_fournisseurs_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:proposition_fournisseurs:delete" }
+    methods:  DELETE

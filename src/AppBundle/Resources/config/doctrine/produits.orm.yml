@@ -1,0 +1,50 @@
+AppBundle\Entity\produits:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\produitsRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+
+    code:
+        code:
+            type: string
+            code: true
+            generator:
+                strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: "180"
+
+        prixAchat:
+            type: float
+            column: prix_achat
+        prixVend:
+            type: float
+            column: prix_vend
+
+        vendu:
+            type: boolean
+            column: vendu
+        date:
+            type: date
+            column: date
+    manyToOne:
+        fournisseurs:
+            targetEntity: fournisseurs
+            inversedBy: produits
+            joinColumn:
+                name: nom_four
+                referencedColumnName: id
+                onDelete : "CASCADE"
+        type_produit:
+            targetEntity: type_produit
+            inversedBy: produits
+            joinColumn:
+                name: id_type
+                referencedColumnName: id
+    lifecycleCallbacks: {  }

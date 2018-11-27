@@ -1,0 +1,39 @@
+vende_index:
+    path:     /
+    defaults: { _controller: "AppBundle:vende:index" }
+    methods:  GET
+
+vende_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:vende:show" }
+    methods:  GET
+
+vende_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:vende:new" }
+    methods:  [GET, POST]
+
+vende_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:vende:edit" }
+    methods:  [GET, POST]
+
+vende_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:vende:delete" }
+    methods:  [GET, POST]
+
+vende_recherche:
+    path:     /recherche
+    defaults: { _controller: "AppBundle:vende:recherche" }
+    methods:  [GET, POST]
+
+vende_rechcredit:
+    path:     /rechcredit
+    defaults: { _controller: "AppBundle:vende:rechcredit" }
+    methods:  [GET, POST]
+
+vende_rechvendEx:
+    path:     /rechvendEx
+    defaults: { _controller: "AppBundle:vende:rechvendEx" }
+    methods:  [GET, POST]

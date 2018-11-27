@@ -1,0 +1,72 @@
+AppBundle\Entity\vende:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\vendeRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        prixVend:
+            type: float
+            column: prix_vend
+        dateAc:
+            type: datetimetz
+            column: date_ac
+        dateEx:
+            type: datetimetz
+            column: date_ex
+        nompreCli:
+            type: string
+            length: 255
+            column: nompre_cli
+        numTel:
+            type: string
+            length: '25'
+            column: num_tel
+        numFix:
+            type: string
+            length: '25'
+            column: num_fix
+        adress:
+            type: string
+            length: 255
+        email:
+            type: string
+            length: 255
+        credit:
+            type: boolean
+            column: credit
+            default: false
+        restPay:
+            type : float
+            column : rest_pay
+            nullable: true
+        deponse : 
+            type : float
+            column : deponse
+            nullable: true
+        abonner:
+            type: integer
+            column : abonner
+            nullable: false
+        date:
+            type: date
+            column: date
+    manyToOne:
+        User:
+            targetEntity: User
+            inversedBy: vende
+            joinColumn:
+                name: id_user
+                referencedColumnName: id
+        produits:
+            targetEntity: produits
+            inversedBy: vende
+            joinColumn:
+                name: nom_prod
+                referencedColumnName: id
+                onDelete : "CASCADE"
+    lifecycleCallbacks: {  }

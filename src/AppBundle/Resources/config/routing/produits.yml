@@ -1,0 +1,54 @@
+produits_index:
+    path:     /
+    defaults: { _controller: "AppBundle:produits:index" }
+    methods:  GET
+
+produits_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:produits:show" }
+    methods:  GET
+
+produits_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:produits:new" }
+    methods:  [GET, POST]
+
+produits_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:produits:edit" }
+    methods:  [GET, POST]
+
+produits_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:produits:delete" }
+    methods:  [GET, POST]
+
+produits_recherche:
+    path:     /recherche
+    defaults: { _controller: "AppBundle:produits:recherche" }
+    methods:  [GET, POST]
+
+produits_rechvend:
+    path:     /rechvend
+    defaults: { _controller: "AppBundle:produits:rechvend" }
+    methods:  [GET, POST] 
+
+produits_rechtypeproduit:
+    path:     /rechtypeproduit
+    defaults: { _controller: "AppBundle:produits:rechtypeproduit" }
+    methods:  [GET, POST]
+
+produits_rechfournisseurs:
+    path:     /rechfournisseurs
+    defaults: { _controller: "AppBundle:produits:rechfournisseurs" }
+    methods:  [GET, POST]
+
+produits_addvend:
+    path:     /{id_prod}/addvend
+    defaults: { _controller: "AppBundle:produits:addvend" }
+    methods:  [GET, POST] 
+
+produits_updatevendu:
+    path:     /{id}/{id_prod}/updatevendu
+    defaults: { _controller: "AppBundle:produits:updatevendu" }
+    methods:  [GET, POST]

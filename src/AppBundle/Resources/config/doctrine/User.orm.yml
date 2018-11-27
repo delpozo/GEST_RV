@@ -1,0 +1,54 @@
+# src/AppBundle/Resources/config/doctrine/User.orm.yml
+AppBundle\Entity\User:
+  type:  entity
+  table: fos_user
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    nom:
+      type: string
+      length: '50'
+      nullable: true
+    prenom:
+      type: string
+      length: '50'
+      nullable: true
+    numTel:
+      type: string
+      length: '13'
+      nullable: true
+      unique: true
+      column: num_tel
+    numFix:
+      type: string
+      length: '13'
+      unique: true
+      column: num_fix
+      nullable: true
+    adress:
+      type: string
+      length: '25'
+      nullable: true
+    deponse:
+      type: float
+      column: deponse
+      nullable: true
+    restPay:
+      type: float
+      column: rest_pay
+      nullable: true
+    credit:
+      type: float
+      column: credit
+      nullable: true
+    clientAdmin:
+      type: boolean
+      column: client_admin
+      nullable: true
+      default: true
+
+
+

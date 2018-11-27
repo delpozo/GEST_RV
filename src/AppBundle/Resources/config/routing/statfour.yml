@@ -1,0 +1,34 @@
+statfour_index:
+    path:     /statfour/
+    defaults: { _controller: "AppBundle:statfour:index" }
+    methods:  GET
+
+statfour_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:statfour:show" }
+    methods:  GET
+
+statfour_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:statfour:new" }
+    methods:  [GET, POST]
+
+statfour_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:statfour:edit" }
+    methods:  [GET, POST]
+
+statfour_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:statfour:delete" }
+    methods:  [GET, POST]
+
+statfour_add:
+    path:     /{id_four}/add
+    defaults: { _controller: "AppBundle:fournisseurs:add" }
+    methods:  [GET, POST]
+
+statfour_update:
+    path:     /{id_four}/update
+    defaults: { _controller: "AppBundle:fournisseurs:update" }
+    methods:  [GET, POST]

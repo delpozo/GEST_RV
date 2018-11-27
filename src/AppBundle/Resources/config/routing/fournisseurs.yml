@@ -1,0 +1,38 @@
+fournisseurs_index:
+    path:     /
+    defaults: { _controller: "AppBundle:fournisseurs:index" }
+    methods:  GET
+    methods:  [GET, POST]
+
+fournisseurs_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:fournisseurs:show" }
+    methods:  [GET, POST]
+
+fournisseurs_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:fournisseurs:new" }
+    methods:  [GET, POST]
+
+fournisseurs_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:fournisseurs:edit" }
+    methods:  [GET, POST]
+
+fournisseurs_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:fournisseurs:delete" }
+    methods:  [GET, POST]
+
+fournisseurs_add:
+    path:     /{id_four}/add
+    defaults: { _controller: "AppBundle:fournisseurs:add" }
+    methods:  [GET, POST]
+
+fournisseurs_update:
+    path:     /{id_four}/update
+    defaults: { _controller: "AppBundle:fournisseurs:update" }
+    methods:  [GET, POST]
+
+
+

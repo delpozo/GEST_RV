@@ -1,0 +1,38 @@
+AppBundle\Entity\fournisseurs:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\fournisseursRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: '50'
+        prenom:
+            type: string
+            length: '50'
+        numTel:
+            type: string
+            length: '13'
+            nullable: true
+            unique: true
+            column: num_tel
+        numFix:
+            type: string
+            length: '13'
+            nullable: true
+            unique: true
+            column: num_fix
+        email:
+            type: string
+            length: '50'
+            nullable: true
+            unique: true
+        adress:
+            type: string
+            length: '25'
+    lifecycleCallbacks: {  }

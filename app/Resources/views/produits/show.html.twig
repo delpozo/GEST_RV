@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+     Le produit 
+      {% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-icon" data-background-color="blue">
+                        <i class="material-icons"><a href="{{ path('produits_index') }}" > shopping_cart</a></i>
+                    </div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+
+                                    <th class="text-center"> <a style=" color : black; font-weight: normal;" href="{{ path('fournisseurs_index') }}" >Fournisseur </a></th>
+                                    <th class="text-center"><a style=" color : black; font-weight: normal;" href="{{ path('type_produit_index') }}" > Type Produit </a></th>
+                                    <th class="text-center"> Nom </th>
+                                    <th class="text-center"> Prix Achat </th>
+                                    <th class="text-center"> Prix Vendue</th>
+                                    <th class="text-center"> Vendue </th>
+                                    <th class="text-center">Actions</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <tr>
+
+                                    <td class="text-center">{{ produit.fournisseurs }}</td>
+                                    <td class="text-center">{{ produit.typeProduit }}</td>
+                                    <td class="text-center">{{ produit.nom }}</td>
+                                    <td class="text-center" style=" color : red; font-weight: bold;">{{ produit.prixAchat }} Dt</td>
+                                    <td class="text-center" style=" color : green; font-weight: bold;">{{ produit.prixVend }} Dt</td>
+                                    <td class="text-center">{% if produit.vendu is not empty %} Oui {% else %} Non {% endif %}</td>
+                                    <td class="text-center">
+                                               <span>  <a href="{{ path('produits_edit', { 'id': produit.id }) }}"  rel="tooltip" class="btn btn-success btn-simple">
+                                                       <i class="material-icons">edit</i>
+                                                   </a>
+                                                   <div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <p style=" font-size: 15px; font-weight: bold;" > Confirm Submit </p>
+                                                            </div>
+                                                            <div class="modal-body">  
+                                                                <p style="color:red; font-size: 15px; font-weight: bold;"> Tu est sur de supprimer Le Produit {{ produit.nom }} !? </p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-success success" data-dismiss="modal">Annuler</button>
+                                                                <a href="{{ path('produits_delete', { 'id': produit.id }) }}" id="submit" class="btn btn-danger danger">Supprimier</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                   <a name="btn" value="Submit" id="submitBtn" data-toggle="modal" data-target="#confirm-submit"  rel="tooltip" class="btn btn-danger btn-simple">
+                                                    <i class="material-icons">close</i>
+                                                   </a>
+                                                   {% if produit.vendu == '0' %} 
+                                                <a href="{{ path('produits_addvend', { 'id_prod': produit.id }) }}"  rel="tooltip" class="btn btn-success btn-simple">
+                                                       <i class="material-icons">send</i>
+                                                   </a>
+                                                 {% endif %}
+                                               </span></td>
+
+                                               </tr>
+
+
+
+                                </tbody>
+                            </table>
+
+
+                        </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+
+
+{% endblock %}

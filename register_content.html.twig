@@ -1,0 +1,214 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="card card-signup">
+                <h2 class="card-title text-center">Register</h2>
+                <div class="row">
+                    <!--<div class="col-md-5 col-md-offset-1">
+                        <div class="card-content">
+                            <div class="info info-horizontal">
+                                <div class="icon icon-rose">
+                                    <i class="material-icons">timeline</i>
+                                </div>
+                                <div class="description">
+                                    <h4 class="info-title">Marketing</h4>
+                                    <p class="description">
+                                        We've created the marketing campaign of the website. It was a very interesting collaboration.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="info info-horizontal">
+                                <div class="icon icon-primary">
+                                    <i class="material-icons">code</i>
+                                </div>
+                                <div class="description">
+                                    <h4 class="info-title">Fully Coded in HTML5</h4>
+                                    <p class="description">
+                                        We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="info info-horizontal">
+                                <div class="icon icon-info">
+                                    <i class="material-icons">group</i>
+                                </div>
+                                <div class="description">
+                                    <h4 class="info-title">Built Audience</h4>
+                                    <p class="description">
+                                        There is also a Fully Customizable CMS Admin Dashboard for this product.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                    <div class="col-md-12">
+                        <div class="social text-center">
+                            <button class="btn btn-just-icon btn-round btn-twitter">
+                                <i class="fa fa-twitter"></i>
+                            </button>
+                            <button class="btn btn-just-icon btn-round btn-dribbble">
+                                <i class="fa fa-dribbble"></i>
+                            </button>
+                            <button class="btn btn-just-icon btn-round btn-facebook">
+                                <i class="fa fa-facebook"> </i>
+                            </button>
+                            <h4> or be classical </h4>
+                        </div>
+                        <form class="form" method="" action="#">
+                            <div class="card-content">
+                                <div class="row">
+                                    <label class="col-sm-1"></label>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="material-icons">face</i>
+                                                    </span>
+                                                {{ form_row(form.username, { 'attr': {'placeholder': 'M.Bahri',  } }) }}
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="material-icons">face</i>
+                                                    </span>
+                                                {{ form_row(form.prenom, { 'attr': {'placeholder': 'M.Bahri',  } }) }}
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-sm-1"></label>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="material-icons">email</i>
+                                                            </span>
+                                                    {{ form_row(form.adress, { 'attr': {'placeholder': ' Avenue Habib Bourguiba',  } }) }}
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="material-icons">email</i>
+                                                            </span>
+                                                    {{ form_row(form.email, { 'attr': {'placeholder': 'EXP: ttshopsayada@gmail.com',  } }) }}
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-sm-1"></label>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="material-icons">email</i>
+                                                            </span>
+                                                    {{ form_row(form.num_tel, { 'attr': {'placeholder': 'Numéro portable: 99063811a',  } }) }}
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="material-icons">email</i>
+                                                            </span>
+                                                    {{ form_row(form.num_fix, { 'attr': {'placeholder': 'Numéro Fixe:73430017',  } }) }}
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-sm-1"></label>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="material-icons">face</i>
+                                                    </span>
+                                                {{ form_row(form.deponse, { 'attr': {'placeholder': 'M.Bahri',  } }) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="material-icons">face</i>
+                                                    </span>
+                                                {{ form_row(form.restPay, { 'attr': {'placeholder': 'M.Bahri',  } }) }}
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-sm-1"></label>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="material-icons">face</i>
+                                                    </span>
+                                                {{ form_row(form.credit, { 'attr': {'placeholder': 'M.Bahri',  } }) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="material-icons">face</i>
+                                                    </span>
+                                                {{ form_row(form.clientAdmin, { 'attr': {'placeholder': 'M.Bahri',  } }) }}
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="material-icons">lock_outline</i>
+                                    </span>
+                                        <input type="password" placeholder="Password..." class="form-control" />
+                                    </div>
+
+
+
+
+
+
+                                    {{ form_widget(form) }}
+                                    <!-- If you want to add a checkbox to this form, uncomment this code -->
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="optionsCheckboxes" checked> I agree to the
+                                            <a href="#something">terms and conditions</a>.
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="footer text-center">
+                                    <a href="#pablo" class="btn btn-primary btn-round">Get Started</a>
+                                </div>
+                        </form>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div>
+    <input type="submit" value="{{ 'registration.submit'|trans }}" />
+</div>
+{{ form_end(form) }}

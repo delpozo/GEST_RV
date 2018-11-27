@@ -1,0 +1,31 @@
+AppBundle\Entity\statfour:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\statfourRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        idElem:
+            type: integer
+            column: id_elem
+        nbProduitNVend:
+            type: array
+            column: nb_produit_N_vend
+        nbProduitVend:
+            type: array
+            column: nb_produit_vend
+        listProduitVend:
+            type: array
+            column: list_produit_vend
+        listVend:
+            type: array
+            column: list_vend
+        credit:
+            type: float
+        deponse:
+            type: float
+    lifecycleCallbacks: {  }

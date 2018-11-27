@@ -1,0 +1,15 @@
+AppBundle\Entity\type_produit:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\type_produitRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        type:
+            type: string
+            length: '50'
+    lifecycleCallbacks: {  }

@@ -1,0 +1,263 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+        Le Fournisseur {{ fournisseur.nom }} {{ fournisseur.prenom}}
+      {% endblock %}
+
+{% block body %}
+    {% if idelem is not empty %}
+    <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header" data-background-color="orange">
+                    <i class="fa fa-archive" aria-hidden="true"></i>
+                </div>
+                <div class="card-content">
+                    <p class="category">Achats</p>
+                    {% if nb_produit_N_vend.0.achat is empty %}
+                    <h3 class="card-title"> 0 DT</h3>
+                    {% else %}
+                    <h3 class="card-title">{{nb_produit_N_vend.0.achat}}</h3>
+                    {% endif %}
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        {% if nb_produit_N_vend.0.achat < 2 %}
+                            <i class="fa fa-sort-amount-desc" aria-hidden="true"></i>
+                            <a href="#pablo">{{nb_produit_N_vend.0.qte_prod}} Quantité Dans Le Stocke</a>
+                        {% else %}
+                            <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>
+                            <a href="#pablo">{{nb_produit_N_vend.0.qte_prod}} Quantité Dans Le Stocke</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header" data-background-color="blue">
+                    <i class="fa fa-sellsy" aria-hidden="true"></i>
+                </div>
+                <div class="card-content">
+                    <p class="category">Ventes</p>
+                    {% if  nb_produit_vend.0.vende is empty %}
+                    <h3 class="card-title"> 0 DT </h3>
+                    {% else %}
+                            <h3 class="card-title"> {{ nb_produit_vend.0.vende }} DT </h3>
+                    {% endif %}
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>
+                        <a href="#pablo">{{nb_produit_vend.0.nb}} Quantité Vendue</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header" data-background-color="green">
+                    <i class="fa fa-eur" aria-hidden="true"></i>
+                </div>
+                <div class="card-content">
+                    <p class="category">Deponse</p>
+                    <h3 class="card-title">{{deponse}} DT</h3>
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons">date_range</i> Le Dépense de cette Fournisseur
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                {% if credit >= 1 %}
+                <div class="card-header" data-background-color="red">
+                    <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+                    {% else%}
+                    <div class="card-header" data-background-color="green">
+                        <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+                        {% endif %}
+
+                    </div>
+                    <div class="card-content">
+                        <p class="category">Credit</p>
+                        <h3 class="card-title">{{credit}} DT</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            {% if credit >= 1 %}
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                <span>Tu va Payé {{credit}} DT à cette Fournisseur</span>
+                            {% elseif credit < 0 %}
+                                <i class="fa fa-minus" aria-hidden="true"></i>
+                                <span>Vous avez un large de {{credit}} DT</span>
+                            {% else %}
+                                <a href="#pablo">{{ credit }} DT</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="card">
+                    <div class="card-header card-header-text" data-background-color="orange">
+                        <h4 class="card-title">Liste des Produits Vendue</h4>
+                        <p class="category">Cet Estimation Crée pour L'année 2018</p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table table-hover">
+                            <thead class="text-warning">
+                            <th class="text-center">Nom Produit</th>
+                            <th class="text-center">Prix Achat</th>
+                            <th class="text-center">Qte Acheter</th>
+                            <th class="text-center">Date </th>
+                            </thead>
+                            <tbody>
+                            {% for list_produit_vend in list_produit_vend %}
+                            <tr>
+                                <td class="text-center">{{ list_produit_vend.nom }}</td>
+                                <td class="text-center">{{ list_produit_vend.prixAchat }} DT</td>
+                                <td class="text-center">{{ list_produit_vend.vendu }} Piece</td>
+                                <td class="text-center">{{ list_produit_vend.date|date("Y-m-d") }}</td>
+                            </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="card">
+                <div class="card-header card-header-text" data-background-color="blue">
+                    <h4 class="card-title">Liste des Produits</h4>
+                    <p class="category">Cet Estimation Crée pour L'année 2018</p>
+                </div>
+                <div class="card-content table-responsive">
+                    <table class="table table-hover">
+                        <thead class="text-info">
+                        <th class="text-center">Prix Vende </th>
+                        <th class="text-center">Nom Produit</th>
+                        <th class="text-center">Activation</th>
+                        <th class="text-center">Expiration</th>
+                        </thead>
+                        <tbody>
+                        {% for list_vend in list_vend %}
+                            <tr>
+                                <td class="text-center">{{ list_vend.prixVend }}</td>
+                                <td class="text-center">{{ list_vend.nom }}</td>
+                                <td class="text-center">{{ list_vend.dateAc |date("Y-m-d") }}</td>
+                                <td class="text-center">{{ list_vend.dateEx |date("Y-m-d") }}</td>
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-icon" data-background-color="blue">
+                        <i class="material-icons"> <a href="{{ path('fournisseurs_index') }}" > local_shipping</a></i>
+                    </div>
+                    <h4 class="card-title">Le Fournisseur <b>{{ fournisseur.nom }} {{ fournisseur.prenom }}</b></h4>
+                    <div class="card-content">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+
+                                    <th class="text-center"> Nom </th>
+                                    <th class="text-center"> Prénom</th>
+                                    <th class="text-center"> Num Téléphone</th>
+                                    <th class="text-center"> Num Fix </th>
+                                    <th class="text-center"> adresse</th>
+                                    <th class="text-center"> Email </th>
+                                    <th class="text-center"> Actions</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+
+                                        <td class="text-center">{{ fournisseur.nom }}</td>
+                                        <td class="text-center">{{ fournisseur.prenom }}</td>
+                                        <td class="text-center">{{ fournisseur.numTel }}</td>
+                                        <td class="text-center">{{ fournisseur.numFix }}</td>
+                                        <td class="text-center">{{ fournisseur.email }}</td>
+                                        <td class="text-center">{{ fournisseur.adress }}</td>
+                                        <td class="text-center">
+                                               <span>  <a href="{{ path('fournisseurs_edit', { 'id': fournisseur.id }) }}"  rel="tooltip" class="btn btn-success btn-simple">
+                                                       <i class="material-icons">edit</i>
+                                                   </a>
+                                                 <div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <p style=" font-size: 15px; font-weight: bold;" > Confirm Submit </p>
+                                                            </div>
+                                                            <div class="modal-body">  
+                                                                <p style="color:red; font-size: 15px; font-weight: bold;"> Tu est sur de supprimer Le Fournisseur {{ fournisseur.nom }} {{ fournisseur.prenom }} !? </p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-success success" data-dismiss="modal">Annuler</button>
+                                                                <a href="{{ path('fournisseurs_delete', { 'id': fournisseur.id }) }}" id="submit" class="btn btn-danger danger">Supprimier</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                   <a name="btn" value="Submit" id="submitBtn" data-toggle="modal" data-target="#confirm-submit"  rel="tooltip" class="btn btn-danger btn-simple">
+                                                       <i class="material-icons">close</i>
+                                                   </a>
+                                               </span></td>
+
+                                               </tr>
+
+
+
+                                </tbody>
+                            </table>
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+        <div class="row">
+            <div class="col-md-6 "></div>
+            <div class="col-md-3">
+                <a href="{{ path('fournisseurs_index') }}"  class="btn btn-info" > Liste Fournisseurs</a>
+            </div>
+            <div class="col-md-3">
+            {% if idelem is empty %}
+                <a href="{{ path('fournisseurs_add', { 'id_four': fournisseur.id }) }}" class="btn btn-info" >Crée Statistique</a>
+            {% else %}
+                <a href="{{ path('fournisseurs_update', { 'id_four': fournisseur.id }) }}" class="btn btn-info" >Mise à jour Statistique</a>
+            {% endif %}
+            </div>
+            <div class="col-md-3">
+            </div>
+        </div>
+
+            {% endblock %}
+
+

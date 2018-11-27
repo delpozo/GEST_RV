@@ -1,0 +1,26 @@
+AppBundle\Entity\produits:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\produitsRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        idFour:
+            type: integer
+            column: id_four
+        prixAchat:
+            type: float
+            column: prix_achat
+        prixVend:
+            type: float
+            column: prix_vend
+        prixVendRev:
+            type: float
+            column: prix_vend_rev
+        vendu:
+            type: boolean
+    lifecycleCallbacks: {  }

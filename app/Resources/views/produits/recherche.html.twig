@@ -1,0 +1,73 @@
+
+<div class="container-fluid" id="tab_vende">
+        <div class="row">    
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-icon" data-background-color="blue">
+                        <i class="material-icons"> <a href="{{ path('produits_index') }}" > shopping_cart</a></i>
+                    </div>
+                        <div class="table-responsive">
+                        
+                            <table class="table">
+                                <thead>
+                                <tr>
+
+                                    <th class="text-center"> <a style=" color : black; font-weight: normal;" href="{{ path('fournisseurs_index') }}" >Fournisseur </a></th>
+                                    <th class="text-center"><a style=" color : black; font-weight: normal;" href="{{ path('type_produit_index') }}" > Type Produit </a></th>
+                                    <th class="text-center"> Nom </th>
+                                    <th class="text-center"> Prix Achat </th>
+                                    <th class="text-center"> Prix Vendue</th>
+                                    <th class="text-center"> Vendue </th>
+                                    <th class="text-center">Actions</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for produit in produits %}
+                                    {% if produit is not empty %}
+                                <tr>
+
+                                    <td class="text-center">{{ produit.fournisseurs }}</td>
+                                    <td class="text-center">{{ produit.typeProduit }}</td>
+                                    <td class="text-center">{{ produit.nom }}</td>
+                                    <td class="text-center" style=" color : red; font-weight: bold;">{{ produit.prixAchat }} Dt</td>
+                                    <td class="text-center" style=" color : green; font-weight: bold;">{{ produit.prixVend }} Dt</td>
+                                    <td class="text-center">{% if produit.vendu is not empty %} Oui {% else %} Non {% endif %}</td>
+                                    <td class="text-center">
+                                               <span>  <a href="{{ path('produits_edit', { 'id': produit.id }) }}"  rel="tooltip" class="btn btn-success btn-simple">
+                                                       <i class="material-icons">edit</i>
+                                                   </a>
+                                                 <a href="{{ path('produits_delete', { 'id': produit.id }) }}" rel="tooltip" class="btn btn-danger btn-simple">
+                                                       <i class="material-icons">close</i>
+                                                   </a></span></td>
+
+                                </tr>
+                                {% endif %}
+
+                                {% else %}
+                                    <tr>
+                                        <td style=" color : red; font-size: 15px; font-weight: bold;" class="text-center">
+                                            Pas des Produits !
+                                        </td>
+                                    </tr> 
+
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+
+                            
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+    
+        </div>
+        
+    <div class="col-md-3 col-md-offset-9">
+        <a href="{{ path('produits_new') }}"  class="btn btn-info" >Ajouter Produits</a><div class="ripple-container"></div>
+        </a>
+    </div>

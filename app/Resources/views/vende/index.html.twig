@@ -1,0 +1,154 @@
+{% extends 'base.html.twig' %}
+
+{% block recherche %}
+
+<form class="navbar-form navbar-right" role="search">
+                    <div class="form-group form-search is-empty">
+                      <input type="text" id="recherche" class="form-control" placeholder="Recherche" >
+                      <span class="material-input"></span>
+                    </div>
+                    <a id ="rech"  onclick = "recherche()" style="margin:0;" class="btn btn-white btn-round btn-just-icon" >
+                      <i class="material-icons">search</i>
+                      <div class="ripple-container"></div>
+                    </a>
+                  </form>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+                    <div class="col-sm-7">
+                        <nav class="menu-navigation-basic">
+                                <a href="{{path('admin_homepage')}}" style=" font-size: 15px; font-weight: bold;" href="#" class="selected">Accueil</a>
+                                <a style=" font-size: 15px; font-weight: bold;" id="rechcredit" onclick="rechcredit()">Liste Credit</a>
+                                <a style=" font-size: 15px; font-weight: bold;" id="rechvendEx" style="margin:0;"  onclick="rechvendEx()">Produits à Expirer</a>
+                            </nav>
+                    </div>
+                    <div class="col-sm-2">
+                        <select value="1" onchange ="rechtypeproduit()"  class="selectpicker" data-style= "btn btn-warning" id="typeProduit">
+                                                <option selected="false" disabled="disabled"> Not Found </option>
+                                                
+                                            </select>
+                    </div>
+                   
+                </div>
+<div id="loading"></div>
+    <div class="container-fluid" id="tab_vende">
+        <div class="row">    
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-icon" data-background-color="blue">
+                        <i class="material-icons"> <a href="{{ path('vende_index') }}" > store_mall_directory</a></i>
+                    </div>
+                    <div class="card-content">
+                        <div class="table-responsive">
+                        
+                            <table class="table" >
+                                <thead>
+                                <tr>
+                                    <th class="text-center"><a style=" color : black; font-weight: normal;" href="{{ path('type_produit_index') }}" > Nom Produit </a></th>
+                                    <th class="text-center">Prix Vende</th>
+                                    <th class="text-center">Date Activation</th>
+                                    <th class="text-center">Date Expiration</th>
+                                    <th class="text-center">Nom Client</th>
+                                    <th class="text-center">Numtel</th>
+                                    <th class="text-center">Numfix</th>
+                                    <th class="text-center">Adress</th>
+                                    <th class="text-center">Email</th>
+                                    <th class="text-center">Credit</th>
+                                    <th class="text-center">Deponse</th>
+                                    <th class="text-center">Utillisateur</th>
+                                    <th class="text-center">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for vende in vendes %}
+                                    {% if vende is not empty %}
+                                    <tr {% if  vende.restPay > 0 %} style="color:red;" {% endif %}>
+                                        <td class="text-center"><b>{{ vende.produits }}</b></td>
+                                        <td class="text-center" style=" color : green; font-weight: bold;">{{ vende.prixVend }} DT</td>
+                                        <td class="text-center">{{ vende.dateAc|date("Y-m-d") }}</td>
+                                        <td class="text-center" style=" color : red; font-weight: bold;">{{ vende.dateEx |date("Y-m-d")}}</td>
+                                        <td class="text-center">{{ vende.nompreCli }}</td>
+                                        <td class="text-center">{{ vende.numTel }}</td>
+                                        <td class="text-center">{{ vende.numFix }}</td>
+                                        <td class="text-center">{{ vende.adress }}</td>
+                                        <td class="text-center">{{ vende.email }}</td>
+                                        {% if  vende.restPay > 0 %}
+                                            <td class="text-center" style=" color : red; font-weight: bold;">{{ vende.restPay }}</td>
+                                            <td class="text-center" style=" color : green; font-weight: bold;">{{ vende.deponse }}</td>
+                                        {% else %}
+                                            <td class="text-center" style=" color : green; font-weight: bold;">Non</td>
+                                            <td class="text-center" style=" color : green; font-weight: bold;">Payer</td>
+                                        {% endif %}
+                                        <td class="text-center">{{ vende.user }}</td>
+                                        <td class="text-center">
+                                               <span>  <a href="{{ path('vende_edit', { 'id': vende.id }) }}"  rel="tooltip" class="btn btn-success btn-simple">
+                                                       <i class="material-icons">edit</i>
+                                                   </a>
+                                                 <div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <p style=" font-size: 15px; font-weight: bold;" > Confirm Submit </p>
+                                                            </div>
+                                                            <div class="modal-body">  
+                                                                <p style="color:red; font-size: 15px; font-weight: bold;"> Tu est sur de supprimer cette Vende !? </p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-success success" data-dismiss="modal">Annuler</button>
+                                                                <a href="{{ path('vende_delete', { 'id': vende.id }) }}" id="submit" class="btn btn-danger danger">Supprimier</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                   <a name="btn" value="Submit" id="submitBtn" data-toggle="modal" data-target="#confirm-submit"  rel="tooltip" class="btn btn-danger btn-simple">
+                                                       <i class="material-icons">close</i>
+                                                   </a>
+                                               </span></td>
+
+                                               </tr>
+                                {% endif %}
+
+                                {% else %}
+                                    
+                                        <tr>
+                                            <td class="text-center" style=" color : red; font-size: 15px; font-weight: bold;" class="text-center">
+                                            Pas des Vendes !
+                                        </td>
+                                        </tr>
+                                     
+
+                                {% endfor %}
+
+
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    <ul class="navigation">
+                                {{ knp_pagination_render(vendes) }}</ul>
+
+    
+    </div>
+
+
+{% endblock %}
+
+
+{% block css %}
+	<link rel="stylesheet" href="{{ asset('assets/css/navigation-basic.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/slicknav/slicknav.min.css') }}">
+{% endblock %}
+
+{% block script %}
+    <script src="{{ asset('assets/slicknav/jquery.slicknav.min.js') }}"></script>
+{% endblock %}
+
