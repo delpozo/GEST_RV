@@ -58,6 +58,15 @@ class fournisseursController extends Controller
 
         return $response;
     }
+     public function TESTAction($id_four)
+    {
+
+        $response = $this->forward('AppBundle:statfour:add', array(
+            'id_four' => $id_four,
+        ));
+
+        return $response;
+    }
     public function updateAction($id_four)
     {
 
