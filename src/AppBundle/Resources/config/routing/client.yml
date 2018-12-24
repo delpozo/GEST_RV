@@ -1,0 +1,24 @@
+client_index:
+    path:     /
+    defaults: { _controller: "AppBundle:client:index" }
+    methods:  GET
+
+client_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:client:show" }
+    methods:  GET
+
+client_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:client:new" }
+    methods:  [GET, POST]
+
+client_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:client:edit" }
+    methods:  [GET, POST]
+
+client_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:client:delete" }
+    methods:  DELETE

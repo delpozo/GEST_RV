@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Appareil</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ appareil.id }}</td>
+            </tr>
+            <tr>
+                <th>Code</th>
+                <td>{{ appareil.code }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ appareil.nom }}</td>
+            </tr>
+            <tr>
+                <th>Accessoir</th>
+                <td>{{ appareil.accessoir }}</td>
+            </tr>
+            <tr>
+                <th>Dateentre</th>
+                <td>{% if appareil.dateEntre %}{{ appareil.dateEntre|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Probleme</th>
+                <td>{% if appareil.probleme %}{{ appareil.probleme|join(', ') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ appareil.etat }}</td>
+            </tr>
+            <tr>
+                <th>Piecechanger</th>
+                <td>{% if appareil.pieceChanger %}{{ appareil.pieceChanger|join(', ') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ appareil.prix }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('appareil_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('appareil_edit', { 'id': appareil.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,39 @@
+AppBundle\Entity\client:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\clientRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        code:
+            type: string
+            length: '15'
+            unique: true
+        nompre:
+            type: string
+            length: '50'
+        adress:
+            type: string
+            length: '50'
+            nullable: true
+        credit:
+            type: integer
+            nullable: true
+        deponse:
+            type: integer
+            nullable: true
+        numtel:
+            type: string
+            length: '13'
+            unique: true
+    oneToMany:
+        appareil:
+            targetEntity: appareil
+            mappedBy: client
+            joinColumn:
+                onDelete : "CASCADE"
+    lifecycleCallbacks: {  }

@@ -19,15 +19,48 @@
 {% endblock %}
 {% block body %}
 
-                <div class="row">
-                    <div class="col-sm-12">
-                        <nav class="menu-navigation-basic">
-                                <a href="{{path('admin_homepage')}}" style=" font-size: 15px; font-weight: bold;" href="#" class="selected">Accueil</a>
-                                <a style=" font-size: 15px; font-weight: bold;" id="rechvend" onclick="rechvend()">Fournisseurs Créditeur</a>
-                                <a style=" font-size: 15px; font-weight: bold;" id="rechnonvend" onclick="rechnonvend()">Fournisseurs Dépenser</a>
-                            </nav>
-                    </div>                    
-
+        <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <br />
+                            <div class="nav-center">
+                                <ul class="nav nav-pills nav-pills-warning nav-pills-icons" role="tablist">
+                                    <!--
+                        color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
+                    -->
+                                    <li>
+                                        <a style="background-color:#00bcd4;" href="#description-1" role="tab" data-toggle="tab">
+                                            <i class="material-icons">info</i> Description
+                                        </a>
+                                    </li>
+                                    <li class="active">
+                                        <a href="#schedule-1" role="tab" data-toggle="tab">
+                                            <i class="material-icons">location_on</i> Location
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#tasks-1" role="tab" data-toggle="tab">
+                                            <i class="material-icons">gavel</i> Legal Info
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#tasks-2" role="tab" data-toggle="tab">
+                                            <i class="material-icons">help_outline</i> Help Center
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#description-1" role="tab" data-toggle="tab">
+                                            <i class="material-icons">info</i> Description
+                                        </a>
+                                    </li><li>
+                                        <a href="#description-1" role="tab" data-toggle="tab">
+                                            <i class="material-icons">info</i> Description
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+        </div>
+    
 <div id="loading"></div>
     <div class="container-fluid" id="tab_vende">
                    <div class="row">
@@ -114,10 +147,22 @@
 {% endblock %}
 
 {% block css %}
-	<link rel="stylesheet" href="{{ asset('assets/css/navigation-basic.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/css/navigation-icons.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/slicknav/slicknav.min.css') }}">
+            <script src="{{ asset('assets/js/modernizr.custom.js') }}"></script>
+
+	<link rel="stylesheet" href="{{ asset('assets/css/component1.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/css/default1.css') }}">
 {% endblock %}
 
 {% block script %}
     <script src="{{ asset('assets/slicknav/jquery.slicknav.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.dlmenu.js') }}"></script>
+		<script>
+			$(function() {
+				$( '#dl-menu' ).dlmenu({
+					animationClasses : { classin : 'dl-animate-in-5', classout : 'dl-animate-out-5' }
+				});
+			});
+		</script>
 {% endblock %}

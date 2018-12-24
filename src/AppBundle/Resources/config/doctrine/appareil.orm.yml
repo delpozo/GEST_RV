@@ -1,0 +1,52 @@
+AppBundle\Entity\appareil:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\appareilRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        code:
+            type: string
+            length: '50'
+            generator:
+                strategy: AUTO
+        nom:
+            type: string
+            length: '50'
+        accessoir:
+            type: string
+            length: 255
+            nullable: true
+        dateEntre:
+            type: date
+            column: date_entre
+        probleme:
+            type: array
+        etat:
+            type: string
+            length: '50'
+        pieceChanger:
+            type: array
+            nullable: true
+            column: piece_changer
+        prix:
+            type: float
+        credit:
+            type: integer
+            nullable: true
+        deponse:
+            type: integer
+            nullable: true
+    manyToOne:
+        client:
+            targetEntity: client
+            inversedBy: appareil
+            joinColumn:
+                name: nom_client
+                referencedColumnName: id
+                onDelete : "CASCADE"
+    lifecycleCallbacks: {  }

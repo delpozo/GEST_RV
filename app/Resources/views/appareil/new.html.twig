@@ -1,0 +1,144 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+        Ajouter Appareil
+      {% endblock %}
+
+{% block body %}
+
+<div class="container-fluid">
+    <div class="row">
+       <div class="col-md-12">
+          <div class="card">
+             {{ form_start(form) }}
+             <div class="card-header card-header-icon" data-background-color="blue">
+                        <i class="material-icons"> <a href="{{ path('fournisseurs_index') }}" > local_shipping</a></i>
+                    </div>
+             <div class="card-content">
+             <div class="row"></div>
+                <div class="row">
+                    <label class="col-sm-2 label-on-left">Client :</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Nom Client Ex:Mahdi</label>
+                                            {{ form_widget(form.client) }}
+
+                                    </div>
+                                </div>
+                                                   
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                                           <label class="col-sm-2 label-on-left">Appareil :</label>
+                                           <div class="col-sm-10">
+                                               <div class="row">
+                                                   <div class="col-md-5">
+                                                       <div class="form-group label-floating">
+                                                           <label class="control-label">Nom Ex:Huawei Y5 2017</label>
+                                                           {{ form_widget(form.nom) }}
+
+                                                       </div>
+                                                   </div>
+                                                   <div class="col-md-5">
+                                                       <div class="form-group label-floating">
+                                                           <label class="control-label">Accessoir Ex:SD</label>
+                                                           {{ form_widget(form.accessoir) }}
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </div>
+                <div class="row">
+                                               <label class="col-sm-2 label-on-left">Etat :</label>
+                                               <div class="col-sm-10">
+                                                   <div class="row">
+                                                       <div class="col-md-5">
+                                                                <div class="form-group label-floating">
+                                                                    <label class="control-label">Etat: En Marche </label>
+                                                                      {{ form_widget(form.etat) }}
+                                                                </div>
+                                                       </div>
+                                                   </div>
+                                           </div>
+                                       </div>
+                <div class="row">
+                    <label class="col-sm-2 label-on-left"> Problèmes :</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="form-group label-floating ">
+                                    {{form_widget(form.probleme)}}
+                                    
+                                    <div class="checkbox">
+                                        <label> <input type="checkbox" value="Connecteur" name="problem"> Connecteur </label>
+                                        <label> <input type="checkbox" value="Afficheur" name="problem"> Afficheur </label>
+                                        <label> <input type="checkbox" value="Tactile" name="problem"> Tactile </label>
+                                        <label> <input type="checkbox" value="batterie" name="problem"> batterie </label>
+                                        <label> <input type="checkbox" value="flash(smartphone)" name="problem"> flash(smartphone) </label>
+                                        <label> <input type="checkbox" value="formatage(pc)" name="problem"> formatage(pc) </label>
+                                     
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 label-on-left"> Piece à Changer :</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="form-group label-floating ">
+                                    {{form_widget(form.pieceChanger)}}
+                                    <div class="checkbox">
+                                        <label> <input type="checkbox" value=""> Connecteur </label>
+                                        <label> <input type="checkbox" value=""> Afficheur </label>
+                                        <label> <input type="checkbox" value=""> Tactile </label>
+                                        <label> <input type="checkbox" value=""> batterie </label>
+                                        <label> <input type="checkbox" value=""> flash(smartphone) </label>
+                                        <label> <input type="checkbox" value=""> formatage(pc) </label>
+                                     
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                                           <label class="col-sm-2 label-on-left"> Prix Credit :</label>
+                                               <div class="col-sm-10">
+                                                   <div class="row">
+                                                       <div class="col-md-5">
+                                                           <div class="form-group label-floating ">
+                                                               <label class="control-label">Credit Ex: 10dt</label>
+                                                               {{form_widget(form.prix)}}
+                                                           </div>
+                                                        </div>
+                                                       <div class="col-md-5">
+                                                           <div class="form-group label-floating">
+                                                               <label class="control-label">Deponse Ex: 10dt</label>
+                                                               {{form_widget(form.deponse)}}
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                                </div>
+                                            </div>
+                <div class="row">
+                                           <div class="col-sm-6">
+
+                                           </div>
+                                           <div class="col-sm-2">
+                                               <a id="submit" onclick="addappareil()" class="btn btn-info">Ajouter </a>
+                                           </div>
+                                           <div class="col-sm-3">
+                                               <a  class="btn btn-fill-info" href="{{ path('appareil_index') }}">Retour à la liste</a>
+                                           </div>
+                                       </div>
+             </div>
+          </div>
+       </div>
+    </div>
+</div>
+{% endblock %}
+
+
+

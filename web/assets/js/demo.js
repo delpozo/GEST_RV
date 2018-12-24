@@ -155,6 +155,50 @@ function rechfournisseurs() {
 });
 }
 
+/**
+ * Ajouter Apareil avec les Checkbox Problem et piece changer
+ */
+function addappareil() {
+    $(document).on('click', '#submit', function() {
+     var problem = "";
+     var client = $('#appbundle_appareil_client').val();
+     var nom = $('#appbundle_appareil_nom').val();
+     var etat = $('#appbundle_appareil_etat').val();
+     var prix = $('#appbundle_appareil_prix').val();
+     var piece = "";
+    $(":input:checkbox[name=problem]:checked").each(function () {
+        var ischecked = $(this).is(":checked");
+        if (ischecked) {
+            problem += $(this).val() + "|";
+        }
+    });
+    /*$(":input:checkbox[name=piece]:checked").each(function () {
+        var ischecked = $(this).is(":checked");
+        if (ischecked) {
+            piece += $(this).val() + "|";
+        }
+    });*/
+    $.ajax({
+        type: "GET",
+        data: {
+            problem: problem,
+            nom : nom,
+            client : client,
+            etat : etat,
+            prix : prix
+            //piece : piece,
+        },
+        url: "newappareil",
+        cache: false,
+        success: function(data) {
+            $('#formfield').submit();
+            return false;
+        }
+    });
+    return false;
+});
+}
+
 $('#submitBtn').click(function() {
     /* when the button in the form, display the entered values in the modal */
     $('#lname').text($('#lastname').val());

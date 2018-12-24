@@ -1,0 +1,29 @@
+appareil_index:
+    path:     /
+    defaults: { _controller: "AppBundle:appareil:index" }
+    methods:  GET
+
+appareil_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:appareil:show" }
+    methods:  GET
+
+appareil_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:appareil:new" }
+    methods:  [GET, POST]
+
+appareil_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:appareil:edit" }
+    methods:  [GET, POST]
+
+appareil_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:appareil:delete" }
+    methods:  DELETE
+
+appareil_newappareil:
+    path:     /newappareil
+    defaults: { _controller: "AppBundle:appareil:newappareil" }
+    methods:  [GET, POST]

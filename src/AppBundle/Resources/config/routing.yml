@@ -33,4 +33,10 @@ app_statfour:
         resource: "@AppBundle/Resources/config/routing/statfour.yml"
         prefix:   /statfour
 
+app_client:
+        resource: "@AppBundle/Resources/config/routing/client.yml"
+        prefix:   /client
 
+app_appareil:
+        resource: "@AppBundle/Resources/config/routing/appareil.yml"
+        prefix:   /appareil
