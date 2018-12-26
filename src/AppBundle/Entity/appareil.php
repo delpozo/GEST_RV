@@ -23,7 +23,7 @@ class appareil
     private $nom;
 
     /**
-     * @var string
+     * @var array
      */
     private $accessoir;
 
@@ -125,7 +125,7 @@ class appareil
     /**
      * Set accessoir
      *
-     * @param string $accessoir
+     * @param array $accessoir
      *
      * @return appareil
      */
@@ -139,7 +139,7 @@ class appareil
     /**
      * Get accessoir
      *
-     * @return string
+     * @return array
      */
     public function getAccessoir()
     {
@@ -350,6 +350,13 @@ class appareil
         $this->client[] = $client;
 
         return $this;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->client = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**

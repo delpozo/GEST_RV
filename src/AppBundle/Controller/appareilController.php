@@ -60,28 +60,36 @@ class appareilController extends Controller
         $problem =  $request->query->get('problem');
         $nom =  $request->query->get('nom');
         $clien =  $request->query->get('client');
+        $accessoir =  $request->query->get('accessoir');
+        $piece =  $request->query->get('piece');
+        $deponse =  $request->query->get('deponse');
             $em_client = $this->getDoctrine()->getRepository("AppBundle:client")
             ->findOneById($clien);
-            /*$query_client = $em_client->createQueryBuilder('C')
-                ->select('C.id')
-                ->where('C.id= :client')
-                ->setParameter('client', $clien);
-            $query = $query_client->getQuery();
-            $clientt = $query->getResult();*/
-
-//var_dump($clientt);
-        
         $etat =  $request->query->get('etat');
         $prix =  $request->query->get('prix');
-            $appareil->setProbleme($problem)->setNom($nom)->setClient($em_client)->setEtat($etat)->setPrix($prix);
+        if ($deponse != 0 && $prix != 0)
+            {
+                $credit = $prix-$deponse ;
+            }
+        else $credit = $prix;
+            $appareil->setProbleme(explode(', ', $problem))->setNom($nom)->setClient($em_client)->setEtat($etat)->setPrix($prix)
+                        ->setAccessoir(explode(', ', $accessoir))->setPieceChanger(explode(', ', $piece))->setDeponse($deponse)->setCredit($credit)->setDateEntre(new \DateTime())->setCode(self::generateRandomString(6));
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($appareil);
 
             $em->flush();
-        //var_dump($appareil);
-        
         return $this->redirectToRoute('appareil_show', array('id' => $appareil->getId()));
+    }
+
+    function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 
     /**
@@ -104,6 +112,7 @@ class appareilController extends Controller
      */
     public function editAction(Request $request, appareil $appareil)
     {
+        //var_dump($appareil);
         $deleteForm = $this->createDeleteForm($appareil);
         $editForm = $this->createForm('AppBundle\Form\appareilType', $appareil);
         $editForm->handleRequest($request);
@@ -125,14 +134,20 @@ class appareilController extends Controller
      * Deletes a appareil entity.
      *
      */
-    public function deleteAction(Request $request, appareil $appareil)
+    public function deleteAction($id)
     {
-        $form = $this->createDeleteForm($appareil);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($appareil);
+        if(!$id)
+        {
+            throw $this->createNotFoundException('No ID found');
+        }
+
+        $movie = $this->getDoctrine()->getEntityManager()->getRepository('AppBundle:appareil')->Find($id);
+
+        if($movie != null)
+        {
+            $em->remove($movie);
             $em->flush();
         }
 

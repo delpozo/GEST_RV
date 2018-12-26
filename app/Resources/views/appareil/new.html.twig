@@ -23,7 +23,7 @@
                                 <div class="col-md-5">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Nom Client Ex:Mahdi</label>
-                                            {{ form_widget(form.client) }}
+                                            {{ form_widget(form.client, { 'attr': { 'class' : 'selectpicker','data-style' : 'btn btn-info ', 'title': 'Choisir un Client' } }) }}
 
                                     </div>
                                 </div>
@@ -42,12 +42,7 @@
 
                                                        </div>
                                                    </div>
-                                                   <div class="col-md-5">
-                                                       <div class="form-group label-floating">
-                                                           <label class="control-label">Accessoir Ex:SD</label>
-                                                           {{ form_widget(form.accessoir) }}
-                                                       </div>
-                                                   </div>
+                                                   
                                                </div>
                                            </div>
                                        </div>
@@ -65,21 +60,49 @@
                                            </div>
                                        </div>
                 <div class="row">
+                    <label class="col-md-2 label-on-left">Accessoire :</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group label-floating">
+                                            <div class="checkbox">
+                                                {{form_widget(form.accessoir)}}
+                                                <label> <input type="checkbox" value="Puce" name="accessoir"> Puce </label>
+                                                <label> <input type="checkbox" value="SD" name="accessoir"> SD </label>
+                                                <label> <input type="checkbox" value="Chargeur" name="accessoir"> Chargeur </label>
+                                                <label> <input type="checkbox" value="batterie" name="accessoir"> batterie </label>
+                                                <label> <input type="checkbox" value="Sac" name="accessoir"> Sac </label>
+                                                
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <lable> __ Autre : </label><input type="text" id="autre_accessoir" />
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
                     <label class="col-sm-2 label-on-left"> Problèmes :</label>
                         <div class="col-sm-10">
                             <div class="row">
-                                <div class="form-group label-floating ">
-                                    {{form_widget(form.probleme)}}
-                                    
-                                    <div class="checkbox">
-                                        <label> <input type="checkbox" value="Connecteur" name="problem"> Connecteur </label>
-                                        <label> <input type="checkbox" value="Afficheur" name="problem"> Afficheur </label>
-                                        <label> <input type="checkbox" value="Tactile" name="problem"> Tactile </label>
-                                        <label> <input type="checkbox" value="batterie" name="problem"> batterie </label>
-                                        <label> <input type="checkbox" value="flash(smartphone)" name="problem"> flash(smartphone) </label>
-                                        <label> <input type="checkbox" value="formatage(pc)" name="problem"> formatage(pc) </label>
-                                     
-                                    </div>
+                                <div class="col-sm-8">
+                                        <div class="form-group label-floating ">
+                                            {{form_widget(form.probleme)}}
+                                            
+                                            <div class="checkbox">
+                                                <label> <input type="checkbox" value="Connecteur" name="problem"> Connecteur </label>
+                                                <label> <input type="checkbox" value="Afficheur" name="problem"> Afficheur </label>
+                                                <label> <input type="checkbox" value="Tactile" name="problem"> Tactile </label>
+                                                <label> <input type="checkbox" value="batterie" name="problem"> batterie </label>
+                                                <label> <input type="checkbox" value="flash(smartphone)" name="problem"> flash(smartphone) </label>
+                                                <label> <input type="checkbox" value="formatage(pc)" name="problem"> formatage(pc) </label>
+                                                
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <lable> __ Autre : </label><input type="text" id="autre_problem" />
                                 </div>
                             </div>
                         </div>
@@ -88,17 +111,23 @@
                     <label class="col-sm-2 label-on-left"> Piece à Changer :</label>
                         <div class="col-sm-10">
                             <div class="row">
-                                <div class="form-group label-floating ">
-                                    {{form_widget(form.pieceChanger)}}
-                                    <div class="checkbox">
-                                        <label> <input type="checkbox" value=""> Connecteur </label>
-                                        <label> <input type="checkbox" value=""> Afficheur </label>
-                                        <label> <input type="checkbox" value=""> Tactile </label>
-                                        <label> <input type="checkbox" value=""> batterie </label>
-                                        <label> <input type="checkbox" value=""> flash(smartphone) </label>
-                                        <label> <input type="checkbox" value=""> formatage(pc) </label>
-                                     
-                                    </div>
+                                <div class="col-sm-8">
+                                        <div class="form-group label-floating ">
+                                            {{form_widget(form.pieceChanger)}}
+                                            <div class="checkbox">
+                                                <label> <input type="checkbox" value="Connecteur" name="piece"> Connecteur </label>
+                                                <label> <input type="checkbox" value="Afficheur" name="piece"> Afficheur </label>
+                                                <label> <input type="checkbox" value="Tactile" name="piece"> Tactile </label>
+                                                <label> <input type="checkbox" value="batterie" name="piece"> batterie </label>
+                                                <label> <input type="checkbox" value="Carte Mére" name="piece"> Carte Mére </label>
+                                                <label> <input type="checkbox" value="Micro" name="piece"> Micro </label>
+                                                
+                                            </div>
+                                            
+                                        </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <lable> __ Autre : </label><input type="text" id="autre_piece" />
                                 </div>
                             </div>
                         </div>
@@ -139,6 +168,3 @@
     </div>
 </div>
 {% endblock %}
-
-
-

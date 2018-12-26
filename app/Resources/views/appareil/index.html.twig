@@ -35,26 +35,26 @@
 
                                     <li class="active">
                                         <a href="#schedule-1" data-toggle="modal" data-target="#noticeModal">
-                                            <i class="material-icons">location_on</i> Produit
+                                            <i class="material-icons">location_on</i> !!!!!
                                         </a>
                                     </li>        
                                     <li>
-                                        <a href="{{path('fournisseurs_index')}}" role="tab" >
-                                            <i class="material-icons">gavel</i> Fournisseur 
+                                        <a href="" role="tab" >
+                                            <i class="material-icons">gavel</i> !!!!! 
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#tasks-2" role="tab" data-toggle="tab">
-                                            <i class="material-icons">help_outline</i> Type Produit
+                                            <i class="material-icons">help_outline</i> !!!!!
                                         </a>
                                     </li>
                                     <li>
-                                        <a id="rechvend" onclick="rechvend()" role="tab" data-toggle="tab">
-                                            <i class="material-icons">info</i> Produit Vendue
+                                        <a id="rechvend" onclick="()" role="tab" data-toggle="tab">
+                                            <i class="material-icons">info</i> !!!!!
                                         </a>
                                     </li><li>
-                                        <a href="#description-1" id="rechnonvend" onclick="rechnonvend()" role="tab" data-toggle="tab">
-                                            <i class="material-icons">info</i> Produit Non Vendue
+                                        <a href="#description-1" id="rechnonvend" onclick="()" role="tab" data-toggle="tab">
+                                            <i class="material-icons">info</i> !!!!!
                                         </a>
                                     </li>
                                 </ul>
@@ -90,7 +90,9 @@
                                                     <th class="text-center"> Etat </th>
                                                     <th class="text-center"> Piece d'echange </th>
                                                     <th class="text-center"> Prix </th>
-                                                    <th class="disabled-sorting text-right">Actions</th>
+                                                    <th class="text-center"> Deponse </th>
+                                                    <th class="text-center"> Credit </th>
+                                                    <th class="text-center">Actions</th>
                                                 </tr>
                                             </thead>
                                             
@@ -102,13 +104,14 @@
                                     <td class="text-center">{{ appareil.Client }}</td>
                                     <td class="text-center">{{ appareil.code }}</td>
                                     <td class="text-center">{{ appareil.nom }}</td>
-                                    <td class="text-center">{{ appareil.accessoir }}</td>
+                                    <td class="text-center">{% if appareil.accessoir %}{{ appareil.accessoir|join(', ') }}{% endif %}</td>
                                     <td class="text-center">{% if appareil.dateEntre %}{{ appareil.dateEntre|date('Y-m-d') }}{% endif %}</td>
                                     <td class="text-center">{% if appareil.probleme %}{{ appareil.probleme|join(', ') }}{% endif %}</td>
                                     <td class="text-center">{{ appareil.etat }}</td>
                                     <td class="text-center">{% if appareil.pieceChanger %}{{ appareil.pieceChanger|join(', ') }}{% endif %}</td>
-                                    <td class="text-center" style=" color : red; font-weight: bold;" >{{ appareil.prix }} Dt</td>
-
+                                    <td class="text-center" style=" font-weight: bold;" >{{ appareil.prix }} Dt</td>
+                                    <td class="text-center" style=" color : green; font-weight: bold;" >{{ appareil.deponse }} Dt</td>
+                                    <td class="text-center" style=" color : red; font-weight: bold;" >{{ appareil.credit }} Dt</td>
                                     <td class="text-center">
                                                <span>  <a href="{{ path('appareil_edit', { 'id': appareil.id }) }}"  rel="tooltip" class="btn btn-success btn-simple">
                                                        <i class="material-icons">edit</i>

@@ -3,16 +3,11 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class appareilType extends AbstractType
 {
-    const AWING = 'awing';
-    const BWING = 'bwing';
-    const XWING = 'xwing';
-    const YWING = 'ywing';
 
     /**
      * {@inheritdoc}

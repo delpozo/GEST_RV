@@ -21,7 +21,7 @@ appareil_edit:
 appareil_delete:
     path:     /{id}/delete
     defaults: { _controller: "AppBundle:appareil:delete" }
-    methods:  DELETE
+    methods:  [GET, POST]
 
 appareil_newappareil:
     path:     /newappareil

@@ -12,14 +12,11 @@ AppBundle\Entity\appareil:
         code:
             type: string
             length: '50'
-            generator:
-                strategy: AUTO
         nom:
             type: string
             length: '50'
         accessoir:
-            type: string
-            length: 255
+            type: array
             nullable: true
         dateEntre:
             type: date
@@ -34,7 +31,7 @@ AppBundle\Entity\appareil:
             nullable: true
             column: piece_changer
         prix:
-            type: float
+            type: integer
         credit:
             type: integer
             nullable: true

@@ -19,7 +19,7 @@
             </tr>
             <tr>
                 <th>Accessoir</th>
-                <td>{{ appareil.accessoir }}</td>
+                <td>{% if appareil.accessoir %}{{ appareil.accessoir|join(', ') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Dateentre</th>

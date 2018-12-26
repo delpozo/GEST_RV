@@ -161,23 +161,38 @@ function rechfournisseurs() {
 function addappareil() {
     $(document).on('click', '#submit', function() {
      var problem = "";
+     var piece = "";
+     var accessoir = "";
      var client = $('#appbundle_appareil_client').val();
      var nom = $('#appbundle_appareil_nom').val();
      var etat = $('#appbundle_appareil_etat').val();
      var prix = $('#appbundle_appareil_prix').val();
-     var piece = "";
-    $(":input:checkbox[name=problem]:checked").each(function () {
+     var deponse = $('#appbundle_appareil_deponse').val();
+     var autre_accessoir = $('#autre_accessoir').val();
+     var autre_problem = $('#autre_problem').val();
+     var autre_piece = $('#autre_piece').val();
+
+     $(":input:checkbox[name=accessoir]:checked").each(function () {
         var ischecked = $(this).is(":checked");
         if (ischecked) {
-            problem += $(this).val() + "|";
+            accessoir += $(this).val() + " , ";
         }
     });
-    /*$(":input:checkbox[name=piece]:checked").each(function () {
+        accessoir += autre_accessoir;
+     $(":input:checkbox[name=problem]:checked").each(function () {
         var ischecked = $(this).is(":checked");
         if (ischecked) {
-            piece += $(this).val() + "|";
+            problem += $(this).val() + " , ";
         }
-    });*/
+    });
+        problem += autre_problem;
+    $(":input:checkbox[name=piece]:checked").each(function () {
+        var ischecked = $(this).is(":checked");
+        if (ischecked) {
+            piece += $(this).val() + " , ";
+        }
+    });
+        piece += autre_piece;
     $.ajax({
         type: "GET",
         data: {
@@ -185,13 +200,16 @@ function addappareil() {
             nom : nom,
             client : client,
             etat : etat,
-            prix : prix
-            //piece : piece,
+            prix : prix,
+            piece : piece,
+            accessoir : accessoir,
+            deponse : deponse
         },
         url: "newappareil",
         cache: false,
         success: function(data) {
-            $('#formfield').submit();
+            //window.location=''
+            location.href = '/appareil/'
             return false;
         }
     });
