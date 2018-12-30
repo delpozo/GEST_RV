@@ -69,24 +69,6 @@
                         </a>
             </li>
             <li>
-              <a data-toggle="collapse" href="#user">
-                            <i class="material-icons">person</i>
-                            <p>User
-                                <b class="caret"></b>
-                            </p>
-                        </a>
-              <div class="collapse" id="user">
-                <ul class="nav">
-                  <li>
-                    <a href="{{ path('user_index') }}">list User</a>
-                  </li>
-                  <li>
-                    <a href="{{ path('user_new') }}">Ajout User</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li>
               <a data-toggle="collapse" href="#produits">
                             <i class="material-icons">shopping_cart</i>
                             <p>Produits
@@ -159,9 +141,46 @@
                 </ul>
               </div>
             </li>
+            <li>
+              <a data-toggle="collapse" href="#client">
+                                <i class="material-icons">person</i>
+                                <p>Client
+                                    <b class="caret"></b>
+                                </p>
+                            </a>
+              <div class="collapse" id="client">
+                <ul class="nav">
+                  <li>
+                    <a href="{{ path('client_index') }}">list client</a>
+                  </li>
+                  <li>
+                    <a href="{{ path('client_new') }}">Ajout client</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
             
             <li>
-              <a href="calendar.html">
+              <a data-toggle="collapse" href="#appareil">
+                                <i class="material-icons">stay_current_portrait</i>
+                                <p>Appareil
+                                    <b class="caret"></b>
+                                </p>
+                            </a>
+              <div class="collapse" id="appareil">
+                <ul class="nav">
+                  <li>
+                    <a href="{{ path('appareil_index') }}">list Appareil</a>
+                  </li>
+                  <li>
+                    <a href="{{ path('appareil_new') }}">Ajout Appareil</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+
+            <li>
+              <a href="#">
                             <i class="material-icons">date_range</i>
                             <p>Calendar</p>
                         </a>

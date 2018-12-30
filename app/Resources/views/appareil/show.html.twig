@@ -1,60 +1,138 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Appareil</h1>
+      {% block title %}
+        {{ appareil.nom }}
+      {% endblock %}
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ appareil.id }}</td>
-            </tr>
-            <tr>
-                <th>Code</th>
-                <td>{{ appareil.code }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ appareil.nom }}</td>
-            </tr>
-            <tr>
-                <th>Accessoir</th>
-                <td>{% if appareil.accessoir %}{{ appareil.accessoir|join(', ') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Dateentre</th>
-                <td>{% if appareil.dateEntre %}{{ appareil.dateEntre|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Probleme</th>
-                <td>{% if appareil.probleme %}{{ appareil.probleme|join(', ') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Etat</th>
-                <td>{{ appareil.etat }}</td>
-            </tr>
-            <tr>
-                <th>Piecechanger</th>
-                <td>{% if appareil.pieceChanger %}{{ appareil.pieceChanger|join(', ') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Prix</th>
-                <td>{{ appareil.prix }}</td>
-            </tr>
-        </tbody>
-    </table>
+      {% block recherche %}
 
-    <ul>
-        <li>
-            <a href="{{ path('appareil_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('appareil_edit', { 'id': appareil.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+<form class="navbar-form navbar-right" role="search">
+                    <div class="form-group form-search is-empty">
+                      <input type="text" id="recherche" class="form-control" placeholder="Recherche" >
+                      <span class="material-input"></span>
+                    </div>
+                    <a id ="rech"  onclick = "recherche()" style="margin:0;" class="btn btn-white btn-round btn-just-icon" >
+                      <i class="material-icons">search</i>
+                      <div class="ripple-container"></div>
+                    </a>
+                  </form>
 {% endblock %}
+{% block body %}           
+                       
+
+<div id="loading"></div>
+    <div class="container-fluid" id="tab_vende">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                
+                                <div class="card-content">
+                                    <div class="toolbar">
+                                        <!--        Here you can write extra buttons/actions for the toolbar              -->
+                                    </div>
+                                    <div class="material-datatables">
+                                        <table class="table">
+                                            <thead>
+                                                
+                                                <tr>
+                                                    <th class="text-center"> <a style=" color : black; font-weight: normal;" href="{{ path('client_index') }}" >Client </a></th>
+                                                    <th class="text-center"> Code </th>
+                                                    <th class="text-center"> Nom </th>
+                                                    <th class="text-center"> Accessoir </th>
+                                                    <th class="text-center"> Date Entre </th>
+                                                    <th class="text-center"> probleme </th>
+                                                    <th class="text-center"> Etat </th>
+                                                    <th class="text-center"> Piece d'echange </th>
+                                                    <th class="text-center"> Prix </th>
+                                                    <th class="text-center"> Deponse </th>
+                                                    <th class="text-center"> Credit </th>
+                                                    <th class="text-center">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            
+                                            <tbody>
+                                                
+                                <tr>
+                                    <td class="text-center">{{ appareil.Client }}</td>
+                                    <td class="text-center">{{ appareil.code }}</td>
+                                    <td class="text-center">{{ appareil.nom }}</td>
+                                    <td class="text-center">{% if appareil.accessoir %}{{ appareil.accessoir|join(', ') }}{% endif %}</td>
+                                    <td class="text-center">{% if appareil.dateEntre %}{{ appareil.dateEntre|date('Y-m-d') }}{% endif %}</td>
+                                    <td class="text-center">{% if appareil.probleme %}{{ appareil.probleme|join(', ') }}{% endif %}</td>
+                                    <td class="text-center">{{ appareil.etat }}</td>
+                                    <td class="text-center">{% if appareil.pieceChanger %}{{ appareil.pieceChanger|join(', ') }}{% endif %}</td>
+                                    <td class="text-center" style=" font-weight: bold;" >{{ appareil.prix }} Dt</td>
+                                    <td class="text-center" style=" color : green; font-weight: bold;" >{{ appareil.deponse }} Dt</td>
+                                    <td class="text-center" style=" color : red; font-weight: bold;" >{{ appareil.credit }} Dt</td>
+                                    <td class="text-center">
+                                               <span>  <a href="{{ path('appareil_edit', { 'id': appareil.id }) }}"  rel="tooltip" class="btn btn-success btn-simple">
+                                                       <i class="material-icons">edit</i>
+                                                   </a>
+                                                   <div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <p style=" font-size: 15px; font-weight: bold;" > Confirm Submit </p>
+                                                            </div>
+                                                            <div class="modal-body">  
+                                                                <p style="color:red; font-size: 15px; font-weight: bold;"> Tu est sur de supprimer L'appareil {{ appareil.nom }} !? </p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-success success" data-dismiss="modal">Annuler</button>
+                                                                <a href="{{ path('appareil_delete', { 'id': appareil.id }) }}" id="submit" class="btn btn-danger danger">Supprimier</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                   <a name="btn" value="Submit" id="submitBtn" data-toggle="modal" data-target="#confirm-submit"  rel="tooltip" class="btn btn-danger btn-simple">
+                                                       <i class="material-icons">close</i>
+                                                   </a>
+                                                   
+                                               </span></td>
+
+                                               </tr>
+
+
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+                
+    <div class="col-md-3 col-md-offset-9">
+        <a href="{{ path('appareil_new') }}"  class="btn btn-info" >Ajouter Appareil</a><div class="ripple-container"></div>
+        </a>
+            </div>
+
+        </div>
+        <ul class="navigation">
+        
+    </ul>
+
+    </div>
+    </div>
+    </div>
+    
+    
+
+
+{% endblock %}
+
+
+{% block css %}
+	<link rel="stylesheet" href="{{ asset('assets/css/navigation-basic.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/slicknav/slicknav.min.css') }}">
+{% endblock %}
+
+{% block script %}
+    <script src="{{ asset('assets/slicknav/jquery.slicknav.min.js') }}"></script>
+{% endblock %}
+
+
+
+

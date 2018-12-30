@@ -1,21 +1,88 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}
+        Modifier Le Client {{client.nompre}}
+      {% endblock %}
+
 {% block body %}
-    <h1>Client edit</h1>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+<div class="container-fluid">
+    <div class="row">
+       <div class="col-md-12">
+          <div class="card">
+             {{ form_start(edit_form) }}
+             <div class="card-header card-header-icon" data-background-color="blue">
+                        <i class="material-icons"> <a href="{{ path('fournisseurs_index') }}" > local_shipping</a></i>
+                    </div>
+             <div class="card-content">
+             <div class="row"></div>
+                
+                <div class="row">
+                                           <label class="col-sm-2 label-on-left">Appareil :</label>
+                                           <div class="col-sm-10">
+                                               <div class="row">
+                                                   <div class="col-md-5">
+                                                       <div class="form-group label-floating">
+                                                           <label class="control-label">Nom Ex:Mahdi</label>
+                                                           {{ form_widget(edit_form.nompre) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('client_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                                                       </div>
+                                                   </div>
+                                                   
+                                               </div>
+                                           </div>
+                                       </div>
+                <div class="row">
+                                               <label class="col-sm-2 label-on-left">Adresse :</label>
+                                               <div class="col-sm-10">
+                                                   <div class="row">
+                                                       <div class="col-md-5">
+                                                                <div class="form-group label-floating">
+                                                                    <label class="control-label">Adresse: Sayada .. </label>
+                                                                      {{ form_widget(edit_form.adress) }}
+                                                                </div>
+                                                       </div>
+                                                   </div>
+                                           </div>
+                                       </div>
+                
+                
+                <div class="row">
+                    <label class="col-sm-2 label-on-left"> Numéro Téléphone :</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Num Tel Ex: 96 611 013</label>
+                                            {{form_widget(edit_form.numtel)}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                
+                
+                <div class="row">
+                                           <div class="col-sm-6">
+
+                                           </div>
+                                           <div class="col-sm-2">
+                                           
+                                               <input  type="submit" class="btn btn-info" value="Modifier">
+                                           </div>
+                                           <div class="col-sm-3">
+                                               <a  class="btn btn-fill-info" href="{{ path('appareil_index') }}">Retour à la liste</a>
+                                           </div>
+                                       </div>
+             </div>
+          </div>
+       </div>
+    </div>
+</div>
 {% endblock %}
+
+
+
+
+
+

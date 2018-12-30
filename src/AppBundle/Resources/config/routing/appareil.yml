@@ -27,3 +27,8 @@ appareil_newappareil:
     path:     /newappareil
     defaults: { _controller: "AppBundle:appareil:newappareil" }
     methods:  [GET, POST]
+
+appareil_updateappareil:
+    path:     /{appareilId}/updateappareil
+    defaults: { _controller: "AppBundle:appareil:updateappareil" }
+    methods:  [GET, POST]

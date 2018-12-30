@@ -235,7 +235,7 @@ class client
     }
 
     public function __toString() {
-        return $this->getNompre();
+        return $this->getNumtel();
     }
 }
 

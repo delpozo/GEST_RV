@@ -27,6 +27,16 @@ class clientController extends Controller
         ));
     }
 
+    function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
     /**
      * Creates a new client entity.
      *
@@ -38,6 +48,8 @@ class clientController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $client->setCode(self::generateRandomString(6));
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($client);
             $em->flush();
@@ -58,7 +70,6 @@ class clientController extends Controller
     public function showAction(client $client)
     {
         $deleteForm = $this->createDeleteForm($client);
-
         return $this->render('client/show.html.twig', array(
             'client' => $client,
             'delete_form' => $deleteForm->createView(),

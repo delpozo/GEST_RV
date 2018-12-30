@@ -63,8 +63,8 @@ class appareilController extends Controller
         $accessoir =  $request->query->get('accessoir');
         $piece =  $request->query->get('piece');
         $deponse =  $request->query->get('deponse');
-            $em_client = $this->getDoctrine()->getRepository("AppBundle:client")
-            ->findOneById($clien);
+        $em_client = $this->getDoctrine()->getRepository("AppBundle:client")
+        ->findOneById($clien);
         $etat =  $request->query->get('etat');
         $prix =  $request->query->get('prix');
         if ($deponse != 0 && $prix != 0)
@@ -79,7 +79,32 @@ class appareilController extends Controller
             $em->persist($appareil);
 
             $em->flush();
-        return $this->redirectToRoute('appareil_show', array('id' => $appareil->getId()));
+            
+            $em_app = $this->getDoctrine()->getRepository("AppBundle:appareil");
+            $query = $em_app->createQueryBuilder('A')
+            ->select('SUM(A.deponse) as deponse', 'SUM(A.credit) as credit')
+            ->where('A.client = :id_client')
+            ->setParameter('id_client', $em_client->getId())
+            ->getQuery();
+
+            $depcre = $query->getResult();
+
+            $em_app = $this->getDoctrine()->getRepository("AppBundle:client");
+            $query = $em_app->createQueryBuilder('C')
+            ->update('AppBundle:client' , 'C')
+            ->set('C.deponse ' , ':deponse')
+            ->set('C.credit ' , ':credit')
+            ->where('C.id = :id_client')
+            ->setParameter('deponse', $depcre['0']['deponse'])
+            ->setParameter('credit', $depcre['0']['credit'])
+            ->setParameter('id_client', $em_client->getId())
+            ->getQuery();
+
+        $client = $query->execute();
+
+            //$em_client->setDeponse($depcre['0']['deponse'])->setCredit($depcre['0']['credit']);
+
+            return $this->redirectToRoute('appareil_show', array('id' => $appareil->getId()));
     }
 
     function generateRandomString($length = 10) {
@@ -90,6 +115,47 @@ class appareilController extends Controller
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
         return $randomString;
+    }
+
+    /**
+     * Modifier Appareil
+     */
+
+    public function updateappareilAction($appareilId , Request $request)
+    {
+        //var_dump($appareilId);
+        $problem =  $request->query->get('problem');
+        $nom =  $request->query->get('nom');
+        $clien =  $request->query->get('client');
+        $accessoir =  $request->query->get('accessoir');
+        $piece =  $request->query->get('piece');
+        $deponse =  $request->query->get('deponse');
+        $etat =  $request->query->get('etat');
+        $prix =  $request->query->get('prix');
+        $em_client = $this->getDoctrine()->getRepository("AppBundle:client")
+        ->findOneById($clien);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $appareil = $this->getDoctrine()->getEntityManager()->getRepository('AppBundle:appareil')->Find($appareilId);
+       
+        //var_dump($appareil);
+            if (!$appareilId) {
+                throw $this->createNotFoundException(
+                    'No product found for id '.$appareilId
+                );
+            }
+            if ($deponse != 0 && $prix != 0)
+            {
+                $credit = $prix-$deponse ;
+            }
+            else $credit = $prix;
+
+            $appareil->setProbleme(explode(', ', $problem))->setNom($nom)->setClient($em_client)->setEtat($etat)->setPrix($prix)
+                        ->setAccessoir(explode(', ', $accessoir))->setPieceChanger(explode(', ', $piece))->setDeponse($deponse)->setCredit($credit)->setDateEntre($appareil->getDateEntre())->setCode($appareil->getCode());
+
+        $entityManager->flush();
+    
+        return $this->redirectToRoute('appareil_show', array('id' => $appareil->getId()));
     }
 
     /**

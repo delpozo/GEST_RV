@@ -1,21 +1,173 @@
+
 {% extends 'base.html.twig' %}
 
+{% block title %}
+        Ajouter Appareil
+      {% endblock %}
+
 {% block body %}
-    <h1>Appareil edit</h1>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+<div class="container-fluid">
+    <div class="row">
+       <div class="col-md-12">
+          <div class="card">
+             {{ form_start(edit_form) }}
+             <div class="card-header card-header-icon" data-background-color="blue">
+                        <i class="material-icons"> <a href="{{ path('fournisseurs_index') }}" > local_shipping</a></i>
+                    </div>
+             <div class="card-content">
+             <div class="row"></div>
+                <div class="row">
+                    <label class="col-sm-2 label-on-left">Client :</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Nom Client Ex:Mahdi</label>
+                                            {{ form_widget(edit_form.client, { 'attr': { 'class' : 'selectpicker','data-style' : 'btn btn-info ', 'title': 'Choisir un Client' } }) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('appareil_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                                    </div>
+                                </div>
+                                                   
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                                           <label class="col-sm-2 label-on-left">Appareil :</label>
+                                           <div class="col-sm-10">
+                                               <div class="row">
+                                                   <div class="col-md-5">
+                                                       <div class="form-group label-floating">
+                                                           <label class="control-label">Nom Ex:Huawei Y5 2017</label>
+                                                           {{ form_widget(edit_form.nom) }}
+
+                                                       </div>
+                                                   </div>
+                                                   
+                                               </div>
+                                           </div>
+                                       </div>
+                <div class="row">
+                                               <label class="col-sm-2 label-on-left">Etat :</label>
+                                               <div class="col-sm-10">
+                                                   <div class="row">
+                                                       <div class="col-md-5">
+                                                                <div class="form-group label-floating">
+                                                                    <label class="control-label">Etat: En Marche </label>
+                                                                      {{ form_widget(edit_form.etat) }}
+                                                                </div>
+                                                       </div>
+                                                   </div>
+                                           </div>
+                                       </div>
+                <div class="row">
+                    <label class="col-md-2 label-on-left">Accessoire :</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group label-floating">
+                                            <div class="checkbox">
+                                                {% for accessoir in appareil.accessoir %}
+                                                    {% if accessoir != "" %}
+                                                        <label> 
+                                                            <input type="checkbox" value={{accessoir}} name="accessoir" checked> {{accessoir }} 
+                                                        </label>
+                                                    {% endif %}
+                                                {% endfor %}
+                                                
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <lable> __ Autre : </label><input type="text" id="autre_accessoir" />
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 label-on-left"> Problèmes :</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                        <div class="form-group label-floating ">
+                                            
+                                            <div class="checkbox">
+                                                {% for probleme in appareil.probleme %}
+                                                    {% if probleme != "" %}
+                                                        <label> 
+                                                            <input type="checkbox" value={{probleme}} name="problem" checked> {{probleme }} 
+                                                        </label>
+                                                    {% endif %}
+                                                {% endfor %}
+                                                
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <lable> __ Autre : </label><input type="text" id="autre_problem" />
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 label-on-left"> Piece à Changer :</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                        <div class="form-group label-floating ">
+                                            <div class="checkbox">
+                                                {% for pieceChanger in appareil.pieceChanger %}
+                                                    {% if pieceChanger != "" %}
+                                                        <label> 
+                                                            <input type="checkbox" value={{pieceChanger}} name="piece" checked> {{pieceChanger }} 
+                                                        </label>
+                                                    {% endif %}
+                                                {% endfor %}
+                                                
+                                            </div>
+                                            
+                                        </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <lable> __ Autre : </label><input type="text" id="autre_piece" />
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                                           <label class="col-sm-2 label-on-left"> Prix Credit :</label>
+                                               <div class="col-sm-10">
+                                                   <div class="row">
+                                                       <div class="col-md-5">
+                                                           <div class="form-group label-floating ">
+                                                               <label class="control-label">Credit Ex: 10dt</label>
+                                                               {{form_widget(edit_form.prix)}}
+                                                           </div>
+                                                        </div>
+                                                       <div class="col-md-5">
+                                                           <div class="form-group label-floating">
+                                                               <label class="control-label">Deponse Ex: 10dt</label>
+                                                               {{form_widget(edit_form.deponse)}}
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                                </div>
+                                            </div>
+                <div class="row">
+                                           <div class="col-sm-6">
+
+                                           </div>
+                                           <div class="col-sm-2">
+                                           <!--<input type="submit" value="Edit" />-->
+                                               <a id="update" onclick="editappareil()" class="btn btn-info">Modifier </a>
+                                           </div>
+                                           <div class="col-sm-3">
+                                               <a  class="btn btn-fill-info" href="{{ path('appareil_index') }}">Retour à la liste</a>
+                                           </div>
+                                       </div>
+             </div>
+          </div>
+       </div>
+    </div>
+</div>
 {% endblock %}

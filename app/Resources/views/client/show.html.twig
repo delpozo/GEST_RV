@@ -1,52 +1,135 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Client</h1>
+      {% block title %}
+        Liste Des Clients
+      {% endblock %}
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ client.id }}</td>
-            </tr>
-            <tr>
-                <th>Code</th>
-                <td>{{ client.code }}</td>
-            </tr>
-            <tr>
-                <th>Nompre</th>
-                <td>{{ client.nompre }}</td>
-            </tr>
-            <tr>
-                <th>Adress</th>
-                <td>{{ client.adress }}</td>
-            </tr>
-            <tr>
-                <th>Credit</th>
-                <td>{{ client.credit }}</td>
-            </tr>
-            <tr>
-                <th>Deponse</th>
-                <td>{{ client.deponse }}</td>
-            </tr>
-            <tr>
-                <th>Numtel</th>
-                <td>{{ client.numtel }}</td>
-            </tr>
-        </tbody>
-    </table>
+      {% block recherche %}
 
-    <ul>
-        <li>
-            <a href="{{ path('client_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('client_edit', { 'id': client.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+<form class="navbar-form navbar-right" role="search">
+                    <div class="form-group form-search is-empty">
+                      <input type="text" id="recherche" class="form-control" placeholder="Recherche" >
+                      <span class="material-input"></span>
+                    </div>
+                    <a id ="rech"  onclick = "recherche()" style="margin:0;" class="btn btn-white btn-round btn-just-icon" >
+                      <i class="material-icons">search</i>
+                      <div class="ripple-container"></div>
+                    </a>
+                  </form>
 {% endblock %}
+{% block body %}
+        
+                                  
+
+<div id="loading"></div>
+    <div class="container-fluid" id="tab_vende">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                
+                                <div class="card-content">
+                                    <div class="toolbar">
+                                        <!--        Here you can write extra buttons/actions for the toolbar              -->
+                                    </div>
+                                    <div class="material-datatables">
+                                        <table class="table">
+                                            <thead>
+                                                
+                                                <tr>
+                                                    <th class="text-center"> Code </th>
+                                                    <th class="text-center"> Nom Prénom </th>
+                                                    <th class="text-center"> Adress </th>
+                                                    <th class="text-center"> Num Téléphone </th>
+                                                    <th class="text-center"> Credit </th>
+                                                    <th class="text-center"> Deponse </th>
+                                                    <th class="text-center">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            
+                                            <tbody>
+                                                
+                                    {% if client is not empty %}
+                                <tr>
+                                    <td class="text-center">{{ client.code }}</td>
+                                    <td class="text-center">{{ client.nompre }}</td>
+                                    <td class="text-center">{{ client.adress }}</td>
+                                    <td class="text-center">{{ client.numtel }}</td>
+                                    <td class="text-center" style=" color : green; font-weight: bold;" >{{ client.credit }} Dt</td>
+                                    <td class="text-center" style=" color : red; font-weight: bold;" >{{ client.deponse }} Dt</td>
+                                    <td class="text-center">
+                                               <span>  <a href="{{ path('client_edit', { 'id': client.id }) }}"  rel="tooltip" class="btn btn-success btn-simple">
+                                                       <i class="material-icons">edit</i>
+                                                   </a>
+                                                   <div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <p style=" font-size: 15px; font-weight: bold;" > Confirm Submit </p>
+                                                            </div>
+                                                            <div class="modal-body">  
+                                                                <p style="color:red; font-size: 15px; font-weight: bold;"> Tu est sur de supprimer Le Client {{ client.nompre }} !? </p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-success success" data-dismiss="modal">Annuler</button>
+                                                                <a href="{{ path('client_delete', { 'id': client.id }) }}" id="submit" class="btn btn-danger danger">Supprimier</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                   <a name="btn" value="Submit" id="submitBtn" data-toggle="modal" data-target="#confirm-submit"  rel="tooltip" class="btn btn-danger btn-simple">
+                                                       <i class="material-icons">close</i>
+                                                   </a>
+                                                   
+                                               </span></td>
+
+                                               </tr>
+                                {% endif %}
+
+                                
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+    <div class="col-md-6 col-md-offset-8">
+        <a href="{{ path('client_new') }}"  class="btn btn-info" >Ajouter Client</a><div class="ripple-container"></div>
+        </a>
+        <a  class="btn btn-fill-info" href="{{ path('appareil_index') }}">Retour à la liste</a>
+            </div>
+            
+
+        </div>
+        <ul class="navigation">
+        
+    </ul>
+
+    </div>
+    </div>
+    </div>
+    
+    
+
+
+{% endblock %}
+
+
+{% block css %}
+	<link rel="stylesheet" href="{{ asset('assets/css/navigation-basic.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/slicknav/slicknav.min.css') }}">
+{% endblock %}
+
+{% block script %}
+    <script src="{{ asset('assets/slicknav/jquery.slicknav.min.js') }}"></script>
+{% endblock %}
+
+
+
+
+
+
+
