@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\produits;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Produit controller.
@@ -18,6 +19,7 @@ class produitsController extends Controller
      */
     public function indexAction(Request $request)
     {
+        
         $em_four = $this->getDoctrine()->getRepository("AppBundle:fournisseurs");
         $query_four = $em_four->createQueryBuilder('F')
             ->select('F.nom')
@@ -32,7 +34,7 @@ class produitsController extends Controller
             ->getQuery();
         $typeProduit = $query_typeProduit->getResult();
 
-        $date = date('Y ', time());
+        /*$date = date('Y ', time());
 
         $em_prod = $this->getDoctrine()->getRepository("AppBundle:produits");
         $query = $em_prod->createQueryBuilder('P')
@@ -48,8 +50,10 @@ class produitsController extends Controller
         );
 
         if($request->getMethod() == 'POST')
-        {
-            $query=$reprostiry->createQueryBuilder('produits')->select('produits')
+    {
+    
+            $query=$reprostiry->createQueryBuilder('produits')
+                ->select('produits')
                 ->where('produits.prixVend = ?1')
 
                 ->orderBy('produits.prixVend','DESC')->getQuery();
@@ -58,8 +62,8 @@ class produitsController extends Controller
                 $query,
                 $request->query->getInt('page',1),
                 2
-            );
-        
+            );*/
+        /*
             return $this->render('produits/index.html.twig', array(
                 'produits' => $produits,
                 'founisseurs' => $founisseurs,
@@ -69,8 +73,29 @@ class produitsController extends Controller
             'produits' => $produits,
             'founisseurs' => $founisseurs,
             'typeProduit' => $typeProduit,
-        ));
-    }
+        ));*/
+
+        $em = $this->getDoctrine()->getManager();
+
+        $produits = $em->getRepository('AppBundle:produits')->findAll();
+
+        $formatted = [];
+        foreach ($produits as $produit) {
+            $formatted[] = [
+               'id' => $produit->getId(),
+               'fournisseur' => $produit->getFournisseurs()->__toString() ,
+               'type' => $produit->getTypeProduit()->getType(),
+               'nom' => $produit->getNom(),
+               'prix_achat' => $produit->getPrixAchat(),
+               'prix_vent' =>  $produit->getPrixVend(),
+               'date' => $produit->getDate(),
+                
+            ];
+        }
+        //Validator::validate();
+        return new JsonResponse($formatted);
+    
+}
 
     public function rechercheAction (Request $request )
     {

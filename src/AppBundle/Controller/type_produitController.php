@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\type_produit;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Type_produit controller.
@@ -22,9 +23,18 @@ class type_produitController extends Controller
 
         $type_produits = $em->getRepository('AppBundle:type_produit')->findAll();
 
-        return $this->render('type_produit/index.html.twig', array(
+        /*return $this->render('type_produit/index.html.twig', array(
             'type_produits' => $type_produits,
-        ));
+        ));*/
+        $formatted = [];
+        foreach ($type_produits as $type) {
+            $formatted[] = [
+               'id' => $type->getId(),
+               'type' => $type->getType() ,
+            ];
+        }
+        return new JsonResponse($formatted);
+    
     }
 
     /**

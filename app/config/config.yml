@@ -36,6 +36,7 @@ framework:
         resource: '%kernel.project_dir%/app/config/routing.yml'
         strict_requirements: ~
     form: ~
+    serializer: { enable_annotations: true }
 
     validation: { enable_annotations: true }
     #serializer: { enable_annotations: true }
@@ -50,6 +51,8 @@ framework:
     assets: ~
     php_errors:
         log: true
+    templating:
+        engines: ['twig']
 
 # Twig Configuration
 twig:
@@ -98,3 +101,32 @@ sensio_framework_extra:
 knp_paginator:
     template:
         pagination: '@KnpPaginator/Pagination/twitter_bootstrap_v3_pagination.html.twig'     # sliding pagination controls template
+fos_rest:
+    routing_loader:
+        default_format: json
+    view:
+        view_response_listener: true
+
+nelmio_cors:
+    paths:
+        '^/':
+            allow_origin: ['http://localhost:4200']
+            allow_headers: ['origin', 'content-type', 'authorization']
+            allow_methods: ['POST',  'GET']
+            max_age: 3600
+
+nelmio_api_doc:
+    sandbox:
+        accept_type:        "application/json"
+        body_format:
+            formats:        [ "json" ]
+            default_format: "json"
+        request_format:
+            formats:
+                json:       "application/json"
+
+lexik_jwt_authentication:
+    secret_key:       '%kernel.project_dir%/config/jwt/private.pem' # required for token creation
+    public_key:       '%kernel.project_dir%/config/jwt/public.pem'  # required for token verification
+    pass_phrase:      ~ # required for token creation, usage of an environment variable is recommended
+    token_ttl:        3600

@@ -328,6 +328,6 @@ class fournisseurs
         return $this->produits;
     }
     public function __toString() {
-        return $this->getNom();
+        return $this->getNom() ." ".$this->getPrenom();
     }
 }

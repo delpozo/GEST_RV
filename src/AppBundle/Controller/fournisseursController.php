@@ -6,6 +6,7 @@ use AppBundle\Entity\fournisseurs;
 use Doctrine\ORM\Mapping\Id;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Fournisseur controller.
@@ -40,14 +41,43 @@ class fournisseursController extends Controller
                          $request->query->getInt('page',1),
                          6
                        );
-                      
-                       return $this->render('fournisseurs/index.html.twig', array(
-                           'fournisseurs' => $fournisseurs,
-                               ));}    return $this->render('fournisseurs/index.html.twig', [
-                                      'fournisseurs' => $fournisseurs,
-                                          ]);
-
-   }
+                       $formatted = [];
+                       foreach ($fournisseurs as $fournisseur) {
+                           $formatted[] = [
+                              'id' => $fournisseur->getId(),
+                              'nom' => $fournisseur->getNom(),
+                              'prenom' => $fournisseur->getPrenom(),
+                           ];
+                       }
+                       //Validator::validate();
+                       return new JsonResponse($formatted);
+                                     
+                                              }
+                                     /* return $this->render('fournisseurs/index.html.twig', array(
+                                          'fournisseurs' => $fournisseurs,
+                                              ));}    return $this->render('fournisseurs/index.html.twig', [
+                                                     'fournisseurs' => $fournisseurs,
+                                                         ]);*/
+                                                         $formatted = [];
+                                                         foreach ($fournisseurs as $fournisseur) {
+                                                             $formatted[] = [
+                                                                'id' => $fournisseur->getId(),
+                                                                'nom' => $fournisseur->getNom(),
+                                                                'prenom' => $fournisseur->getPrenom(),
+                                                                'numtel' => $fournisseur->getNumTel(),
+                                                                'mun_fix' => $fournisseur->getNumFix(),
+                                                                'email' =>  $fournisseur->getEmail(),
+                                                                'adress' => $fournisseur->getAdress(),
+                                                                'deponse' => $fournisseur->getDeponse(),
+                                                                'credit' => $fournisseur->getCredit(),
+                                                                'date' => $fournisseur->getDate(), 
+                                                                
+                                                             ];
+                                                         }
+                                                         //Validator::validate();
+                                                         return new JsonResponse($formatted);
+               
+                  }
 
     public function addAction($id_four)
     {

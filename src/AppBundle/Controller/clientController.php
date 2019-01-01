@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\client;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Client controller.
@@ -22,9 +23,24 @@ class clientController extends Controller
 
         $clients = $em->getRepository('AppBundle:client')->findAll();
 
-        return $this->render('client/index.html.twig', array(
+        /*return $this->render('client/index.html.twig', array(
             'clients' => $clients,
-        ));
+        ));*/
+
+        $formatted = [];
+        foreach ($clients as $client) {
+            $formatted[] = [
+               'id' => $client->getId(),
+               'code' => $client->getCode(),
+               'nom_pre' => $client->getNomPre(),
+               'adress' => $client->getAdress(),
+               'credit' => $client->getCredit(), 
+               'deponse' => $client->getDeponse(),
+               'num_tel' => $client->getNumTel(), 
+            ];
+        }
+        //Validator::validate();
+        return new JsonResponse($formatted);
     }
 
     function generateRandomString($length = 10) {

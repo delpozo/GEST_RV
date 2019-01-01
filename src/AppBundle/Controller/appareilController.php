@@ -6,6 +6,7 @@ use AppBundle\Entity\appareil;
 use AppBundle\Form\appareilType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Appareil controller.
@@ -23,9 +24,29 @@ class appareilController extends Controller
 
         $appareils = $em->getRepository('AppBundle:appareil')->findAll();
 
-        return $this->render('appareil/index.html.twig', array(
+        /*return $this->render('appareil/index.html.twig', array(
             'appareils' => $appareils,
-        ));
+        ));*/
+        $formatted = [];
+        foreach ($appareils as $appareil) {
+            $formatted[] = [
+               'id' => $appareil->getId(),
+               'code' => $appareil->getCode(),
+               'nom' => $appareil->getNom(),
+               'accessoir' => $appareil->getAccessoir(),
+               'date_entre' => $appareil->getDateEntre(),
+               'probleme' => $appareil->getProbleme(),
+               'etat' =>  $appareil->getEtat(),
+               'piece_changer' => $appareil->getPieceChanger(),
+               'prix' => $appareil->getPrix(),
+               'client' => $appareil->getClient()->getNumTel(),
+               'credit' => $appareil->getCredit(), 
+               'deponse' => $appareil->getDeponse(), 
+            ];
+        }
+        //Validator::validate();
+        return new JsonResponse($formatted);
+                                                         
     }
 
     /**

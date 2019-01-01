@@ -20,9 +20,17 @@ security:
                 #csrf_token_generator: security.csrf.token_manager
                             # if you are using Symfony < 2.8, use the following config instead:
                             # csrf_provider: form.csrf_provider
+              
 
             logout:       true
             anonymous:    true
+
+    # 
+
+
+    # access_control:
+    #     - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    #     - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
     access_control:
     # require ROLE_ADMIN for /admin*
 
