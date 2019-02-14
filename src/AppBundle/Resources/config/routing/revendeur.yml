@@ -1,0 +1,24 @@
+revendeur_index:
+    path:     /
+    defaults: { _controller: "AppBundle:Revendeur:index" }
+    methods:  GET
+
+revendeur_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Revendeur:show" }
+    methods:  GET
+
+revendeur_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Revendeur:new" }
+    methods:  [GET, POST]
+
+revendeur_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Revendeur:edit" }
+    methods:  [GET, POST]
+
+revendeur_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Revendeur:delete" }
+    methods:  [GET, POST]

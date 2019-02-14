@@ -1,7 +1,7 @@
 {% extends 'admin.html.twig' %}
 
 {% block title %}
-        Ajouter Fournisseurs
+        Ajouter Revendeurs
       {% endblock %}
 
 {% block body %}
@@ -11,7 +11,7 @@
           <div class="card">
              {{ form_start(form) }}
              <div class="card-header card-header-icon" data-background-color="blue">
-                        <i class="material-icons"> <a href="{{ path('fournisseurs_index') }}" > local_shipping</a></i>
+                        <i class="material-icons"> <a href="{{ path('revendeur_index') }}" > local_shipping</a></i>
                     </div>
              <div class="card-content">
              <div class="row"></div>
@@ -92,7 +92,7 @@
                                                    </div>
                                                 </div>
                                             </div>
-                <div class=row">
+                <div class="row">
                                            <div class="col-sm-6">
 
                                            </div>
@@ -100,7 +100,7 @@
                                                <button type="submit" class="btn btn-info">Ajouter </button>
                                            </div>
                                            <div class="col-sm-3">
-                                               <a  class="btn btn-fill-info" href="{{ path('fournisseurs_index') }}">Retour à la liste</a>
+                                               <a  class="btn btn-fill-info" href="{{ path('revendeur_index') }}">Retour à la liste</a>
                                                 {{ form_end(form) }}
                                            </div>
                                        </div>

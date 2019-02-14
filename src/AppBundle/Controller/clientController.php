@@ -23,11 +23,11 @@ class clientController extends Controller
 
         $clients = $em->getRepository('AppBundle:client')->findAll();
 
-        /*return $this->render('client/index.html.twig', array(
+        return $this->render('client/index.html.twig', array(
             'clients' => $clients,
-        ));*/
+        ));
 
-        $formatted = [];
+        /* $formatted = [];
         foreach ($clients as $client) {
             $formatted[] = [
                'id' => $client->getId(),
@@ -40,7 +40,7 @@ class clientController extends Controller
             ];
         }
         //Validator::validate();
-        return new JsonResponse($formatted);
+        return new JsonResponse($formatted); */
     }
 
     function generateRandomString($length = 10) {

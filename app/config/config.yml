@@ -110,7 +110,7 @@ fos_rest:
 nelmio_cors:
     paths:
         '^/':
-            allow_origin: ['http://localhost:4200']
+            allow_origin: ['*']
             allow_headers: ['origin', 'content-type', 'authorization']
             allow_methods: ['POST',  'GET']
             max_age: 3600

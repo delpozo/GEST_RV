@@ -26,9 +26,6 @@ app_user:
     resource: "@AppBundle/Resources/config/routing/user.yml"
     prefix:   /user
 
-admin_homepage:
-    path:     /
-    defaults: { _controller: AppBundle:Default:index }
 app_statfour:
         resource: "@AppBundle/Resources/config/routing/statfour.yml"
         prefix:   /statfour
@@ -40,3 +37,7 @@ app_client:
 app_appareil:
         resource: "@AppBundle/Resources/config/routing/appareil.yml"
         prefix:   /appareil
+
+app_revendeur:
+        resource: "@AppBundle/Resources/config/routing/revendeur.yml"
+        prefix:   /revendeur

@@ -38,7 +38,7 @@ class DefaultController extends Controller
         $vendEx = $query2->getResult();
         //$vendEx=$Ex[""];
 
-        return $this->render('base.html.twig', array(
+        return $this->render('admin.html.twig', array(
             'vende_cli' => $vende_cli,
             'vendEx' => $vendEx,
             'prod_not_vend' => $prod_not_vend,

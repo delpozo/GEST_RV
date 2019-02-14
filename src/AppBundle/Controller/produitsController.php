@@ -34,7 +34,7 @@ class produitsController extends Controller
             ->getQuery();
         $typeProduit = $query_typeProduit->getResult();
 
-        /*$date = date('Y ', time());
+        $date = date('Y ', time());
 
         $em_prod = $this->getDoctrine()->getRepository("AppBundle:produits");
         $query = $em_prod->createQueryBuilder('P')
@@ -62,8 +62,8 @@ class produitsController extends Controller
                 $query,
                 $request->query->getInt('page',1),
                 2
-            );*/
-        /*
+            );
+        
             return $this->render('produits/index.html.twig', array(
                 'produits' => $produits,
                 'founisseurs' => $founisseurs,
@@ -73,8 +73,8 @@ class produitsController extends Controller
             'produits' => $produits,
             'founisseurs' => $founisseurs,
             'typeProduit' => $typeProduit,
-        ));*/
-
+        ));
+/*
         $em = $this->getDoctrine()->getManager();
 
         $produits = $em->getRepository('AppBundle:produits')->findAll();
@@ -93,7 +93,7 @@ class produitsController extends Controller
             ];
         }
         //Validator::validate();
-        return new JsonResponse($formatted);
+        return new JsonResponse($formatted);*/
     
 }
 

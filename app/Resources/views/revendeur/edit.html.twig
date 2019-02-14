@@ -1,7 +1,7 @@
 {% extends 'admin.html.twig' %}
 
 {% block title %}
-        Modifier Le Fournisseur {{ fournisseur.nom }} {{ fournisseur.prenom}}
+        Modifier Le revendeur {{ revendeur.nom }} {{ revendeur.prenom}}
       {% endblock %}
 
 {% block body %}
@@ -12,7 +12,7 @@
                 <div class="card">
                     {{ form_start(edit_form) }}
                     <div class="card-header card-header-icon" data-background-color="blue">
-                        <i class="material-icons"> <a href="{{ path('fournisseurs_index') }}" > local_shipping</a></i>
+                        <i class="material-icons"> <a href="{{ path('revendeur_index') }}" > local_shipping</a></i>
                     </div>
                     <div class="card-content">
                         <div class="row"> </div>
@@ -102,7 +102,7 @@
                             </div>
 
                             <div class="col-sm-3">
-                                <a  class="btn btn-fill-info" href="{{ path('fournisseurs_index') }}">Retour à la liste</a>
+                                <a  class="btn btn-fill-info" href="{{ path('revendeur_index') }}">Retour à la liste</a>
                                 {{ form_end(edit_form) }}
                             </div>
                             <div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -112,11 +112,11 @@
                                                                 <p style=" font-size: 15px; font-weight: bold;" > Confirm Submit </p>
                                                             </div>
                                                             <div class="modal-body">  
-                                                                <p style="color:red; font-size: 15px; font-weight: bold;"> Tu est sur de supprimer Le Fournisseur {{ fournisseur.nom }} {{ fournisseur.prenom }} !? </p>
+                                                                <p style="color:red; font-size: 15px; font-weight: bold;"> Tu est sur de supprimer Le revendeur {{ revendeur.nom }} {{ revendeur.prenom }} !? </p>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-success success" data-dismiss="modal">Annuler</button>
-                                                                <a href="{{ path('fournisseurs_delete', { 'id': fournisseur.id }) }}" id="submit" class="btn btn-danger danger">Supprimier</a>
+                                                                <a href="{{ path('revendeur_delete', { 'id': revendeur.id }) }}" id="submit" class="btn btn-danger danger">Supprimier</a>
                                                             </div>
                                                         </div>
                                                     </div>

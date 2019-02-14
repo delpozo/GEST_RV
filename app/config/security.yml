@@ -3,8 +3,10 @@ security:
         AppBundle\Entity\User: bcrypt
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     role_hierarchy:
+        ROLE_ABONNE: ROLE_ABONNE
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: ROLE_SUPER_ADMIN
+        
     providers:
         in_memory:
             memory: ~
@@ -35,13 +37,14 @@ security:
     # require ROLE_ADMIN for /admin*
 
     - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/appareil/, roles: ROLE_USER }
-    - { path: ^/client/, roles: ROLE_USER }
-    - { path: ^/fournisseurs/, roles: ROLE_USER }
-    - { path: ^/type_produit/, roles: ROLE_USER }
-    - { path: ^/produits, roles: ROLE_USER }
-    - { path: ^/vende, roles: ROLE_USER }
-    - { path: ^/statfour/, roles: ROLE_USER }
+    - { path: ^/admin/appareil/, roles: ROLE_SUPER_ADMIN }
+    - { path: ^/admin/client/, roles: ROLE_SUPER_ADMIN }
+    - { path: ^/admin/fournisseurs/, roles: ROLE_SUPER_ADMIN }
+    - { path: ^/admin/type_produit/, roles: ROLE_SUPER_ADMIN }
+    - { path: ^/admin/produits, roles: ROLE_SUPER_ADMIN }
+    - { path: ^/admin/vende, roles: ROLE_SUPER_ADMIN }
+    - { path: ^/admin/statfour/, roles: ROLE_SUPER_ADMIN }
+    - { path: ^/admin/, roles: ROLE_SUPER_ADMIN }
 
 
 

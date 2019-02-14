@@ -1,7 +1,7 @@
 {% extends 'admin.html.twig' %}
 
 {% block title %}
-        Le Fournisseur {{ fournisseur.nom }} {{ fournisseur.prenom}}
+        Le Revendeur {{ revendeur.nom }} {{ revendeur.prenom}}
       {% endblock %}
 
 {% block body %}
@@ -65,7 +65,7 @@
                 </div>
                 <div class="card-footer">
                     <div class="stats">
-                        <i class="material-icons">date_range</i> Le Dépense de cette Fournisseur
+                        <i class="material-icons">date_range</i> Le Dépense de cette revendeur
                     </div>
                 </div>
             </div>
@@ -89,7 +89,7 @@
                         <div class="stats">
                             {% if credit >= 1 %}
                                 <i class="fa fa-plus" aria-hidden="true"></i>
-                                <span>Tu va Payé {{credit}} DT à cette Fournisseur</span>
+                                <span>Tu va Payé {{credit}} DT à cette Revendeur</span>
                             {% elseif credit < 0 %}
                                 <i class="fa fa-minus" aria-hidden="true"></i>
                                 <span>Vous avez un large de {{credit}} DT</span>
@@ -169,9 +169,9 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-icon" data-background-color="blue">
-                        <i class="material-icons"> <a href="{{ path('fournisseurs_index') }}" > local_shipping</a></i>
+                        <i class="material-icons"> <a href="{{ path('revendeur_index') }}" > local_shipping</a></i>
                     </div>
-                    <h4 class="card-title">Le Fournisseur <b>{{ fournisseur.nom }} {{ fournisseur.prenom }}</b></h4>
+                    <h4 class="card-title">Le Revendeur <b>{{ revendeur.nom }} {{ revendeur.prenom }}</b></h4>
                     <div class="card-content">
                         <div class="table-responsive">
                             <table class="table">
@@ -192,14 +192,14 @@
 
                                     <tr>
 
-                                        <td class="text-center">{{ fournisseur.nom }}</td>
-                                        <td class="text-center">{{ fournisseur.prenom }}</td>
-                                        <td class="text-center">{{ fournisseur.numTel }}</td>
-                                        <td class="text-center">{{ fournisseur.numFix }}</td>
-                                        <td class="text-center">{{ fournisseur.email }}</td>
-                                        <td class="text-center">{{ fournisseur.adress }}</td>
+                                        <td class="text-center">{{ revendeur.nom }}</td>
+                                        <td class="text-center">{{ revendeur.prenom }}</td>
+                                        <td class="text-center">{{ revendeur.numTel }}</td>
+                                        <td class="text-center">{{ revendeur.numFix }}</td>
+                                        <td class="text-center">{{ revendeur.email }}</td>
+                                        <td class="text-center">{{ revendeur.adress }}</td>
                                         <td class="text-center">
-                                               <span>  <a href="{{ path('fournisseurs_edit', { 'id': fournisseur.id }) }}"  rel="tooltip" class="btn btn-success btn-simple">
+                                               <span>  <a href="{{ path('revendeur_edit', { 'id': revendeur.id }) }}"  rel="tooltip" class="btn btn-success btn-simple">
                                                        <i class="material-icons">edit</i>
                                                    </a>
                                                  <div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -209,11 +209,11 @@
                                                                 <p style=" font-size: 15px; font-weight: bold;" > Confirm Submit </p>
                                                             </div>
                                                             <div class="modal-body">  
-                                                                <p style="color:red; font-size: 15px; font-weight: bold;"> Tu est sur de supprimer Le Fournisseur {{ fournisseur.nom }} {{ fournisseur.prenom }} !? </p>
+                                                                <p style="color:red; font-size: 15px; font-weight: bold;"> Tu est sur de supprimer Le Revendeur {{ revendeur.nom }} {{ revendeur.prenom }} !? </p>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-success success" data-dismiss="modal">Annuler</button>
-                                                                <a href="{{ path('fournisseurs_delete', { 'id': fournisseur.id }) }}" id="submit" class="btn btn-danger danger">Supprimier</a>
+                                                                <a href="{{ path('revendeur_delete', { 'id': revendeur.id }) }}" id="submit" class="btn btn-danger danger">Supprimier</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -245,13 +245,13 @@
         <div class="row">
             <div class="col-md-6 "></div>
             <div class="col-md-3">
-                <a href="{{ path('fournisseurs_index') }}"  class="btn btn-info" > Liste Fournisseurs</a>
+                <a href="{{ path('revendeur_index') }}"  class="btn btn-info" > Liste Revendeurs</a>
             </div>
             <div class="col-md-3">
             {% if idelem is empty %}
-                <a href="{{ path('fournisseurs_add', { 'id_four': fournisseur.id }) }}" class="btn btn-info" >Crée Statistique</a>
+                <a href="{{ path('revendeur_add', { 'id_four': revendeur.id }) }}" class="btn btn-info" >Crée Statistique</a>
             {% else %}
-                <a href="{{ path('fournisseurs_update', { 'id_four': fournisseur.id }) }}" class="btn btn-info" >Mise à jour Statistique</a>
+                <a href="{{ path('revendeur_update', { 'id_four': revendeur.id }) }}" class="btn btn-info" >Mise à jour Statistique</a>
             {% endif %}
             </div>
             <div class="col-md-3">

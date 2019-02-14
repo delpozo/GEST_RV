@@ -24,10 +24,10 @@ class appareilController extends Controller
 
         $appareils = $em->getRepository('AppBundle:appareil')->findAll();
 
-        /*return $this->render('appareil/index.html.twig', array(
+         return $this->render('appareil/index.html.twig', array(
             'appareils' => $appareils,
-        ));*/
-        $formatted = [];
+        ));
+        /* $formatted = [];
         foreach ($appareils as $appareil) {
             $formatted[] = [
                'id' => $appareil->getId(),
@@ -45,7 +45,7 @@ class appareilController extends Controller
             ];
         }
         //Validator::validate();
-        return new JsonResponse($formatted);
+        return new JsonResponse($formatted); */
                                                          
     }
 

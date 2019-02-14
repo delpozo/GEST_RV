@@ -105,30 +105,30 @@ class statfourController extends Controller
         $nb_produit_vend = $query->getResult();
         // liste Vendue
         $query1 = $em_prod->createQueryBuilder('P')
-            ->select('count(P) as nb ', 'SUM(P.prixAchat) as achat ', 'SUM(P.prixVend) as vende', 'SUM(P.vendu) as qte_prod')
+            ->select('count(P) as nb ', 'SUM(P.prixAchat) as achat ', 'SUM(P.prixVend) as vende', 'count(P.vendu) as qte_prod')
             //->leftJoin('AppBundle:fournisseurs','F')
-            ->where('P.fournisseurs=:id  and SUBSTRING (P.date,1,4) LIKE SUBSTRING(:date,1,4) and P.vendu = 0')
+            ->where('P.fournisseurs=:id  and SUBSTRING (P.date,1,4) LIKE SUBSTRING(:date,1,4) ')
             ->setParameter('id', $id_four)
             ->setParameter('date', $date)
             ->getQuery();
         $nb_produit_N_vend = $query1->getResult();
         $em_four = $this->getDoctrine()->getRepository("AppBundle:fournisseurs");
         $query1 = $em_four->createQueryBuilder('F')
-            ->select('F.deponse', 'F.nom')
+            ->select('F.deponse as deponse', 'F.nom')
             //->leftJoin('AppBundle:fournisseurs','F')
             ->where('F.id=:id ')
             ->setParameter('id', $id_four)
             //->setParameter('date',$date)
             ->getQuery();
         $depons = $query1->getResult();
-        $deponse = floatval($depons["0"]["deponse"]);
-        $credit = floatval($nb_produit_N_vend["0"]["achat"]) - $deponse["0"]["deponse"];
+        
+        
 
         // liste produits vendes
         $query = $em_prod->createQueryBuilder('P')
             ->select('P.nom', 'P.prixAchat', 'P.vendu', 'P.date')
             //->innerJoin('AppBundle:vende','V')
-            ->where('P.fournisseurs=:id and SUBSTRING (P.date,1,4) LIKE SUBSTRING(:date,1,4) and P.vendu = 1')
+            ->where('P.fournisseurs=:id and SUBSTRING (P.date,1,4) LIKE SUBSTRING(:date,1,4) ')
             ->setParameter('id', $id_four)
             ->setParameter('date', $date)
             ->getQuery();
@@ -142,6 +142,20 @@ class statfourController extends Controller
             ->setParameter('date', $date)
             ->getQuery();
         $list_vend = $query->getResult();
+
+        //somme des produits 
+        $query = $em_prod->createQueryBuilder('P')
+            ->select('SUM(P.prixAchat) as achat ')
+            ->innerJoin('AppBundle:vende', 'V')
+            ->where('P.fournisseurs=:id AND P.id=V.produits and SUBSTRING (P.date,1,4) LIKE SUBSTRING(:date,1,4)')
+            ->setParameter('id', $id_four)
+            ->setParameter('date', $date)
+            ->getQuery();
+        $somme_produits = $query->getResult();
+
+        $deponse = floatval($depons["0"]["deponse"]);
+        $credit = floatval($somme_produits["0"]["achat"]) - $deponse;
+        
 
         self::suppAction($id_four );
 

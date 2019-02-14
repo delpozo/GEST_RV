@@ -19,21 +19,21 @@ class vendeController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // $date = date('Y ', time());
+         $date = date('Y ', time());
 
-        // $reprostiry=$this->getDoctrine()->getRepository("AppBundle:vende");
-        // $query=$reprostiry->createQueryBuilder('vende')->select('vende')
-        // ->where('SUBSTRING (vende.date,1,4) LIKE SUBSTRING(:date,1,4)')
-        //     ->setParameter('date', $date)
-        //     ->orderBy('vende.prixVend','DESC')->getQuery();
-        // $paginator=$this->get('knp_paginator');
-        // $vendes=$paginator->paginate(
-        //     $query,
-        //     $request->query->getInt('page',1),
-        //     6
-        // );
+         $reprostiry=$this->getDoctrine()->getRepository("AppBundle:vende");
+         $query=$reprostiry->createQueryBuilder('vende')->select('vende')
+         ->where('SUBSTRING (vende.date,1,4) LIKE SUBSTRING(:date,1,4)')
+             ->setParameter('date', $date)
+             ->orderBy('vende.prixVend','DESC')->getQuery();
+         $paginator=$this->get('knp_paginator');
+         $vendes=$paginator->paginate(
+             $query,
+             $request->query->getInt('page',1),
+             6
+         );
 
-        /*if($request->getMethod() == 'POST')
+        if($request->getMethod() == 'POST')
         {
             $query=$reprostiry->createQueryBuilder('vende')->select('vende')
                 ->where('vende.prixVend = ?1')
@@ -53,9 +53,9 @@ class vendeController extends Controller
             return $this->render('vende/index.html.twig', [
         'vendes' => $vendes,
 
-    ]);*/
+    ]);
 
-    $em = $this->getDoctrine()->getManager();
+    /* $em = $this->getDoctrine()->getManager();
 
     $vendes = $em->getRepository('AppBundle:vende')->findAll();
 
@@ -82,7 +82,7 @@ class vendeController extends Controller
             ];
         }
         //Validator::validate();
-        return new JsonResponse($formatted);
+        return new JsonResponse($formatted); */
     
 
     }

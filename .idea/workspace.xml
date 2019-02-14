@@ -332,7 +332,7 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/produits.orm.yml" />
         <option value="$PROJECT_DIR$/app/config/config.yml" />
         <option value="$PROJECT_DIR$/web/assets/css/material-dashboard.css" />
-        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/admin.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/produits/new.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/fournisseurs/show.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/config/routing/fournisseurs.yml" />
@@ -741,7 +741,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/admin.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="88" selection-start-line="15" selection-start-column="88" selection-end-line="15" selection-end-column="88" />

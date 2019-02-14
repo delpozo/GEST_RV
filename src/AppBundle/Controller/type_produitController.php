@@ -23,17 +23,17 @@ class type_produitController extends Controller
 
         $type_produits = $em->getRepository('AppBundle:type_produit')->findAll();
 
-        /*return $this->render('type_produit/index.html.twig', array(
+        return $this->render('type_produit/index.html.twig', array(
             'type_produits' => $type_produits,
-        ));*/
-        $formatted = [];
+        ));
+        /* $formatted = [];
         foreach ($type_produits as $type) {
             $formatted[] = [
                'id' => $type->getId(),
                'type' => $type->getType() ,
             ];
         }
-        return new JsonResponse($formatted);
+        return new JsonResponse($formatted); */
     
     }
 

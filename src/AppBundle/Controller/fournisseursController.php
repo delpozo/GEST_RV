@@ -41,7 +41,7 @@ class fournisseursController extends Controller
                          $request->query->getInt('page',1),
                          6
                        );
-                       $formatted = [];
+                       /*$formatted = [];
                        foreach ($fournisseurs as $fournisseur) {
                            $formatted[] = [
                               'id' => $fournisseur->getId(),
@@ -52,12 +52,13 @@ class fournisseursController extends Controller
                        //Validator::validate();
                        return new JsonResponse($formatted);
                                      
-                                              }
-                                     /* return $this->render('fournisseurs/index.html.twig', array(
+                                              }*/
+                                      return $this->render('fournisseurs/index.html.twig', array(
                                           'fournisseurs' => $fournisseurs,
                                               ));}    return $this->render('fournisseurs/index.html.twig', [
                                                      'fournisseurs' => $fournisseurs,
-                                                         ]);*/
+                                                         ]);
+                                                         /*
                                                          $formatted = [];
                                                          foreach ($fournisseurs as $fournisseur) {
                                                              $formatted[] = [
@@ -75,7 +76,7 @@ class fournisseursController extends Controller
                                                              ];
                                                          }
                                                          //Validator::validate();
-                                                         return new JsonResponse($formatted);
+                                                         return new JsonResponse($formatted);*/
                
                   }
 
