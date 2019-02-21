@@ -1,0 +1,17 @@
+
+  
+{% for type in type_id %}
+    {% if type %}
+        Prix Achat : 
+        {{ type.prixRevend }}
+        Model : 
+            --
+        Abonnement : 
+            {{ type.abonnement }}
+        
+
+                <input type="submit" onclick="fnachat()" id="achat" value="valider" />
+
+    {% endif %}
+{% endfor %}
+    

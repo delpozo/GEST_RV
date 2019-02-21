@@ -1,0 +1,61 @@
+Abonnement\RevendeurBundle\Entity\Revendeur:
+    type: entity
+    table: null
+    repositoryClass: Abonnement\RevendeurBundle\Repository\RevendeurRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        code:
+            type: string
+            length: '50'
+            unique: true
+        prixAchat:
+            type: float
+            column: prix_achat
+        dateAc:
+            type: datetimetz
+            column: date_ac
+        dateEx:
+            type: datetimetz
+            column: date_ex
+        
+        credit:
+            type: boolean
+            column: credit
+            default: false
+        restPay:
+            type : float
+            column : rest_pay
+            nullable: true
+        deponse : 
+            type : float
+            column : deponse
+            nullable: true
+        abonner:
+            type: integer
+            column : abonner
+            nullable: false
+        date:
+            type: date
+            column: date
+    manyToOne:
+        User:
+            targetEntity: AppBundle\Entity\User
+            inversedBy: Revendeur
+            joinColumn:
+                name: user
+                referencedColumnName: id
+        produits:
+            targetEntity: AppBundle\Entity\produits
+            inversedBy: Revendeur
+            joinColumn:
+                name: nom_prod
+                referencedColumnName: id
+                #onDelete : "CASCADE"
+    
+    lifecycleCallbacks: {  }
+

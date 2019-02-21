@@ -26,6 +26,7 @@ security:
 
             logout:       true
             anonymous:    true
+            logout_on_user_change : true
 
     # 
 
@@ -44,7 +45,7 @@ security:
     - { path: ^/admin/produits, roles: ROLE_SUPER_ADMIN }
     - { path: ^/admin/vende, roles: ROLE_SUPER_ADMIN }
     - { path: ^/admin/statfour/, roles: ROLE_SUPER_ADMIN }
-    - { path: ^/admin/, roles: ROLE_SUPER_ADMIN }
+    - { path: ^/admin, roles: ROLE_SUPER_ADMIN }
 
 
 

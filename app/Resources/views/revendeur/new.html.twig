@@ -1,112 +1,70 @@
-{% extends 'admin.html.twig' %}
-
-{% block title %}
-        Ajouter Revendeurs
-      {% endblock %}
-
+{% extends 'abonn.html.twig' %}
 {% block body %}
-<div class="container-fluid">
-    <div class="row">
-       <div class="col-md-12">
-          <div class="card">
-             {{ form_start(form) }}
-             <div class="card-header card-header-icon" data-background-color="blue">
-                        <i class="material-icons"> <a href="{{ path('revendeur_index') }}" > local_shipping</a></i>
-                    </div>
-             <div class="card-content">
-             <div class="row"></div>
-                <div class="row">
-                                           <label class="col-sm-2 label-on-left">Nom & Prénom :</label>
-                                           <div class="col-sm-10">
-                                               <div class="row">
-                                                   <div class="col-md-5">
-                                                       <div class="form-group label-floating">
-                                                           <label class="control-label">Nom Ex:M Bahri</label>
-                                                           {{ form_widget(form.nom) }}
+    
+    <div class="container-fluid">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                
+                                <div class="card-content">
+                                    <div class="toolbar">
+                                        <!--        Here you can write extra buttons/actions for the toolbar              -->
+                                    </div>
+                            
+                                        <h3 class="wizard-title">
+                                            Espace Revendeur
+                                        </h3>
+                                    
+                                    
+                                    
+                                            <div class="row">
+                                                <h4 class="info-text"> Choisir votre produits catégorie du produit</h4>
+                                                <div class="col-sm-2 col-sm-offset-1"> </div>
+                                                
+                                                <div class="col-sm-5">
+                                                    
+                                                    <div class="form-group label-floating is-empty">
+                                                        <label class="control-label">Country</label>
+                                                        <select  id="categorie" name="country" class="form-control">
+                                                            <option disabled="" selected=""></option>
+                                                            {% for type_produit in type_produit %}
+                                                                
+                                                            <option value= {{ type_produit.type }}> {{ type_produit.type }} </option>
 
-                                                       </div>
-                                                   </div>
-                                                   <div class="col-md-5">
-                                                       <div class="form-group label-floating">
-                                                           <label class="control-label">Prénom Ex:Mahdi</label>
-                                                           {{ form_widget(form.prenom) }}
-                                                       </div>
-                                                   </div>
-                                               </div>
-                                           </div>
-                                       </div>
-                <div class="row">
-                                               <label class="col-sm-2 label-on-left">Numéro :</label>
-                                               <div class="col-sm-10">
-                                                   <div class="row">
-                                                       <div class="col-md-5">
-                                                                <div class="form-group label-floating">
-                                                                    <label class="control-label">Numéro portable: 99063811 </label>
-                                                                      {{ form_widget(form.numTel) }}
-                                                                </div>
-                                                       </div>
-                                                       <div class="col-md-5">
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">Numéro Fixe:73430017</label>
-                                                               {{ form_widget(form.numFix) }}
-                                                        </div>
-                                                       </div>
-                                                   </div>
-                                           </div>
-                                       </div>
-                <div class="row">
-                                           <label class="col-sm-2 label-on-left"> Adresse :</label>
-                                               <div class="col-sm-10">
-                                                   <div class="row">
-                                                       <div class="col-md-5">
-                                                           <div class="form-group label-floating ">
-                                                               <label class="control-label">Adress Ex:Avenue Habib Bourguiba</label>
-                                                              {{ form_widget(form.adress) }}
-                                                           </div>
-                                                        </div>
-                                                       <div class="col-md-5">
-                                                           <div class="form-group label-floating">
-                                                               <label class="control-label">Email Ex: ttshopsayada@gmail.com</label>
-                                                               {{ form_widget(form.email) }}
-                                                           </div>
-                                                       </div>
-                                                   </div>
+                                                            {% endfor %}
+                                                        </select>
+                                                    <span class="material-input"></span>
+                                                    
+                                                </div>
+                                                
                                                 </div>
                                             </div>
-                <div class="row">
-                                           <label class="col-sm-2 label-on-left"> Prix Credit :</label>
-                                               <div class="col-sm-10">
-                                                   <div class="row">
-                                                       <div class="col-md-5">
-                                                           <div class="form-group label-floating ">
-                                                               <label class="control-label">Credit Ex: 10dt</label>
-                                                              {{ form_widget(form.credit) }}
-                                                           </div>
-                                                        </div>
-                                                       <div class="col-md-5">
-                                                           <div class="form-group label-floating">
-                                                               <label class="control-label">Deponse Ex: 10dt</label>
-                                                               {{ form_widget(form.deponse) }}
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                </div>
-                                            </div>
-                <div class="row">
-                                           <div class="col-sm-6">
+                                        <div id="loading"></div>
+                                    <div class="wizard-footer">
+                                        <div class="pull-right">
+                                            <!-- Modal -->
 
-                                           </div>
-                                           <div class="col-sm-2">
-                                               <button type="submit" class="btn btn-info">Ajouter </button>
-                                           </div>
-                                           <div class="col-sm-3">
-                                               <a  class="btn btn-fill-info" href="{{ path('revendeur_index') }}">Retour à la liste</a>
-                                                {{ form_end(form) }}
-                                           </div>
-                                       </div>
-             </div>
-          </div>
-       </div>
+                                        </div>
+                                        <div class="pull-center" style="padding-left: 100px;">
+                                            <span class="material-input" id="tab_vende"></span>
+                                        </div>
+                                        
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </form>
+                            </div>
     </div>
-</div>
+                </div>
+            </div>
+        </div>
+    </div>
+                    
+{% endblock %}
+{% block javascript %}
+    <script type="text/javascript">
+    $().ready(function() {
+        demo.initMaterialWizard();
+    });
+</script>
 {% endblock %}

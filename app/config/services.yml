@@ -8,7 +8,7 @@ services:
     authentication.handler.login_success_handler:
         class:  AppBundle\Redirection\AfterLoginRedirection
         arguments:  ['@router', '@security.authorization_checker']
-    # default configuration for services in *this* file
+    # default configuration for services in *this* file  
     _defaults:
         # automatically injects dependencies in your services
         autowire: true

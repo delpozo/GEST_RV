@@ -80,6 +80,16 @@ class produits
     private $type_produit;
 
     /**
+     * 
+     */
+    private $abonnement;
+
+    /**
+     * 
+     */
+    private $prixRevend;
+
+    /**
      * Constructor
      */
 
@@ -283,6 +293,55 @@ class produits
     {
         return $this->code;
     }
+
+    /**
+     * Set abonnement
+     *
+     * @param string $abonnement
+     *
+     * @return produits
+     */
+    public function setAbonnement($abonnement)
+    {
+        $this->abonnement = $abonnement;
+
+        return $this;
+    }
+
+    /**
+     * Get abonnement
+     *
+     * @return string
+     */
+    public function getAbonnement()
+    {
+        return $this->abonnement;
+    }
+
+    /**
+     * Set prixRevend
+     *
+     * @param string $prixRevend
+     *
+     * @return produits
+     */
+    public function setPrixRevend($prixRevend)
+    {
+        $this->setPrixRevend = $prixRevend;
+
+        return $this;
+    }
+
+    /**
+     * Get prixRevend
+     *
+     * @return string
+     */
+    public function getPrixRevend()
+    {
+        return $this->prixRevend;
+    }
+
 
     /**
      * Set code

@@ -29,7 +29,7 @@ class AppKernel extends Kernel
 
             new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
             new Gfreeau\Bundle\GetJWTBundle\GfreeauGetJWTBundle(),
-
+            new Abonnement\RevendeurBundle\AbonnementRevendeurBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

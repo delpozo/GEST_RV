@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Form;
+namespace Abonnement\RevendeurBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,14 +13,14 @@ class RevendeurType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('code')->add('nom')->add('prenom')->add('numTel')->add('numFix')->add('email')->add('adress')->add('deponse')->add('credit');;
+        $builder->add('code')->add('nom')->add('prenom')->add('numTel')->add('numFix')->add('email')->add('adress')->add('deponse')->add('credit');
     }/**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Revendeur'
+            'data_class' => 'Abonnement\RevendeurBundle\Entity\Revendeur'
         ));
     }
 
@@ -29,7 +29,7 @@ class RevendeurType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_revendeur';
+        return 'abonnement_revendeurbundle_revendeur';
     }
 
 

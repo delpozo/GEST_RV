@@ -6,12 +6,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class homeController extends Controller
+class AbonnController extends Controller
 {
     public function indexAction()
     {
         
 
-        return $this->render('home.html.twig');
+        return $this->render('abonn.html.twig');
     }
 }

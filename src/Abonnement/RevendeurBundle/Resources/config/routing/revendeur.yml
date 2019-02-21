@@ -1,0 +1,47 @@
+revendeur_index:
+    path:     /
+    defaults: { _controller: "AbonnementRevendeurBundle:Revendeur:index" }
+    methods:  GET
+
+revendeur_show:
+    path:     /{id}/show
+    defaults: { _controller: "AbonnementRevendeurBundle:Revendeur:show" }
+    methods:  GET
+
+revendeur_new:
+    path:     /new
+    defaults: { _controller: "AbonnementRevendeurBundle:Revendeur:new" }
+    methods:  [GET, POST]
+
+    
+revendeur_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AbonnementRevendeurBundle:Revendeur:edit" }
+    methods:  [GET, POST]
+
+revendeur_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AbonnementRevendeurBundle:Revendeur:delete" }
+    methods:  [GET, POST]
+
+revendeur_recherchtype:
+    path:     /recherchtype
+    defaults: { _controller: "AbonnementRevendeurBundle:Revendeur:recherchtype" }
+    methods:  [GET, POST]
+
+revendeur_rhome:
+    path:     /rhome
+    defaults: { _controller: "AbonnementRevendeurBundle:Revendeur:rhome" }
+    methods:  [GET, POST] 
+
+revendeur_achat:
+    path:     /achat
+    defaults: { _controller: "AbonnementRevendeurBundle:Revendeur:achat" }
+    methods:  [GET, POST] 
+
+revendeur_recherch:
+    path:     /recherch
+    defaults: { _controller: "AbonnementRevendeurBundle:Revendeur:recherch" }
+    methods:  [GET, POST] 
+
+

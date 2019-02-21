@@ -1,12 +1,8 @@
-{% extends 'admin.html.twig' %}
+{% extends 'abonn.html.twig' %}
 
-{% block title %}
-        Liste Des Revendeurs
-      {% endblock %}
+{% block recherche %}
 
-      {% block recherche %}
-
-<form class="navbar-form navbar-right" role="search">
+                <form class="navbar-form navbar-right" role="search">
                     <div class="form-group form-search is-empty">
                       <input type="text" id="recherche" class="form-control" placeholder="Recherche" >
                       <span class="material-input"></span>
@@ -15,13 +11,12 @@
                       <i class="material-icons">search</i>
                       <div class="ripple-container"></div>
                     </a>
-                  </form>
+                </form>
 {% endblock %}
-{% block body %}
 
-        
+{% block body %}
     
- <div id="loading"></div>
+<div id="loading"></div>
     <div class="container-fluid" id="tab_vende">
                 <div class="container-fluid">
                     <div class="row">
@@ -35,42 +30,49 @@
                                     <div class="material-datatables">
                                         <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                                             <thead>
-                                                
                                                 <tr>
-                                   <th class="text-center"> Nom </th>
-                                    <th class="text-center"> Prénom</th>
-                                    <th class="text-center"> Num Téléphone</th>
-                                    <th class="text-center"> Num Fix </th>
-                                    <th class="text-center"> adresse</th>
-                                    <th class="text-center"> Email </th>
-                                    <th class="text-center">Actions</th>
-
-                                </tr>
-                                </thead>
+                                                    <th class="text-center"><a style=" color : black; font-weight: normal;" href="{{ path('type_produit_index') }}" > Nom Produit </a></th>
+                                                    <th class="text-center">Code Achat</th>
+                                                    <th class="text-center">Prix Achat</th>
+                                                    <th class="text-center">Date Activation</th>
+                                                    <th class="text-center">Date Expiration</th>
+                                                    <th class="text-center">Credit</th>
+                                                    <th class="text-center">Deponse</th>
+                                                    <th class="text-center">Abonnement</th>
+                                                    <th class="text-center">Actions</th>
+                                                </tr>
+                                            </thead>
                                 <tbody>
-                                    {% for revendeur in revendeurs %}
-                                        <tr>
-                                            <td class="text-center">{{ revendeur.nom }}</td>
-                                            <td class="text-center">{{ revendeur.prenom }}</td>
-                                            <td class="text-center">{{ revendeur.numTel }}</td>
-                                            <td class="text-center">{{ revendeur.numFix }}</td>
-                                            <td class="text-center">{{ revendeur.email }}</td>
-                                            <td class="text-center">{{ revendeur.adress }}</td>
-                                            <td class="text-center">
+                                {% for revendeur in revendeurs %}
+                                    {% if revendeur is not empty %}
+                                    <tr {% if  revendeur.restPay > 0 %} style="color:red;" {% endif %}>
+                                        <td class="text-center"><b>{{ revendeur.produits }}</b></td>
+                                        <td class="text-center"><b>{{ revendeur.code }}</b></td>
+                                        <td class="text-center" style=" color : green; font-weight: bold;">{{ revendeur.prixAchat }} DT</td>
+                                        <td class="text-center">{{ revendeur.dateAc|date("Y-m-d") }}</td>
+                                        <td class="text-center" style=" color : red; font-weight: bold;">{{ revendeur.dateEx |date("Y-m-d")}}</td>
+                                        
+                                        {% if  revendeur.restPay > 0 %}
+                                            <td class="text-center" style=" color : red; font-weight: bold;">{{ revendeur.restPay }}</td>
+                                            <td class="text-center" style=" color : green; font-weight: bold;">{{ revendeur.deponse }}</td>
+                                        {% else %}
+                                            <td class="text-center" style=" color : green; font-weight: bold;">Non</td>
+                                            <td class="text-center" style=" color : green; font-weight: bold;">Payer</td>
+                                        {% endif %}
+                                        <td class="text-center"><b>{{ revendeur.abonner }} Mois</b></td>
+                                        
+                                        <td class="text-center">
                                                <span>  <a href="{{ path('revendeur_edit', { 'id': revendeur.id }) }}"  rel="tooltip" class="btn btn-success btn-simple">
                                                        <i class="material-icons">edit</i>
                                                    </a>
-                                                    <a href="{{ path('revendeur_show', { 'id': revendeur.id }) }}"  rel="tooltip" class="btn btn-danger btn-simple">
-                                                       <i class="material-icons">remove_red_eye</i>
-                                                   </a>
-                                                   <div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                 <div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <p style=" font-size: 15px; font-weight: bold;" > Confirm Submit </p>
                                                             </div>
                                                             <div class="modal-body">  
-                                                                <p style="color:red; font-size: 15px; font-weight: bold;"> Tu est sur de supprimer Le Revendeur {{ revendeur.nom }} {{ revendeur.prenom }} !? </p>
+                                                                <p style="color:red; font-size: 15px; font-weight: bold;"> Tu est sur de supprimer cette revendeur !? </p>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-success success" data-dismiss="modal">Annuler</button>
@@ -85,46 +87,50 @@
                                                </span></td>
 
                                                </tr>
-                                           {% endfor %}
+                                {% endif %}
+
+                                {% else %}
+                                    
+                                        <tr>
+                                            <td class="text-center" style=" color : red; font-size: 15px; font-weight: bold;" class="text-center">
+                                            Pas des revendeurs !
+                                        </td>
+                                        </tr>
+                                     
+
+                                {% endfor %}
+
+
                                 </tbody>
                             </table>
-                        <ul class="navigation">
-                            {{ knp_pagination_render(revendeurs) }}
-                        </ul>
+                            
                         </div>
                     </div>
+
+
                 </div>
             </div>
-        </div>
-    </div>
-               <div class="col-md-3 col-md-offset-9">
-               <a href="{{ path('revendeur_new') }}"  class="btn btn-info" >Ajouter Revendeur</a><div class="ripple-container"></div>
-               </a>
-                    <!--<a href="{{ path('revendeur_index') }}"  class="btn btn-info" > Liste revendeur</a>-->
-               </div>
-           </div>
 
+        </div>
+
+
+    
+    </div>
+    </div>
+    </div>
 
 
 {% endblock %}
 
-{% block css %}
-	<link rel="stylesheet" href="{{ asset('assets/css/navigation-icons.css') }}">
-	<link rel="stylesheet" href="{{ asset('assets/slicknav/slicknav.min.css') }}">
-            <script src="{{ asset('assets/js/modernizr.custom.js') }}"></script>
 
-	<link rel="stylesheet" href="{{ asset('assets/css/component1.css') }}">
-	<link rel="stylesheet" href="{{ asset('assets/css/default1.css') }}">
+{% block css %}
+	<link rel="stylesheet" href="{{ asset('assets/css/navigation-basic.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/slicknav/slicknav.min.css') }}">
 {% endblock %}
 
 {% block script %}
     <script src="{{ asset('assets/slicknav/jquery.slicknav.min.js') }}"></script>
-        <script src="{{ asset('assets/js/jquery.dlmenu.js') }}"></script>
-		<script>
-			$(function() {
-				$( '#dl-menu' ).dlmenu({
-					animationClasses : { classin : 'dl-animate-in-5', classout : 'dl-animate-out-5' }
-				});
-			});
-		</script>
 {% endblock %}
+
+
+

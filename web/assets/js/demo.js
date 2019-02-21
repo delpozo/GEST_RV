@@ -279,6 +279,45 @@ function editappareil() {
 });
 }
 
+$('#categorie').change(function () {
+    var type = $(this).find(':selected')[0].value;
+    $("#tab_vende").hide();
+    $("#loading").show();
+    $.ajax({
+        type: 'GET',
+        data: {
+            type: type
+        },
+        url: 'recherchtype',
+        success: function(data) {
+            $("#loading").hide();
+            $("#tab_vende").show();
+            $('#tab_vende').html(data);
+            $("#exampleModal").modal('show');
+        }
+    });
+});
+function fnachat () {
+    $('#achat').click(function () {
+        //var type = $('#categorie').find(':selected')[0].value;
+        $("#tab_vende").hide();
+        $("#loading").show();
+        $.ajax({
+            type: 'GET',
+            data: {
+                //type: type
+            },
+            url: 'achat',
+            success: function(data) {
+                $("#loading").hide();
+                $("#tab_vende").show();
+                //$('#tab_vende').html(data);
+                //$("#exampleModal").modal('show');
+            }
+        });
+
+});
+}
 
 $('#submitBtn').click(function() {
     /* when the button in the form, display the entered values in the modal */

@@ -1,0 +1,7 @@
+abonnement_revendeur_revendeur:
+    resource: "@AbonnementRevendeurBundle/Resources/config/routing/revendeur.yml"
+    prefix:   /revendeur
+
+abonnement_revendeur_homepage:
+    path:     /revendeur_home
+    defaults: { _controller: AbonnementRevendeurBundle:Default:index }

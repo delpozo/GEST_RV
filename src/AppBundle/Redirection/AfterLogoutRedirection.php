@@ -41,11 +41,11 @@ class AfterLogoutRedirection implements LogoutSuccessHandlerInterface
             return $role->getRole(); 
         }, $roles);
         // If is a commercial user or admin or super admin we redirect to the login area. Here we used FoseUserBundle bundle
-        if (in_array('ROLE_AGENT_PRESSE', $rolesTab, true) || in_array('ROLE_ADMIN', $rolesTab, true) || in_array('ROLE_SUPER_ADMIN', $rolesTab, true))
+        if (in_array('ROLE_SUPER_ADMIN', $rolesTab, true) || in_array('ROLE_USER', $rolesTab, true))
             $response = new RedirectResponse($this->router->generate('fos_user_security_login'));
         // otherwise we redirect user to the homepage of website
         else
-            $response = new RedirectResponse($this->router->generate('festival_user_home'));
+            $response = new RedirectResponse($this->router->generate('fos_user_security_login'));
         return $response;
     }
 } 

@@ -30,6 +30,12 @@ AppBundle\Entity\produits:
         vendu:
             type: boolean
             column: vendu
+        abonnement: 
+            type: integer
+            nullable: false
+        prixRevend: 
+            type: float
+            nullable: false
         date:
             type: date
             column: date

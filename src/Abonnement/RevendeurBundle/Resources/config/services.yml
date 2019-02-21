@@ -1,0 +1,4 @@
+services:
+#    abonnement_revendeur.example:
+#        class: Abonnement\RevendeurBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

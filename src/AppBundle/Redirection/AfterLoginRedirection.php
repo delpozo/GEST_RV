@@ -41,7 +41,7 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
         if ( in_array('ROLE_SUPER_ADMIN', $rolesTab, true))
              $redirection = new RedirectResponse($this->router->generate('admin_homepage'));
              else
-            $redirection = new RedirectResponse($this->router->generate('homepage'));
+            $redirection = new RedirectResponse($this->router->generate('abonnement_revendeur_homepage'));
 
         return $redirection;
     }

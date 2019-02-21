@@ -37,7 +37,3 @@ app_client:
 app_appareil:
         resource: "@AppBundle/Resources/config/routing/appareil.yml"
         prefix:   /appareil
-
-app_revendeur:
-        resource: "@AppBundle/Resources/config/routing/revendeur.yml"
-        prefix:   /revendeur

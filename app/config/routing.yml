@@ -1,3 +1,8 @@
+abonnement_revendeur:
+    resource: "@AbonnementRevendeurBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
 app:
     resource: "@AppBundle/Resources/config/routing.yml"
     prefix:   /admin
@@ -15,6 +20,10 @@ admin_homepage:
 homepage:
     path:     /home
     defaults: { _controller: AppBundle:home:index }
+
+revendeur_home:
+    path:     /revendeur
+    defaults: { _controller: AppBundle:Revendeur:home }
 
 # app/config/routing.yml
 fos_user:
