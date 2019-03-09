@@ -499,6 +499,6 @@ class vende
     }
     public function __toString()
     {
-        return $this->getNompreCli();
+        return $this->getNompreCli() . '';
     }
 }

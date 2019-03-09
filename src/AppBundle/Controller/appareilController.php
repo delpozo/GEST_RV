@@ -207,7 +207,7 @@ class appareilController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('appareil_edit', array('id' => $appareil->getId()));
+            return $this->redirectToRoute('appareil/appareil_edit', array('id' => $appareil->getId()));
         }
 
         return $this->render('appareil/edit.html.twig', array(

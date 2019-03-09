@@ -5,12 +5,14 @@
  * @author     Steven Titren <contact@webaki.com>
  */
 namespace AppBundle\Redirection;
+
+use AppBundle\Entity\User;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationSuccessHandlerInterface;
-class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
+class AfterLoginRedirection extends User implements AuthenticationSuccessHandlerInterface
 {
     /**
      * @var \Symfony\Component\Routing\RouterInterface
@@ -30,6 +32,12 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token)
     {
+        $currentuser = $this->getUsername();
+       // var_dump($token);
+       $id_user = $token->getUser()->id;
+      //$id_user = $token['id'];
+      //var_dump($id_user);
+
         // Get list of roles for current user
         $roles = $token->getRoles();
         // Tranform this list in array
@@ -41,7 +49,10 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
         if ( in_array('ROLE_SUPER_ADMIN', $rolesTab, true))
              $redirection = new RedirectResponse($this->router->generate('admin_homepage'));
              else
-            $redirection = new RedirectResponse($this->router->generate('abonnement_revendeur_homepage'));
+                
+            $redirection = new RedirectResponse($this->router->generate('abonnement_revendeur_homepage', array(
+                'user' => $id_user,
+                    )));
 
         return $redirection;
     }

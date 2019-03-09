@@ -58,6 +58,11 @@ class User extends BaseUser
      */
     private $clientAdmin;
 
+    public function getId()
+    {
+        return $this->id;
+    }
+    
     /**
      * Set nom
      *
@@ -279,6 +284,42 @@ class User extends BaseUser
     {
         return $this->clientAdmin;
     }
+
+    private $vende;
+    /**
+     * Add vende
+     *
+     * @param \AppBundle\Entity\vende $vende
+     *
+     * @return produits
+     */
+    public function addVende(\AppBundle\Entity\vende $vende)
+    {
+        $this->vende[] = $vende;
+
+        return $this;
+    }
+
+    /**
+     * Remove vende
+     *
+     * @param \AppBundle\Entity\vende $vende
+     */
+    public function removeVende(\AppBundle\Entity\vende $vende)
+    {
+        $this->vende->removeElement($vende);
+    }
+
+    /**
+     * Get vende
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getVende()
+    {
+        return $this->vende;
+    }
+
 
     public function __toString() {
         return $this->getNom()." ".$this->getPrenom();

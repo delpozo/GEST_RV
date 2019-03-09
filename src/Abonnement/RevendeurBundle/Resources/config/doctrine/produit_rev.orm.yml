@@ -1,0 +1,11 @@
+Abonnement\RevendeurBundle\Entity\produit_rev:
+    type: entity
+    table: null
+    repositoryClass: Abonnement\RevendeurBundle\Repository\produit_revRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    lifecycleCallbacks: {  }

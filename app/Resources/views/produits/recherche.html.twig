@@ -40,7 +40,12 @@
                                                    </a>
                                                  <a href="{{ path('produits_delete', { 'id': produit.id }) }}" rel="tooltip" class="btn btn-danger btn-simple">
                                                        <i class="material-icons">close</i>
-                                                   </a></span></td>
+                                                   </a>
+                                                {% if produit.vendu == '0' %} 
+                                                <a href="{{ path('produits_addvend', { 'id_prod': produit.id }) }}"  rel="tooltip" class="btn btn-success btn-simple">
+                                                       <i class="material-icons">send</i>
+                                                   </a>
+                                                 {% endif %}</span></td>
 
                                 </tr>
                                 {% endif %}

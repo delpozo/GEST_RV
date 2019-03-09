@@ -12,59 +12,84 @@
                                         <!--        Here you can write extra buttons/actions for the toolbar              -->
                                     </div>
                             
-                                        <h3 class="wizard-title">
-                                            Espace Revendeur
-                                        </h3>
-                                    
-                                    
-                                    
+                                        <h3 class="wizard-title">Espace Revendeur</h3>
                                             <div class="row">
                                                 <h4 class="info-text"> Choisir votre produits catégorie du produit</h4>
                                                 <div class="col-sm-2 col-sm-offset-1"> </div>
-                                                
                                                 <div class="col-sm-5">
-                                                    
                                                     <div class="form-group label-floating is-empty">
-                                                        <label class="control-label">Country</label>
-                                                        <select  id="categorie" name="country" class="form-control">
-                                                            <option disabled="" selected=""></option>
+                                                        <select  id="categorie" name="Categ0orie" onchange="recherche_select_type_abn_revendeur()" class="form-control">
+                                                          <option selected='true' value='0'> Choisir </option>
                                                             {% for type_produit in type_produit %}
-                                                                
-                                                            <option value= {{ type_produit.type }}> {{ type_produit.type }} </option>
-
+                                                                <option value='{{ type_produit.id }}'> {{ type_produit.type }} </option>
                                                             {% endfor %}
                                                         </select>
-                                                    <span class="material-input"></span>
-                                                    
-                                                </div>
-                                                
+                                                        <span class="material-input"></span>
+                                                    </div>
+                                                    <!-- Button trigger modal -->
                                                 </div>
                                             </div>
-                                        <div id="loading"></div>
+                                    <div id="loading"></div>
                                     <div class="wizard-footer">
                                         <div class="pull-right">
                                             <!-- Modal -->
-
+                                            <div class="modal" id="Modal_vente" tabindex="-1" role="dialog" aria-labelledby="Modal_vente" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                                                                    <div class="form-group label-floating">
+                                                                        <input type="text" class="form-control" placeholder="Nom Client" required />
+                                                                    </div>
+                                                                    <div class="form-group label-floating">
+                                                                        <input type="text" class="form-control" placeholder="Adress Client" required />
+                                                                    </div>
+                                                            
+                                                                    <div class="form-group label-floating">
+                                                                        <input type="number" class="form-control" placeholder="Numéro Client" required/>
+                                                                    </div>
+                                                            
+                                                                    <div class="form-group label-floating">
+                                                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required />
+                                                                        <small id="emailHelp" class="form-text text-muted">Nous ne partagerons jamais votre email avec qui que ce soit.</small>
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="submit" onclick="fnachat()" id="achat" class="btn btn-primary">Save changes</button>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
                                         </div>
                                         <div class="pull-center" style="padding-left: 100px;">
-                                            <span class="material-input" id="tab_vende"></span>
-                                        </div>
-                                        
-                                        <div class="clearfix"></div>
+                                                <span class="material-input" id="tab_vende"></span>
+                                            </div>
+                                            <div class="clearfix"></div>
                                     </div>
-                                </form>
+                                        
+                                </div>
                             </div>
-    </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
     </div>
                     
 {% endblock %}
-{% block javascript %}
+{% block script %}
     <script type="text/javascript">
     $().ready(function() {
         demo.initMaterialWizard();
     });
+   
 </script>
+ <script src="{{ asset('assets/js/revendeur.js') }}"></script>
 {% endblock %}

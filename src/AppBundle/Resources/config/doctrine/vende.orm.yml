@@ -22,24 +22,29 @@ AppBundle\Entity\vende:
             type: string
             length: 255
             column: nompre_cli
+            nullable: true
         numTel:
             type: string
             length: '25'
             column: num_tel
+            nullable: true
         numFix:
             type: string
             length: '25'
             column: num_fix
+            nullable: true
         adress:
             type: string
             length: 255
+            nullable: true
         email:
             type: string
             length: 255
+            nullable: true
         credit:
             type: boolean
             column: credit
-            default: false
+            nullable: true
         restPay:
             type : float
             column : rest_pay

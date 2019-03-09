@@ -2,16 +2,31 @@
   
 {% for type in type_id %}
     {% if type %}
+    
+
         Prix Achat : 
         {{ type.prixRevend }}
         Model : 
             --
         Abonnement : 
             {{ type.abonnement }}
-        
+        {# <input type="submit" onclick="fnachat({{ type.id }})" id="achat" value="valider" /> #}
+         <!-- Button trigger modal -->
+         <script>
+var s={{ type.id }};
 
-                <input type="submit" onclick="fnachat()" id="achat" value="valider" />
+
+</script>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal_vente">
+  Valider
+</button> 
+   
 
     {% endif %}
 {% endfor %}
+    
+{% block script %}
+
+{% endblock %}
     

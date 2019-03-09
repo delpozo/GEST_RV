@@ -20,7 +20,7 @@
                         <nav class="menu-navigation-basic">
                                 <a href="{{path('admin_homepage')}}" style=" font-size: 15px; font-weight: bold;" href="#" class="selected">Accueil</a>
                                 <a style=" font-size: 15px; font-weight: bold;" id="rechcredit" onclick="rechcredit()">Liste Credit</a>
-                                <a style=" font-size: 15px; font-weight: bold;" id="rechvendEx" style="margin:0;"  onclick="rechvendEx()">Produits à Expirer</a>
+                                <a style=" font-size: 15px; font-weight: bold;" id="rechvendEx" style="margin:0;"  onclick="rechvendEx()">Produits à Expirer (reste ~30 jour)</a>
                         </nav>
                     </div>
                     <div class="col-sm-2">
@@ -47,7 +47,7 @@
                                             <thead>
                                                 <tr>
                                                     <th class="text-center"><a style=" color : black; font-weight: normal;" href="{{ path('type_produit_index') }}" > Nom Produit </a></th>
-                                                    <th class="text-center">Prix Vende</th>
+                                                    <th class="text-center">Prix Vente</th>
                                                     <th class="text-center">Date Activation</th>
                                                     <th class="text-center">Date Expiration</th>
                                                     <th class="text-center">Nom Client</th>
@@ -93,7 +93,7 @@
                                                                 <p style=" font-size: 15px; font-weight: bold;" > Confirm Submit </p>
                                                             </div>
                                                             <div class="modal-body">  
-                                                                <p style="color:red; font-size: 15px; font-weight: bold;"> Tu est sur de supprimer cette Vende !? </p>
+                                                                <p style="color:red; font-size: 15px; font-weight: bold;"> Tu est sur de supprimer cette vente !? </p>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-success success" data-dismiss="modal">Annuler</button>
@@ -114,7 +114,7 @@
                                     
                                         <tr>
                                             <td class="text-center" style=" color : red; font-size: 15px; font-weight: bold;" class="text-center">
-                                            Pas des Vendes !
+                                            Pas des ventes !
                                         </td>
                                         </tr>
                                      
@@ -151,6 +151,6 @@
 {% endblock %}
 
 {% block script %}
-    <script src="{{ asset('assets/slicknav/jquery.slicknav.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vente.js') }}"></script>
 {% endblock %}
 

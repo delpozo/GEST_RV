@@ -217,7 +217,7 @@ class fournisseurs
      */
     public function getDeponse()
     {
-        return $this->id;
+        return $this->deponse;
     }
 
     /**
@@ -240,7 +240,7 @@ class fournisseurs
      */
     public function getCredit()
     {
-        return $this->id;
+        return $this->credit;
     }
 
     /**

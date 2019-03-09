@@ -13,7 +13,7 @@ class RevendeurType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('code')->add('nom')->add('prenom')->add('numTel')->add('numFix')->add('email')->add('adress')->add('deponse')->add('credit');
+        $builder;
     }/**
      * {@inheritdoc}
      */

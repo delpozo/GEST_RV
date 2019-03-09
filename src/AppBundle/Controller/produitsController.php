@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\produits;
+use AppBundle\Entity\vende;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -17,9 +18,12 @@ class produitsController extends Controller
      * Lists all produit entities.
      *
      */
-    public function indexAction(Request $request)
-    {
-        
+    public function produitsAction(Request $request)
+    {           $vende = new Vende();
+
+        $form = $this->createForm('AppBundle\Form\vendeType', $vende);
+        $form->handleRequest($request);
+
         $em_four = $this->getDoctrine()->getRepository("AppBundle:fournisseurs");
         $query_four = $em_four->createQueryBuilder('F')
             ->select('F.nom')
@@ -68,11 +72,13 @@ class produitsController extends Controller
                 'produits' => $produits,
                 'founisseurs' => $founisseurs,
                 'typeProduit' => $typeProduit,
+                'form' => $form->createView(),
             ));}   
         return $this->render('produits/index.html.twig', array(
             'produits' => $produits,
             'founisseurs' => $founisseurs,
             'typeProduit' => $typeProduit,
+             'form' => $form->createView(),
         ));
 /*
         $em = $this->getDoctrine()->getManager();
@@ -176,11 +182,14 @@ class produitsController extends Controller
             ]);
     }
 
-    public function addvendAction($id_prod)
+    public function addvendAction(Request $request , $id_prod)
     {
 
+        $revend = $request->query->get('revend');
+        var_dump($revend);
         $response = $this->forward('AppBundle:vende:new', array(
             'id_prod' => $id_prod,
+            'revend' => $revend,
         ));
 
         return $response;
@@ -201,12 +210,39 @@ class produitsController extends Controller
         $produit = new Produits();
         $form = $this->createForm('AppBundle\Form\produitsType', $produit);
         $form->handleRequest($request);
+        //$post = $this->get('request')->request->all();
+        
         //$date = date('Y ', time());
         if ($form->isSubmitted() && $form->isValid()) {
             $produit ->setDate(new \DateTime());
             $em = $this->getDoctrine()->getManager();
             $em->persist($produit);
             $em->flush();
+            if ($produit->getVendu() == 1)
+            {
+                $vende = new Vende();
+                $currentuser = $this->getUser();
+        $id_user = $currentuser->getId();
+        $user = $em->getRepository('AppBundle:User')->findOneById($id_user);
+        //$produit = $em->getRepository('AppBundle:produits')->findOneById($id_prod);
+
+       
+            //add user il form
+            $vende ->setProduits($produit);
+            if ($vende ->getdeponse())
+            {
+               $restpay = floatval($vende ->getPrixVend()) - floatval( $vende ->getdeponse());
+            }
+            else {
+                    $restpay = null;
+            }
+            
+            $adddate = '+'.$produit -> getAbonnement() . ' month' ;
+            $vende->setEmail('--')->setNompreCli('--')->setNumTel('--')->setNumFix('--')->setAdress('--')->setAbonner($produit->getAbonnement())->setPrixVend($produit->getPrixRevend()) ->setUser($user)->setRestPay($restpay)->setDate(new \DateTime())->setDateAc(new \DateTime())->setDateEx(new \DateTime($adddate));
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($vende);
+            $em->flush();
+            }
 
             return $this->redirectToRoute('produits_show', array('id' => $produit->getId()));
         }

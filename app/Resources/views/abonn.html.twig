@@ -63,7 +63,7 @@
           </div>
           <ul class="nav">
             <li class="active">
-              <a href="{{path('abonnement_revendeur_homepage')}}">
+              <a href="{{path('revendeur_rhome',{ 'user' : app.user.id })}}">
                             <i class="material-icons">dashboard</i>
                             <p>Tableau De Borde</p>
                         </a>
@@ -78,10 +78,10 @@
               <div class="collapse" id="produits">
                 <ul class="nav">
                   <li>
-                    <a href="{{path('revendeur_index')}}">list Abonnement</a>
+                    <a href="{{path('revendeur_index',{ 'user' : app.user.id })}}">list Abonnement</a>
                   </li>
                   <li>
-                    <a href="{{path('revendeur_recherch')}}">Ajouter Abonnement</a>
+                    <a href="{{path('revendeur_recherch',{ 'user' : app.user.id })}}">Ajouter Abonnement</a>
                   </li>
                 </ul>
               </div>
@@ -245,7 +245,7 @@
     <script src="{{ asset('assets/js/material-dashboard.js') }}"></script>
     <script src="{{ asset('assets/js/demo.js') }}"></script>
 
-        <script src="{{ asset('assets/js/demo.js') }}"></script>
+        
 
     <script type="text/javascript">
     $(document).ready(function() {

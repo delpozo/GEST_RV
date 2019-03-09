@@ -3,8 +3,12 @@
 namespace Abonnement\RevendeurBundle\Controller;
 
 use Abonnement\RevendeurBundle\Entity\Revendeur;
+use Abonnement\RevendeurBundle\Entity\produit_rev;
+use AppBundle\Entity\vende;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
 
 /**
  * Revendeur controller.
@@ -12,97 +16,54 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class RevendeurController extends Controller
 {
+
     /**
      * Lists all revendeur entities.
      *
      */
     public function indexAction(Request $request)
     {
-        $reprostiry=$this->getDoctrine()->getRepository("AbonnementRevendeurBundle:Revendeur");
-        $query=$reprostiry->createQueryBuilder('revendeur')->select('revendeur')->orderBy('revendeur.prixAchat','ASC')->getQuery();
-                             $paginator=$this->get('knp_paginator');
-                             $revendeurs=$paginator->paginate(
-                               $query,
-                               $request->query->getInt('page',1),
-                               6
-                             );
-      
-                              if($request->getMethod() == 'POST')
-                                     {
-                                         $query=$reprostiry->createQueryBuilder('revendeur')->select('revendeur')
-                                                 ->where('revendeur.prixAchat = ?1')
-      
-                                                 ->orderBy('revendeur.prixAchat','ASC')->getQuery();
-                             $paginator=$this->get('knp_paginator');
-                             $revendeurs=$paginator->paginate(
-                               $query,
-                               $request->query->getInt('page',1),
-                               6
-                             );
-                             /*$formatted = [];
-                             foreach ($revendeurs as $revendeur) {
-                                 $formatted[] = [
-                                    'id' => $revendeur->getId(),
-                                    'nom' => $revendeur->getNom(),
-                                    'prenom' => $revendeur->getPrenom(),
-                                 ];
-                             }
-                             //Validator::validate();
-                             return new JsonResponse($formatted);
-                                           
-                                                    }*/
-                                            return $this->render('revendeur/index.html.twig', array(
-                                                'revendeurs' => $revendeurs,
-                                                    ));}    return $this->render('revendeur/index.html.twig', [
-                                                           'revendeurs' => $revendeurs,
-                                                               ]);
-                                                               /*
-                                                               $formatted = [];
-                                                               foreach ($revendeurs as $revendeur) {
-                                                                   $formatted[] = [
-                                                                      'id' => $revendeur->getId(),
-                                                                      'nom' => $revendeur->getNom(),
-                                                                      'prenom' => $revendeur->getPrenom(),
-                                                                      'numtel' => $revendeur->getNumTel(),
-                                                                      'mun_fix' => $revendeur->getNumFix(),
-                                                                      'email' =>  $revendeur->getEmail(),
-                                                                      'adress' => $revendeur->getAdress(),
-                                                                      'deponse' => $revendeur->getDeponse(),
-                                                                      'credit' => $revendeur->getCredit(),
-                                                                      'date' => $revendeur->getDate(), 
-                                                                      
-                                                                   ];
-                                                               }
-                                                               //Validator::validate();
-                                                               return new JsonResponse($formatted);*/
-                     
-                        }
+        $date = date('Y ', time());
+        $currentuser = $this->getUser();
+        $id_user = $currentuser->getId();
+    
+         $reprostiry=$this->getDoctrine()->getRepository("AppBundle:vende");
+         $query=$reprostiry->createQueryBuilder('vende')
+         ->select('vende')
+         ->where('SUBSTRING (vende.date,1,4) LIKE SUBSTRING(:date,1,4) and vende.User = :user')
+             ->setParameter('date', $date)
+             ->setParameter('user', $id_user)
+             ->orderBy('vende.prixVend','DESC')->getQuery();
+         $paginator=$this->get('knp_paginator');
+         $vendes=$paginator->paginate(
+             $query,
+             $request->query->getInt('page',1),
+             6
+         );   
+            
+            return $this->render('revendeur/index.html.twig', [
+        'vendes' => $vendes,
+
+    ]);    
+    }
 
     /**
-     * recherche type
+     * recherche produit par type
      */
     public function recherchtypeAction (Request $request)
     {
         $type = $request->query->get('type');
-        //var_dump($type);
-        $em_type = $this->getDoctrine()->getRepository("AppBundle:type_produit");
-        $query = $em_type->createQueryBuilder('T')
-            ->select('T.id as a')
-            ->where(' T.type LIKE :type')
-            ->setParameter('type', '%'.$type.'%')
-            ->getQuery();
-        $type_id = $query->getResult();
-        //var_dump($type_id['0']["a"]);
 
         $em_type = $this->getDoctrine()->getRepository("AppBundle:produits");
         $query = $em_type->createQueryBuilder('P')
-            ->select('P.id as a', 'P.prixRevend','P.abonnement')
+            ->select('P')
             ->innerJoin('AppBundle:vende', 'V')
             ->where(' P.type_produit = :ala and P.id != V.produits and P.vendu = 0' )
             ->setMaxResults(1)  
-            ->setParameter('ala',intval($type_id['0']["a"]))
+            ->setParameter('ala',$type)
             ->getQuery();
         $etat = $query->getResult();
+
 
         return $this->render('revendeur/recherche.html.twig', [
             'type_id' => $etat,
@@ -123,60 +84,51 @@ class RevendeurController extends Controller
     /**
      * recherche type
      */
-    public function achatAction (Request $request)
-    {
+
+    public function newvente_revAction(Request $request)
+        {   
+            $id_prod = $request->query->get('prod');
+            $vende = new Vende();
+      //  $form = $this->createForm('AppBundle\Form\vendeType', $vende);
+       // $form->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
+        
         //recuperation du current user
         $currentuser = $this->getUser();
         $id_user = $currentuser->getId();
-        var_dump($id_user);
         $user = $em->getRepository('AppBundle:User')->findOneById($id_user);
+        $produit = $em->getRepository('AppBundle:produits')->findOneById($id_prod);
 
-        $type = $request->query->get('type');
-        //var_dump($type);
-        $em_type = $this->getDoctrine()->getRepository("AppBundle:type_produit");
-        $query = $em_type->createQueryBuilder('T')
-            ->select('T.id as id_type')
-            ->where(' T.type LIKE :type')
-            ->setParameter('type', '%'.$type.'%')
-            ->getQuery();
-        $type_id = $query->getResult();
-        //var_dump($type_id['0']["a"]);
+       
+            //add user il form
+            $vende ->setProduits($produit);
+            if ($vende ->getdeponse())
+            {
+               $restpay = floatval($vende ->getPrixVend()) - floatval( $vende ->getdeponse());
+            }
+            else {
+                    $restpay = null;
+            }
+            
+            $adddate = '+'.$produit -> getAbonnement() . ' month' ;
+            $vende->setEmail('--')->setNompreCli('--')->setNumTel('--')->setNumFix('--')->setAdress('--')->setAbonner($produit->getAbonnement())->setPrixVend($produit->getPrixRevend()) ->setUser($user)->setRestPay($restpay)->setDate(new \DateTime())->setDateAc(new \DateTime())->setDateEx(new \DateTime($adddate));
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($vende);
+            $em->flush();
 
-        $em_type = $this->getDoctrine()->getRepository("AppBundle:produits");
-        $query = $em_type->createQueryBuilder('P')
-            ->select('P.id as id_produit', 'P.nom','P.prixRevend','P.abonnement')
-            ->innerJoin('AppBundle:vende', 'V')
-            ->where(' P.type_produit = :id_type and P.id != V.produits and P.vendu = 0' )
-            ->setMaxResults(1)  
-            ->setParameter('id_type',intval($type_id['0']["id_type"]))
-            ->getQuery();
-        $etat = $query->getResult();
-
-        $produit = $em->getRepository('AppBundle:produits')->findOneById(intval($etat['0']["id_produit"]));
-        $adddate = '+'.$etat['0']['abonnement'] . ' month' ;
-
-        $revendeur = new Revendeur();
-          
-        $revendeur->setProduits($produit)->setprixAchat($etat['0']['prixRevend'])->setCode(self::generateRandomString(6))->setDate(new \DateTime())->setDateAc(new \DateTime())->setUser($user)->setDateEx(new \DateTime($adddate))->setCredit("null")->setDeponse("null")->setAbonner($etat['0']["abonnement"]);
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($revendeur);
-        $em->flush();
-
-        $em_prod = $this->getDoctrine()->getRepository("AppBundle:produits");
+            $em_prod = $this->getDoctrine()->getRepository("AppBundle:produits");
             $query = $em_prod->createQueryBuilder('P')
             ->update('AppBundle:produits' , 'P')
             ->set('P.vendu ' , '1')
             ->where('P.id = :id_prod')
-            ->setParameter('id_prod', intval($etat['0']["id_produit"]))
+            ->setParameter('id_prod', $id_prod)
             ->getQuery();
         $produits = $query->execute();
+            return $this->redirectToRoute('revendeur_index', array(
+                'user' =>  $id_user,
+            ));
 
-        return $this->redirectToRoute('revendeur_show', array(
-            'id' => $revendeur->getId(),
-                ));
-    }
-
+        }
     public function rhomeAction(Request $request)
     {
         return $this->render('revendeur\rhome.html.twig');
@@ -187,9 +139,11 @@ class RevendeurController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $types = $em->getRepository('AppBundle:type_produit')->findAll();
-
+        $currentuser = $this->getUser();
+        $id_user = $currentuser->getId();
         
         return $this->render('revendeur\new.html.twig', array(
+            'user' =>  $id_user,
             'type_produit' => $types,
         ));
     }

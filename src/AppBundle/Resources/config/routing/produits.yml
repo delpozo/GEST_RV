@@ -1,6 +1,6 @@
 produits_index:
     path:     /
-    defaults: { _controller: "AppBundle:produits:index" }
+    defaults: { _controller: "AppBundle:produits:produits" }
     methods:  GET
 
 produits_show:

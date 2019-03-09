@@ -27,13 +27,13 @@ app_user:
     prefix:   /user
 
 app_statfour:
-        resource: "@AppBundle/Resources/config/routing/statfour.yml"
-        prefix:   /statfour
+    resource: "@AppBundle/Resources/config/routing/statfour.yml"
+    prefix:   /statfour
 
 app_client:
-        resource: "@AppBundle/Resources/config/routing/client.yml"
-        prefix:   /client
+    resource: "@AppBundle/Resources/config/routing/client.yml"
+    prefix:   /client
 
 app_appareil:
-        resource: "@AppBundle/Resources/config/routing/appareil.yml"
-        prefix:   /appareil
+    resource: "@AppBundle/Resources/config/routing/appareil.yml"
+    prefix:   /appareil

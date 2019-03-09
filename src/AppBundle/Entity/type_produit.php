@@ -93,11 +93,16 @@ class type_produit
      *
      * @return \Doctrine\Common\Collections\Collection
      */
+    
     public function getProduits()
     {
         return $this->produits;
     }
     public function __toString() {
         return $this->getType();
+    }
+    public function getIdtype()
+    {
+        return $this->getId();
     }
 }

@@ -35,6 +35,7 @@ AppBundle\Entity\produits:
             nullable: false
         prixRevend: 
             type: float
+            column: prix_revend
             nullable: false
         date:
             type: date

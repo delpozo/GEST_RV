@@ -19,14 +19,21 @@
                                 <div class="col-sm-3">
                                     <div class="form-group label-floating">
                                         <p style=" color : black; font-weight: bold;"> {{ (produit.nom) }}</p>
+                                       
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group label-floating">
+                                        <input type="hidden" id="appbundle_vende_User" value="0" /> 
+                                       
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 label-on-left"> Prix d'Vende :</label>
+                                <label class="col-sm-2 label-on-left"> Prix d'Vente :</label>
                                 <div class="col-sm-3">
                                     <div class="form-group label-floating">
-                                        <label class="control-label">Prix d'vende Ex :35 DT</label>
+                                        <label class="control-label">Prix d'Vente Ex :35 DT</label>
                                         {{ form_widget(form.prixVend) }}
                                     </div>
                                 </div>
@@ -113,13 +120,13 @@
                             <div class="row">
                                 <div class="col-sm-5"></div>
                                 <div class="col-sm-2">
-                                    <button type="submit" class="btn btn-fill btn-info">Vende Produit </button>
+                                    <button type="submit" id="achat" class="btn btn-fill btn-info">Vente Produit </button>
                                 </div>
                                 <div class="col-sm-2">
                                     <a class="btn btn-fill-info" href="{{ path('vende_index') }}">Retour à la liste</a>
 
                                 </div>
-
+                                
                             </div>
                         </div>
                     </div>
@@ -129,4 +136,7 @@
     </div>
 
 
+{% endblock %}
+{% block script %}
+    <script src="{{ asset('assets/js/vente.js') }}"></script>
 {% endblock %}

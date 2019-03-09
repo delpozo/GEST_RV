@@ -18,7 +18,7 @@
                   </form>
 {% endblock %}
 {% block body %}
-        
+        <div id="loading"></div>
             <div class="row">
                         <div class="col-md-8 col-md-offset-2">
                             <br />
@@ -33,21 +33,7 @@
                                         </a>
                                     </li>
 
-                                    <li class="active">
-                                        <a href="#schedule-1" data-toggle="modal" data-target="#noticeModal">
-                                            <i class="material-icons">location_on</i> Produit
-                                        </a>
-                                    </li>        
-                                    <li>
-                                        <a href="{{path('fournisseurs_index')}}" role="tab" >
-                                            <i class="material-icons">gavel</i> Fournisseur 
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#tasks-2" role="tab" data-toggle="tab">
-                                            <i class="material-icons">help_outline</i> Type Produit
-                                        </a>
-                                    </li>
+                                    
                                     <li>
                                         <a id="rechvend" onclick="rechvend()" role="tab" data-toggle="tab">
                                             <i class="material-icons">info</i> Produit Vendue
@@ -65,7 +51,7 @@
                 
                        
 
-<div id="loading"></div>
+
     <div class="container-fluid" id="tab_vende">
                 <div class="container-fluid">
                     <div class="row">
@@ -126,7 +112,8 @@
                                                        <i class="material-icons">close</i>
                                                    </a>
                                                    {% if produit.vendu == '0' %} 
-                                                <a href="{{ path('produits_addvend', { 'id_prod': produit.id }) }}"  rel="tooltip" class="btn btn-success btn-simple">
+
+                                                <a href="#" onclick="modal_vente_rev({{produit.id }})" value="vente direct" rel="tooltip" class="btn btn-success btn-simple">
                                                        <i class="material-icons">send</i>
                                                    </a>
                                                  {% endif %}
@@ -153,7 +140,47 @@
 
 
                 </div>
-                
+        <div class="col-sm-4">
+                                    <div class="form-group label-floating">
+                                        <div class="checkbox">
+                                            <label><input type="checkbox"  name="optionsCheckboxes" id="revendeur"/>Vente Pour Revendeur</label>
+                                        </div>
+                                    </div>
+                                    <!-- Modal -->
+                                        <div class="modal" id="Modal_revend" tabindex="-1" role="dialog" aria-labelledby="Modal_revend" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Espace Revendeur</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                                <div class="modal-body">
+                                                    
+                                                    <div class="row">
+                                                        <div class="col-sm-1"></div>
+                                                        <div class="col-md-6">
+                                                            
+                                                                <div class="form-group label-floating">
+                                                                    {{ form_widget(form.User, { 'attr': { 'class' : 'selectpicker','data-style' : 'btn btn-primary btn-round', 'title': 'Choisir un Revendeur' } }) }}
+                                                                    {# <input type="text" class="form-control" placeholder="Nom Client" required> #}
+                                                                </div>
+                                                        </div>  
+                                                    </div>
+
+                                                </div>
+                                            
+                                            <div class="modal-footer">
+                                            
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal"> Annuler </button>
+                                                <button type="button"  onclick="#" id="modal_link" data-dismiss="modal" class="btn btn-primary" value="" > Vente </button>
+                                                
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                </div>
     <div class="col-md-3 col-md-offset-9">
         <a href="{{ path('produits_new') }}"  class="btn btn-info" >Ajouter Produits</a><div class="ripple-container"></div>
         </a>
@@ -180,5 +207,5 @@
 {% endblock %}
 
 {% block script %}
-    <script src="{{ asset('assets/slicknav/jquery.slicknav.min.js') }}"></script>
+    <script src="{{ asset('assets/js/produits.js') }}"></script>
 {% endblock %}

@@ -32,23 +32,7 @@ class vendeController extends Controller
              $request->query->getInt('page',1),
              6
          );
-
-        if($request->getMethod() == 'POST')
-        {
-            $query=$reprostiry->createQueryBuilder('vende')->select('vende')
-                ->where('vende.prixVend = ?1')
-
-                ->orderBy('vende.prixVend','DESC')->getQuery();
-            $paginator=$this->get('knp_paginator');
-            $vendes=$paginator->paginate(
-                $query,
-                $request->query->getInt('page',1),
-                2
-            );
-        
-            return $this->render('vende/index.html.twig', array(
-                'vendes' => $vendes,
-            ));}    
+ 
             
             return $this->render('vende/index.html.twig', [
         'vendes' => $vendes,
@@ -172,16 +156,29 @@ if($request->isXmlHttpRequest())
      * Creates a new vende entity.
      *
      */
-    public function newAction(Request $request , $id_prod)
+    public function newAction($id_prod , $revend , Request $request )
     {
+       
         $vende = new Vende();
         $form = $this->createForm('AppBundle\Form\vendeType', $vende);
         $form->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
 
+        
         //recuperation du current user
-        $currentuser = $this->getUser();
-        $id_user = $currentuser->getId();
+        /* if ( $revend != "")
+            {
+                $id_user = $revend;
+                //var_dump($id_user);
+            }
+        else 
+            {
+                
+            $currentuser = $this->getUser();
+            $id_user = $currentuser->getId();
+            } */
+
+            $id_user = $revend;
         $user = $em->getRepository('AppBundle:User')->findOneById($id_user);
         $produit = $em->getRepository('AppBundle:produits')->findOneById($id_prod);
 

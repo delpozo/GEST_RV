@@ -36,7 +36,7 @@ revendeur_rhome:
 
 revendeur_achat:
     path:     /achat
-    defaults: { _controller: "AbonnementRevendeurBundle:Revendeur:achat" }
+    defaults: { _controller: "AbonnementRevendeurBundle:Revendeur:newvente_rev" }
     methods:  [GET, POST] 
 
 revendeur_recherch:

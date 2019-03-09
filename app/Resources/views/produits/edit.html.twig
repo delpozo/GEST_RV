@@ -66,23 +66,43 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Prix Dvende : 45DT</label>
+                                            <label class="control-label">Prix d'vente : 70DT</label>
                                             {{ form_widget(edit_form.prixVend ) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Prix Revendeur : 55DT</label>
+                                            {{ form_widget(edit_form.prixRevend ) }}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-sm-2 label-on-left"> Quantité d'vendue :</label>
+                            <label class="col-sm-2 label-on-left"> Etat d'vente :</label>
                             <div class="col-md-4">
                                 <div class="form-group label-floating">
-                                    <label class="control-label">Qte : 10 piece</label>
+                                    <label class="control-label">Etat O/N</label>
                                     {{ form_widget(edit_form.vendu) }}
                                 </div>
                             </div>
                         </div>
-                        <div class=row">
+                        <div class="row">
+                            <label class="col-sm-2 label-on-left"> Durée :</label>
+                            <div class="col-sm-10">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating ">
+                                            <label class="control-label">Durée d'abonnement Ex: 12</label>
+                                            {{ form_widget(edit_form.abonnement) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
                             <div class="col-sm-4">
 
                             </div>

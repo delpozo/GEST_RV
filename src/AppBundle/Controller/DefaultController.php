@@ -10,6 +10,12 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
+        
+        return $this->render('base.html.twig');
+    }
+
+     public function adminAction()
+    {
         // juste pour ne reste pas vide ' return '
         $em = $this->getDoctrine()->getRepository("AppBundle:vende");
 

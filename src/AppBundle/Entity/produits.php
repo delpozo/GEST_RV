@@ -327,7 +327,7 @@ class produits
      */
     public function setPrixRevend($prixRevend)
     {
-        $this->setPrixRevend = $prixRevend;
+        $this->prixRevend = $prixRevend;
 
         return $this;
     }

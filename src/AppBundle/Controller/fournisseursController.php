@@ -187,7 +187,7 @@ class fournisseursController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('fournisseurs_edit', array('id' => $fournisseur->getId()));
+            return $this->redirectToRoute('fournisseurs_show', array('id' => $fournisseur->getId()));
         }
 
         return $this->render('fournisseurs/edit.html.twig', array(

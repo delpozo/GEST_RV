@@ -13,7 +13,7 @@ class vendeType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('prixVend')->add('dateAc')->add('dateEx')->add('nompreCli')->add('numTel')->add('numFix')->add('adress')->add('email')->add('User')->add('credit')->add('restPay')->add('deponse')->add('abonner');
+        $builder->add('prixVend')->add('dateAc')->add('produits')->add('dateEx')->add('nompreCli')->add('numTel')->add('numFix')->add('adress')->add('email')->add('User')->add('credit')->add('restPay')->add('deponse')->add('abonner');
     }/**
      * {@inheritdoc}
      */
